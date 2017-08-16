@@ -107,6 +107,7 @@ def run(main=None):
     # here, we are reusing the user key - so this needs to exist before
     privkey_file = os.path.expanduser(args.keyfile)
     privkey_hex = None
+    user_id = None
 
     if not os.path.exists(privkey_file):
         raise Exception('private key file {} does not exist'.format(privkey_file))
@@ -116,16 +117,20 @@ def run(main=None):
             for line in data.splitlines():
                 if line.startswith('private-key-ed25519'):
                     privkey_hex = line.split(':')[1].strip()
+                if line.startswith('user-id'):
+                    user_id = line.split(':')[1].strip()
 
     if privkey_hex is None:
         raise Exception('no private key found in keyfile!')
+
+    if user_id is None:
+        raise Exception('no user ID found in keyfile!')
 
     key = cryptosign.SigningKey.from_key_bytes(binascii.a2b_hex(privkey_hex))
 
     extra = {
         u'key': key,
-        u'authid': u'tobias.oberstein@gmail.com',
-        u'authrole': None,
+        u'authid': user_id,
         u'main': main,
         u'return_code': None
     }
