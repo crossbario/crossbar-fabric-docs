@@ -1,6 +1,6 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
 import client
 

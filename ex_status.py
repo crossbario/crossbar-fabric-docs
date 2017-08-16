@@ -1,10 +1,6 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-import pprint
-
-from twisted.internet.defer import inlineCallbacks, returnValue
-
-from autobahn.twisted.util import sleep
+from twisted.internet.defer import inlineCallbacks
 
 import client
 
