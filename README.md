@@ -18,7 +18,7 @@ The APIs covered:
 
 This example demonstrates how to iterate over the currently connected CF nodes, and on each node, iterate over the currently running workers to retrieve worker information.
 
-* [ex_list_worker.py](ex_list_worker.py)
+* [ex_list_workers.py](ex_list_workers.py)
 
 The APIs covered:
 
