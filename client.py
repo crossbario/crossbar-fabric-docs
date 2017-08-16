@@ -1,3 +1,5 @@
+# Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
+
 import six
 import sys
 import os
