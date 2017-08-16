@@ -57,18 +57,26 @@ class ManagementClientSession(ApplicationSession):
     @inlineCallbacks
     def onJoin(self, details):
         self.log.info("CFC session joined: {details}", details=details)
-        try:
-            main = self.config.extra.get(u'main', None)
-            if main:
+        main = self.config.extra.get(u'main', None)
+        if main:
+            self.log.info('running main() ...')
+            return_code = 0
+            try:
                 return_code = yield main(self)
-                self.config.extra[u'return_code'] = return_code
-        except:
-            # something bad happened: investigate your side or pls file an issue;)
-            self.log.failure()
-        finally:
-            # in any case, shutdown orderly
-            if not self._goodbye_sent:
-                self.leave()
+            except:
+                # something bad happened: investigate your side or pls file an issue;)
+                return_code = -1
+                self.log.failure()
+            finally:
+                # in any case, shutdown orderly
+                if return_code:
+                    self.config.extra[u'return_code'] = return_code
+                # in any case, shutdown orderly
+                if not self._goodbye_sent:
+                    self.leave()
+        else:
+            self.log.info('no main() configured!')
+            self.leave()
 
     def onLeave(self, details):
         self.log.info("CFC session closed: {details}", details=details)
