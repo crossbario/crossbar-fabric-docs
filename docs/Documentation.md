@@ -5,5 +5,5 @@ toc: [Documentation]
 
 Welcome to the Crossbar.io Fabric Documentation.
 
-* [Tracing](Tracing)
-* [Change Log](ChangeLog)
+* [Tracing](Tracing.md)
+* [Change Log](ChangeLog.md)
