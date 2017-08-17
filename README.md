@@ -7,9 +7,11 @@ The repository also contains the documentation (source) and example code for Cro
 
 ## Getting Started
 
-### Fabric Shell
+### Python
 
 You will need Python 3 and virtualenv.
+
+### Fabric Shell
 
 Create a new dedicated Python virtualenv for Crossbar.io Fabric Shell:
 
@@ -41,9 +43,20 @@ Started the shell in interactive mode:
 cbsh
 ```
 
-### Fabric Nodes
+
+### Creating a management realm
+
+To create a CFC management realm for your CF node, start cbsh and enter
+
+    create management-realm my-realm-1
+
+
+### Docker
 
 You will need Docker.
+
+
+### Fabric Nodes
 
 Start a new Crossbar.io Fabric Docker container connecting to Crossbar.io Fabric Center (CFC):
 
@@ -51,6 +64,9 @@ Start a new Crossbar.io Fabric Docker container connecting to Crossbar.io Fabric
 
 When the node is started the first time, a new node public/private key pair is generated. Further, the node will first need to be paired with CFC.
 
-To do that, start cbsh, and enter
+
+### Pairing a node
+
+To pair a CF node to a management realm, start cbsh and enter
 
     pair node my-realm-1 78aaf7... my-node-1
