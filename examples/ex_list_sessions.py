@@ -30,6 +30,26 @@ GET_SESSIONS = _remote_root(u'wamp.session.list')
 GET_SESSION = _remote_root(u'wamp.session.get')
 
 
+#GET_SESSIONS = u'crossbarfabriccenter.remote.realm.wamp.session.list'
+#GET_SESSION = u'crossbarfabriccenter.remote.realm.wamp.session.get'
+
+
+# ideal for an embedded router component: thin layer of API transformation:
+#
+#
+# prefix registration on "crossbarfabriccenter.remote.realm." that translates as this:
+#
+#  - crossbarfabriccenter.remote.realm.{uri:string}(node_id, worker_id, realm_id, *args, details=None, **kwargs)
+#      =>
+#  - crossbarfabriccenter.node.{node_id:string}.worker.{worker_id:string}.realm.{realm_id:string}.root.{uri:string}(*args, **kwargs)
+#
+#
+# prefix subscription to "crossbarfabriccenter.node." that translates as this:
+#
+#  - crossbarfabriccenter.node.{node_id:string}.worker.{worker_id:string}.realm.{realm_id:string}.root.{uri:string}(*args, **kwargs)
+#     =>
+#  - crossbarfabricenter.remote.realm.{uri:string}(node_id, worker_id, realm_id, *args, **kwargs)
+
 @inlineCallbacks
 def main(session):
     """

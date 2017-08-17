@@ -1,4 +1,4 @@
-ex: ex_status ex_list_workers ex_trace_10s
+ex: ex_status ex_list_workers ex_list_sessions ex_trace_10s
 
 ex_status:
 	python -u examples/ex_status.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
