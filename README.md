@@ -2,24 +2,30 @@
 
 The repository also contains the documentation (source) and example code for Crossbar.io Fabric:
 
-* [Crossbar.io Fabric Documentation (Source)](https://github.com/crossbario/crossbar-fabric-docs/wiki)
+* [Crossbar.io Fabric Documentation (Source)](docs/Documentation.md)
 * [Crossbar.io Fabric Examples](examples)
 
 ## Getting Started
 
-### Python
+### Requirements
 
-You will need Python 3 and virtualenv.
+You will need
+
+* Docker
+* Python 3 (and virtualenv)
+
 
 ### Fabric Shell
 
-Create a new dedicated Python virtualenv for Crossbar.io Fabric Shell:
+Create a fresh, dedicated Python virtualenv for Crossbar.io Fabric Shell:
 
 ```console
 virtualenv ~/.cbsh
 source ~/.cbsh/bin/activate
 pip install crossbarfabricshell
 ```
+
+> Note: we do not recommend installing cbsh into a shared Python environment, certainly not the system wide Python enviroment.
 
 Now register or login to Crossbar.io Fabric Center:
 
@@ -49,11 +55,6 @@ cbsh
 To create a CFC management realm for your CF node, start cbsh and enter
 
     create management-realm my-realm-1
-
-
-### Docker
-
-You will need Docker.
 
 
 ### Fabric Nodes
