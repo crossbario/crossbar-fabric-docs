@@ -20,14 +20,14 @@ GET_ROUTER_REALMS = u'crossbarfabriccenter.remote.get_router_realms'
 # exactly the same as a WAMP client locally attached to the respective app router
 # would see.
 #
-def _remote(uri):
+def _remote_root(uri):
     s = u'crossbarfabriccenter.node.{{node_id}}.worker.{{worker_id}}.realm.{{realm}}.root.{uri}'.format(uri=uri)
     def _fun(node_id, worker_id, realm):
         return s.format(node_id=node_id, worker_id=worker_id, realm=realm)
     return _fun
 
-GET_SESSIONS = _remote(u'wamp.session.list')
-GET_SESSION = _remote(u'wamp.session.get')
+GET_SESSIONS = _remote_root(u'wamp.session.list')
+GET_SESSION = _remote_root(u'wamp.session.get')
 
 
 @inlineCallbacks
