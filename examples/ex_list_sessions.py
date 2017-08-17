@@ -12,8 +12,8 @@ GET_WORKERS = u'crossbarfabriccenter.remote.get_workers'
 GET_WORKER = u'crossbarfabriccenter.remote.get_worker'
 GET_ROUTER_REALMS = u'crossbarfabriccenter.remote.get_router_realms'
 
-GET_SESSIONS = u'crossbarfabriccenter.node.{node_id}.worker.{worker_id}.realm.{realm}.wamp.session.list'
-GET_SESSION = u'crossbarfabriccenter.node.{node_id}.worker.{worker_id}.realm.{realm}.wamp.session.get'
+GET_SESSIONS = u'crossbarfabriccenter.node.{node_id}.worker.{worker_id}.realm.{realm}.root.wamp.session.list'
+GET_SESSION = u'crossbarfabriccenter.node.{node_id}.worker.{worker_id}.realm.{realm}.root.wamp.session.get'
 
 
 @inlineCallbacks
