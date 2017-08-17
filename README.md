@@ -1,4 +1,4 @@
-# Crossbar.io Fabric Documentation and Examples
+# Crossbar.io Fabric Documentation
 
 The repository also contains the documentation (source) and example code for Crossbar.io Fabric:
 
