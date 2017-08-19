@@ -99,7 +99,7 @@ Prefix: **crossbarfabriccenter.remote.router.**
 * **stop_router_component** (node_id, worker_id)
 
 
-## Container Workers: crossbarfabriccenter.remote.container
+## crossbarfabriccenter.remote.container
 
 
 ### get_container_components
@@ -130,17 +130,34 @@ Prefix: **crossbarfabriccenter.remote.router.**
 * **stop_container_component** (node_id, worker_id, component_id) -> {on_container_stopped}
 
 
-## Proxy Workers
+## crossbarfabriccenter.remote.proxy.
 
-Preifx: **crossbarfabriccenter.remote.proxy.**
+### get_proxy_transports
 
-* **get_proxy_transports** (node_id, worker_id)
+*Return list of IDs of proxy worker transport in a proxy worker.*
 
-* **get_proxy_transport** (node_id, worker_id, transport_id)
+* **get_proxy_transports** (node_id, worker_id) -> [transport_id]
 
-* **start_proxy_transport** (node_id, worker_id, transport_id, config)
 
-* **stop_proxy_transport** (node_id, worker_id, transport_id)
+### get_proxy_transport
+
+*Return detailed information about proxy worker transport in a proxy worker.*
+
+* **get_proxy_transport** (node_id, worker_id, transport_id) -> {proxy_transport}
+
+
+### start_proxy_transport
+
+*Start a new proxy worker transport in this proxy worker.*
+
+* **start_proxy_transport** (node_id, worker_id, transport_id, config) -> {on_proxy_transport_started}
+
+
+### stop_proxy_transport
+
+*Stop a proxy worker transport running in a proxy worker.*
+
+* **stop_proxy_transport** (node_id, worker_id, transport_id) -> {on_proxy_transport_stopped}
 
 
 ## Message Tracing
