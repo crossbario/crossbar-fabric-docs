@@ -70,17 +70,25 @@
 
 #### get_router_realms
 
+Return a list of IDs of realms in the given router worker.
+
 * **get_router_realms** (node_id, worker_id) -> [realm_id]
 
 #### get_router_realm
+
+Return detailed information about the given realm.
 
 * **get_router_realm** (node_id, worker_id, realm_id) -> {realm}
 
 #### start_router_realm
 
+Start a new realm on the given router worker.
+
 * **start_router_realm** (node_id, worker_id, realm_id|null, realm_config) -> {realm_started}
 
 #### stop_router_realm
+
+Stop a realm currently running in the given router worker.
 
 * **stop_router_realm** (node_id, worker_id, realm_id) -> {realm_stopped}
 
@@ -89,17 +97,25 @@
 
 #### get_router_realm_roles
 
+Return a list of IDs of roles in the given realm.
+
 * **get_router_realm_roles** (node_id, worker_id, realm_id) -> [role_id]
 
 #### get_router_realm_role
+
+Return detailed information about the given role.
 
 * **get_router_realm_role** (node_id, worker_id, realm_id, role_id) -> {realm_role}
 
 #### start_router_realm_role
 
+Start a new role on the given router worker and realm.
+
 * **start_router_realm_role** (node_id, worker_id, realm_id, role_id|null, realm_role_config) -> {realm_role_created}
 
 #### stop_router_realm_role
+
+Stop a role currently running in a realm in a router worker.
 
 * **stop_router_realm_role** (node_id, worker_id, realm_id, role_id) -> {realm_role_stopped}
 
@@ -150,20 +166,28 @@ Router workers are native Crossbar.io processes that can host Python user compon
 
 #### get_router_components
 
+Return list of IDs of components in this router worker.
+
 * **get_router_components** (node_id, worker_id) -> [component_id]
 
 
 #### get_router_component
+
+Return detailed information about the given router component.
 
 * **get_router_component** (node_id, worker_id, component_id) -> {router_component}
 
 
 #### start_router_component
 
+Start a new (native Python) user component in this router worker.
+
 * **start_router_component** (node_id, worker_id, component_id|null, component_config) -> {router_component_started}
 
 
 #### stop_router_component
+
+Stop a user component running in this router worker.
 
 * **stop_router_component** (node_id, worker_id) -> {router_component_stopped}
 
@@ -181,28 +205,28 @@ Container workers are native Crossbar.io processes that can host Python user com
 
 ### get_container_components
 
-*Return list of IDs of (native Python) components in container.*
+Return list of IDs of (native Python) components in container.
 
 * **get_container_components** (node_id, worker_id) -> [component_id]
 
 
 ### get_container_component
 
-*Return detailed information about container component.*
+Return detailed information about container component.
 
 * **get_container_component** (node_id, worker_id, component_id) -> {container_component}
 
 
 ### start_container_component
 
-*Start a new (native Python) component in container.*
+Start a new (native Python) component in container.
 
 * **start_container_component** (node_id, worker_id, component_config) -> {container_component_started}
 
 
 ### stop_container_component
 
-*Stop a component running in the container.*
+Stop a component running in the container.
 
 * **stop_container_component** (node_id, worker_id, component_id) -> {container_component_stopped}
 
