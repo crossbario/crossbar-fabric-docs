@@ -168,28 +168,28 @@ Router workers are native Crossbar.io processes that can host Python user compon
 
 Return list of IDs of components in this router worker.
 
-* `crossbarfabriccenter.remote.router.get_router_components (node_id, worker_id) -> [component_id]`
+* `get_router_components (node_id, worker_id) -> [component_id]`
 
 
 #### get_router_component
 
 Return detailed information about the given router component.
 
-* `crossbarfabriccenter.remote.router.get_router_component (node_id, worker_id, component_id) -> {router_component}`
+* `get_router_component (node_id, worker_id, component_id) -> {router_component}`
 
 
 #### start_router_component
 
 Start a new (native Python) user component in this router worker.
 
-* `crossbarfabriccenter.remote.router.start_router_component (node_id, worker_id, component_id|null, component_config) -> {router_component_started}`
+* `start_router_component (node_id, worker_id, component_id|null, component_config) -> {router_component_started}`
 
 
 #### stop_router_component
 
 Stop a user component running in this router worker.
 
-* `crossbarfabriccenter.remote.router.**stop_router_component** (node_id, worker_id) -> {router_component_stopped}`
+* `stop_router_component (node_id, worker_id) -> {router_component_stopped}`
 
 
 ## Container Workers
