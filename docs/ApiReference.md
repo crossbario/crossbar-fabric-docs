@@ -103,13 +103,21 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 Prefix: **crossbarfabriccenter.remote.container.**
 
-* **get_container_components** (node_id, worker_id) -> [component_id] : Return list of (native Python) components in container.
+* **get_container_components** (node_id, worker_id) -> [component_id]
 
-* **get_container_component** (node_id, worker_id, component_id) -> {container_component} : Return detailed information about container component.
+*Return list of IDs of (native Python) components in container.*
 
-* **start_container_component** (node_id, worker_id, component_id, config) -> {on_container_started} : Start a new (native Python) component in container.
+* **get_container_component** (node_id, worker_id, component_id) -> {container_component}
 
-* **stop_container_component** (node_id, worker_id, component_id) -> {on_container_stopped} : Stop a component running in the container.
+*Return detailed information about container component.*
+
+* **start_container_component** (node_id, worker_id, component_id, config) -> {on_container_started}
+
+*Start a new (native Python) component in container.*
+
+* **stop_container_component** (node_id, worker_id, component_id) -> {on_container_stopped}
+
+*Stop a component running in the container.*
 
 
 ## Proxy Workers
