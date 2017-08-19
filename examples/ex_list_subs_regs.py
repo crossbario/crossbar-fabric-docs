@@ -9,9 +9,9 @@ import client
 
 GET_NODES = u'crossbarfabriccenter.get_nodes'
 
-GET_WORKERS = u'crossbarfabriccenter.remote.get_workers'
-GET_WORKER = u'crossbarfabriccenter.remote.get_worker'
-GET_ROUTER_REALMS = u'crossbarfabriccenter.remote.get_router_realms'
+GET_WORKERS = u'crossbarfabriccenter.remote.node.get_workers'
+GET_WORKER = u'crossbarfabriccenter.remote.node.get_worker'
+GET_ROUTER_REALMS = u'crossbarfabriccenter.remote.router.get_router_realms'
 
 # the following requires options.bridge_meta_api=true in the options
 # of the Crossbar.io router realm called into. it might also require elevated

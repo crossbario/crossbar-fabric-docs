@@ -13,9 +13,9 @@ def main(session):
     """
     nodes = yield session.call(u'crossbarfabriccenter.get_nodes')
     for node_id in nodes:
-        workers = yield session.call(u'crossbarfabriccenter.remote.get_workers', node_id)
+        workers = yield session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
         for worker_id in workers:
-            worker = yield session.call(u'crossbarfabriccenter.remote.get_worker', node_id, worker_id)
+            worker = yield session.call(u'crossbarfabriccenter.remote.node.get_worker', node_id, worker_id)
             session.log.info('Node "{node_id}" / Worker "{worker_id}": {worker}', node_id=node_id, worker_id=worker_id, worker=worker)
 
 
