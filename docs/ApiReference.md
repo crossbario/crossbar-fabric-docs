@@ -120,7 +120,7 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 *Start a new (native Python) component in container.*
 
-* **start_container_component** (node_id, worker_id, component_id, config) -> {on_container_started}
+* **start_container_component** (node_id, worker_id, component_id|null, config) -> {on_container_started}
 
 
 ### stop_container_component
@@ -130,7 +130,10 @@ Prefix: **crossbarfabriccenter.remote.router.**
 * **stop_container_component** (node_id, worker_id, component_id) -> {on_container_stopped}
 
 
-## crossbarfabriccenter.remote.proxy.
+## Proxy Workers
+
+**PREFIX: crossbarfabriccenter.remote.proxy.**
+
 
 ### get_proxy_transports
 
@@ -150,7 +153,7 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 *Start a new proxy worker transport in this proxy worker.*
 
-* **start_proxy_transport** (node_id, worker_id, transport_id, config) -> {on_proxy_transport_started}
+* **start_proxy_transport** (node_id, worker_id, transport_id|null, config) -> {on_proxy_transport_started}
 
 
 ### stop_proxy_transport
@@ -162,37 +165,79 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 ## Message Tracing
 
-Prefix: **crossbarfabriccenter.remote.tracing.**
+**PREFIX: crossbarfabriccenter.remote.tracing.**
 
-* **get_router_traces** (node_id, worker_id)
 
-* **get_router_trace** (node_id, worker_id, trace_id)
+### get_router_traces
 
-* **start_router_trace** (node_id, worker_id, trace_id, config)
+* **get_router_traces** (node_id, worker_id) -> [trace_id]
 
-* **stop_router_trace** (node_id, worker_id, trace_id)
 
-* **get_router_trace_data** (node_id, worker_id, trace_id, from_seq_ to_seq)
+### get_router_trace
+
+* **get_router_trace** (node_id, worker_id, trace_id) -> {trace}
+
+
+### start_router_trace
+
+* **start_router_trace** (node_id, worker_id, trace_id, config) -> {on_trace_started}
+
+
+### stop_router_trace
+
+* **stop_router_trace** (node_id, worker_id, trace_id) -> {on_trace_stopped}
+
+
+### get_router_trace_data
+
+* **get_router_trace_data** (node_id, worker_id, trace_id, from_seq_ to_seq) -> [{trace_record}]
 
 
 ## Docker Control
 
-Prefix: **crossbarfabriccenter.remote.docker.**
+**PREFIX: crossbarfabriccenter.remote.docker.**
+
+
+### get_docker_status
 
 * **get_docker_status** (node_id)
 
+
+### get_docker_containers
+
 * **get_docker_containers** (node_id)
+
+
+### get_docker_container
 
 * **get_docker_container** (node_id, docker_container_id)
 
+
+### start_docker_container
+
 * **start_docker_container** (node_id, docker_container_id, config)
+
+
+### stop_docker_container
 
 * **stop_docker_container** (node_id, docker_container_id)
 
+
+### get_docker_images
+
 * **get_docker_images** (node_id)
+
+
+### get_docker_image
 
 * **get_docker_image** (node_id, image_id)
 
+
+### update_docker_image
+
 * **update_docker_image** (node_id, image_id)
+
+
+### remove_docker_image
 
 * **remove_docker_image** (node_id, image_id)
