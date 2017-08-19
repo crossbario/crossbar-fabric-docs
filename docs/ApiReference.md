@@ -3,7 +3,9 @@
 
 ## Global
 
-Prefix: **crossbarfabriccenter.**
+**crossbarfabriccenter.**
+
+---
 
 * **get_status** ()
 
@@ -14,7 +16,9 @@ Prefix: **crossbarfabriccenter.**
 
 ## Nodes
 
-Prefix: **crossbarfabriccenter.remote.node.**
+**crossbarfabriccenter.remote.node.**
+
+---
 
 * **get_status** (node_id)
 
@@ -31,7 +35,9 @@ Prefix: **crossbarfabriccenter.remote.node.**
 
 ## Native Workers
 
-Prefix: **crossbarfabriccenter.remote.worker.**
+**crossbarfabriccenter.remote.worker.**
+
+---
 
 * **get_status** (node_id, worker_id)
 
@@ -56,50 +62,121 @@ Prefix: **crossbarfabriccenter.remote.worker.**
 
 ## Router Workers
 
-Prefix: **crossbarfabriccenter.remote.router.**
+**crossbarfabriccenter.remote.router.**
 
-* **get_router_realms** (node_id, worker_id)
+---
 
-* **get_router_realm** (node_id, worker_id)
+### Router Realms
 
-* **start_router_realm** (node_id, worker_id)
+#### get_router_realms
 
-* **stop_router_realm** (node_id, worker_id)
+* **get_router_realms** (node_id, worker_id) -> [realm_id]
 
-* **get_router_realm_roles** (node_id, worker_id)
+#### get_router_realm
 
-* **get_router_realm_role** (node_id, worker_id)
+* **get_router_realm** (node_id, worker_id, realm_id) -> {realm}
 
-* **start_router_realm_role** (node_id, worker_id)
+#### start_router_realm
 
-* **stop_router_realm_role** (node_id, worker_id)
+* **start_router_realm** (node_id, worker_id, realm_id|null, realm_config) -> {realm_started}
 
-* **get_router_transports** (node_id, worker_id)
+#### stop_router_realm
 
-* **get_router_transport** (node_id, worker_id)
-
-* **start_router_transport** (node_id, worker_id)
-
-* **stop_router_transport** (node_id, worker_id)
-
-* **get_router_transport_paths** (node_id, worker_id)
-
-* **get_router_transport_path** (node_id, worker_id)
-
-* **start_router_transport_path** (node_id, worker_id)
-
-* **stop_router_transport_path** (node_id, worker_id)
-
-* **get_router_components** (node_id, worker_id)
-
-* **get_router_component** (node_id, worker_id)
-
-* **start_router_component** (node_id, worker_id)
-
-* **stop_router_component** (node_id, worker_id)
+* **stop_router_realm** (node_id, worker_id, realm_id) -> {realm_stopped}
 
 
-## crossbarfabriccenter.remote.container
+### Router Realm Roles
+
+#### get_router_realm_roles
+
+* **get_router_realm_roles** (node_id, worker_id, realm_id) -> [role_id]
+
+#### get_router_realm_role
+
+* **get_router_realm_role** (node_id, worker_id, realm_id, role_id) -> {realm_role}
+
+#### start_router_realm_role
+
+* **start_router_realm_role** (node_id, worker_id, realm_id, role_id|null, realm_role_config) -> {realm_role_created}
+
+#### stop_router_realm_role
+
+* **stop_router_realm_role** (node_id, worker_id, realm_id, role_id) -> {realm_role_stopped}
+
+
+### Router Transports
+
+#### get_router_transports
+
+* **get_router_transports** (node_id, worker_id) -> [transport_id]
+
+#### get_router_transport
+
+* **get_router_transport** (node_id, worker_id, transport_id) -> {transport}
+
+#### start_router_transport
+
+* **start_router_transport** (node_id, worker_id, transport_id|null, transport_config) -> {transport_started}
+
+#### stop_router_transport
+
+* **stop_router_transport** (node_id, worker_id, transport_id) -> {transport_stopped}
+
+
+### Router Transport Paths
+
+#### get_router_transport_paths
+
+* **get_router_transport_paths** (node_id, worker_id, transport_id) -> [path_id]
+
+#### get_router_transport_path
+
+* **get_router_transport_path** (node_id, worker_id, transport_id, path_id) -> {path}
+
+#### start_router_transport_path
+
+* **start_router_transport_path** (node_id, worker_id, transport_id, path_id|null, transport_path_config) -> {transport_path_started}
+
+#### stop_router_transport_path
+
+* **stop_router_transport_path** (node_id, worker_id, transport_id, path_id) -> {transport_path_stopped}
+
+
+### Router Components
+
+Router workers are native Crossbar.io processes that can host Python user components.
+
+> Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizors.
+
+#### get_router_components
+
+* **get_router_components** (node_id, worker_id) -> [component_id]
+
+
+#### get_router_component
+
+* **get_router_component** (node_id, worker_id, component_id) -> {router_component}
+
+
+#### start_router_component
+
+* **start_router_component** (node_id, worker_id, component_id|null, component_config) -> {router_component_started}
+
+
+#### stop_router_component
+
+* **stop_router_component** (node_id, worker_id) -> {router_component_stopped}
+
+
+## Container Workers
+
+**crossbarfabriccenter.remote.container.**
+
+Container workers are native Crossbar.io processes that can host Python user components.
+
+> Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under.
+
+---
 
 
 ### get_container_components
@@ -120,20 +197,21 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 *Start a new (native Python) component in container.*
 
-* **start_container_component** (node_id, worker_id, component_id|null, config) -> {on_container_started}
+* **start_container_component** (node_id, worker_id, component_config) -> {container_component_started}
 
 
 ### stop_container_component
 
 *Stop a component running in the container.*
 
-* **stop_container_component** (node_id, worker_id, component_id) -> {on_container_stopped}
+* **stop_container_component** (node_id, worker_id, component_id) -> {container_component_stopped}
 
 
 ## Proxy Workers
 
-**PREFIX: crossbarfabriccenter.remote.proxy.**
+**crossbarfabriccenter.remote.proxy.**
 
+---
 
 ### get_proxy_transports
 
@@ -165,7 +243,9 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 ## Message Tracing
 
-**PREFIX: crossbarfabriccenter.remote.tracing.**
+**crossbarfabriccenter.remote.tracing.**
+
+---
 
 
 ### get_router_traces
@@ -180,7 +260,7 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 ### start_router_trace
 
-* **start_router_trace** (node_id, worker_id, trace_id, config) -> {on_trace_started}
+* **start_router_trace** (node_id, worker_id, trace_id|null, config) -> {on_trace_started}
 
 
 ### stop_router_trace
@@ -195,7 +275,9 @@ Prefix: **crossbarfabriccenter.remote.router.**
 
 ## Docker Control
 
-**PREFIX: crossbarfabriccenter.remote.docker.**
+**crossbarfabriccenter.remote.docker.**
+
+---
 
 
 ### get_docker_status
