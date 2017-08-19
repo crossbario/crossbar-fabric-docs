@@ -3,145 +3,161 @@
 
 ## Global
 
-### `crossbarfabriccenter.get_status`
+Prefix: `crossbarfabriccenter.`
 
-### `crossbarfabriccenter.get_nodes`
+### `get_status`
 
-### `crossbarfabriccenter.get_node`
+### `get_nodes`
+
+### `get_node`
 
 
 ## Nodes
 
-### `crossbarfabriccenter.remote.node.get_status`
+Prefix: `crossbarfabriccenter.remote.node.`
 
-### `crossbarfabriccenter.remote.node.shutdown`
+### `get_status`
 
-### `crossbarfabriccenter.remote.node.get_workers`
+### `shutdown`
 
-### `crossbarfabriccenter.remote.node.get_worker`
+### `get_workers`
 
-### `crossbarfabriccenter.remote.node.start_worker`
+### `get_worker`
 
-### `crossbarfabriccenter.remote.node.stop_worker`
+### `start_worker`
+
+### `stop_worker`
 
 
 ## Native Workers
 
-### `crossbarfabriccenter.remote.worker.get_status`
+Prefix: `crossbarfabriccenter.remote.worker.`
 
-### `crossbarfabriccenter.remote.worker.shutdown`
+### `get_status`
 
-### `crossbarfabriccenter.remote.worker.get_worker_log`
+### `shutdown`
 
-### `crossbarfabriccenter.remote.worker.get_pythonpath`
+### `get_worker_log`
 
-### `crossbarfabriccenter.remote.worker.add_pythonpath`
+### `get_pythonpath`
 
-### `crossbarfabriccenter.remote.worker.get_cpu_affinity`
+### `add_pythonpath`
 
-### `crossbarfabriccenter.remote.worker.set_cpu_affinity`
+### `get_cpu_affinity`
 
-### `crossbarfabriccenter.remote.worker.get_profilers`
+### `set_cpu_affinity`
 
-### `crossbarfabriccenter.remote.worker.start_profiler`
+### `get_profilers`
 
-### `crossbarfabriccenter.remote.worker.get_profile`
+### `start_profiler`
+
+### `get_profile`
 
 
 ## Router Workers
 
-### `crossbarfabriccenter.remote.router.get_router_realms`
+Prefix: `crossbarfabriccenter.remote.router.`
 
-### `crossbarfabriccenter.remote.router.get_router_realm`
+### `get_router_realms`
 
-### `crossbarfabriccenter.remote.router.start_router_realm`
+### `get_router_realm`
 
-### `crossbarfabriccenter.remote.router.stop_router_realm`
+### `start_router_realm`
 
-### `crossbarfabriccenter.remote.router.get_router_realm_roles`
+### `stop_router_realm`
 
-### `crossbarfabriccenter.remote.router.get_router_realm_role`
+### `get_router_realm_roles`
 
-### `crossbarfabriccenter.remote.router.start_router_realm_role`
+### `get_router_realm_role`
 
-### `crossbarfabriccenter.remote.router.stop_router_realm_role`
+### `start_router_realm_role`
 
-### `crossbarfabriccenter.remote.router.get_router_transports`
+### `stop_router_realm_role`
 
-### `crossbarfabriccenter.remote.router.get_router_transport`
+### `get_router_transports`
 
-### `crossbarfabriccenter.remote.router.start_router_transport`
+### `get_router_transport`
 
-### `crossbarfabriccenter.remote.router.stop_router_transport`
+### `start_router_transport`
 
-### `crossbarfabriccenter.remote.router.get_router_transport_paths`
+### `stop_router_transport`
 
-### `crossbarfabriccenter.remote.router.get_router_transport_path`
+### `get_router_transport_paths`
 
-### `crossbarfabriccenter.remote.router.start_router_transport_path`
+### `get_router_transport_path`
 
-### `crossbarfabriccenter.remote.router.stop_router_transport_path`
+### `start_router_transport_path`
 
-### `crossbarfabriccenter.remote.router.get_router_components`
+### `stop_router_transport_path`
 
-### `crossbarfabriccenter.remote.router.get_router_component`
+### `get_router_components`
 
-### `crossbarfabriccenter.remote.router.start_router_component`
+### `get_router_component`
 
-### `crossbarfabriccenter.remote.router.stop_router_component`
+### `start_router_component`
+
+### `stop_router_component`
 
 
 ## Container Workers
 
-### `crossbarfabriccenter.remote.container.get_container_components`
+Prefix: `crossbarfabriccenter.remote.container.`
 
-### `crossbarfabriccenter.remote.container.get_container_component`
+### `get_container_components`
 
-### `crossbarfabriccenter.remote.container.start_container_component`
+### `get_container_component`
 
-### `crossbarfabriccenter.remote.container.stop_container_component`
+### `start_container_component`
+
+### `stop_container_component`
 
 
 ## Proxy Workers
 
-### `crossbarfabriccenter.remote.proxy.get_proxy_transports`
+Preifx: `crossbarfabriccenter.remote.proxy.`
 
-### `crossbarfabriccenter.remote.proxy.get_proxy_transport`
+### `get_proxy_transports`
 
-### `crossbarfabriccenter.remote.proxy.start_proxy_transport`
+### `get_proxy_transport`
 
-### `crossbarfabriccenter.remote.proxy.stop_proxy_transport`
+### `start_proxy_transport`
+
+### `stop_proxy_transport`
 
 
 ## Message Tracing
 
-### `crossbarfabriccenter.remote.tracing.get_router_traces`
+Prefix: `crossbarfabriccenter.remote.tracing.`
 
-### `crossbarfabriccenter.remote.tracing.get_router_trace`
+### `get_router_traces`
 
-### `crossbarfabriccenter.remote.tracing.start_router_trace`
+### `get_router_trace`
 
-### `crossbarfabriccenter.remote.tracing.stop_router_trace`
+### `start_router_trace`
 
-### `crossbarfabriccenter.remote.tracing.get_router_trace_data`
+### `stop_router_trace`
+
+### `get_router_trace_data`
 
 
 ## Docker Control
 
-### `crossbarfabriccenter.remote.docker.get_docker_status`
+Prefix: `crossbarfabriccenter.remote.docker.`
 
-### `crossbarfabriccenter.remote.docker.get_docker_containers`
+### `get_docker_status`
 
-### `crossbarfabriccenter.remote.docker.get_docker_container`
+### `get_docker_containers`
 
-### `crossbarfabriccenter.remote.docker.start_docker_container`
+### `get_docker_container`
 
-### `crossbarfabriccenter.remote.docker.stop_docker_container`
+### `start_docker_container`
 
-### `crossbarfabriccenter.remote.docker.get_docker_images`
+### `stop_docker_container`
 
-### `crossbarfabriccenter.remote.docker.get_docker_image`
+### `get_docker_images`
 
-### `crossbarfabriccenter.remote.docker.update_docker_image`
+### `get_docker_image`
 
-### `crossbarfabriccenter.remote.docker.remove_docker_image`
+### `update_docker_image`
+
+### `remove_docker_image`
