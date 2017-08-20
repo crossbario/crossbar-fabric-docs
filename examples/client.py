@@ -78,7 +78,7 @@ def run(main=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--debug', dest='debug', action='store_true', default=False,
                         help='Enable logging at level "debug".')
-    parser.add_argument('--url', dest='url', type=str, default=u'ws://localhost:9000/ws',
+    parser.add_argument('--url', dest='url', type=str, default=u'wss://fabric.crossbario.com',
                         help='The Crossbar.io Fabric Center (CFC) WebSocket URL '
                              '(default: wss://fabric.crossbario.com')
     parser.add_argument('--realm', dest='realm', type=str,
