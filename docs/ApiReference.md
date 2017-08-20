@@ -66,17 +66,40 @@
 
 ---
 
+
 ## Global
 
-**crossbarfabriccenter.**
+### crossbarfabriccenter.get_status
+
+Return management realm status information.
+
+* **get_status** () -> {global_status}
 
 ---
 
-* **get_status ()
 
-* **get_nodes ()
+### crossbarfabriccenter.get_nodes
 
-* **get_node ()
+Return list of IDs of nodes in the management realm.
+
+* get_nodes () -> [node_id]
+
+> The order of IDs within the list returned is unspecified, but stable.
+
+---
+
+
+### crossbarfabriccenter.get_node
+
+Return detailed information about a node in the management realm.
+
+* get_node (node_id) -> {node}
+
+where
+
+* node_id (string): ID of the node to retrieve information for
+
+---
 
 
 ## Nodes
