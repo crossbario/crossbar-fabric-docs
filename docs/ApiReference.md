@@ -37,6 +37,11 @@ CFC exposes the following three APIs for :
 * **Remote Meta API**: remote access to CF nodes WAMP meta API
 * **Remote Management API**: remote access to CF nodes management API
 
+CFC clients can use all three APIs at the same time, and use the functionality provided over whole sets of CF nodes in the management realm.
+
+This single point of entry allows you to create complex automatic application management functions using standard programming patterns, and very little user code to write.
+
+
 **Global API**
 
 1. [cfc.get_status](#cfcget_status)
@@ -133,11 +138,20 @@ CFC exposes the following three APIs for :
 
 ## Global
 
+**Namespace:**
+
+* **cfc.**
+
+
 ### cfc.get_status
 
 Return management realm status information.
 
-* **get_status () -> {global_status}**
+* **get_status** () -> status
+
+where
+
+* **status** (dict): status information object
 
 ---
 
@@ -146,7 +160,7 @@ Return management realm status information.
 
 Return list of IDs of nodes in the management realm.
 
-* **get_nodes () -> [node_id]**
+* **get_nodes ()** -> [node_id]
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -157,26 +171,35 @@ Return list of IDs of nodes in the management realm.
 
 Return detailed information about a node in the management realm.
 
-* **get_node (node_id) -> {node}**
+* **get_node** (node_id) -> node
 
 where
 
 * **node_id** (string): ID of the node to retrieve information for
+
+and
+
+* **node** (dict): node information object
 
 ---
 
 
 ## Nodes
 
-**cfc.remote.node.**
+Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
+
+**Namespace:**
+
+* **cfc.remote.node.**
 
 ---
 
+
 ### cfc.remote.node.get_status
 
-Retrieve status information from a node.
+Retrieve status information (directly) from a node.
 
-* **get_status (node_id) -> node_status**
+* **get_status** (node_id) -> status
 
 where
 
@@ -184,16 +207,16 @@ where
 
 and
 
-* **node_status** (dict): Node status information object.
+* **status** (dict): Node status information object.
 
 ---
 
 
 ### cfc.remote.node.shutdown
 
-Orderly shutdown a node.
+Orderly shutdown a node (from within the node).
 
-* **shutdown (node_id) -> node_shutdown**
+* **shutdown** (node_id) -> node_shutdown
 
 where
 
@@ -210,7 +233,7 @@ and
 
 Get list of IDs of workers in node.
 
-* **get_workers (node_id) -> [worker_id]**
+* **get_workers** (node_id) -> [worker_id]
 
 where
 
@@ -223,47 +246,55 @@ where
 
 ### cfc.remote.node.get_worker
 
-* **get_worker (node_id, worker_id)
+
+* **get_worker** (node_id, worker_id)
 
 
 ### cfc.remote.node.start_worker
 
-* **start_worker (node_id, worker_id, config)
+* **start_worker** (node_id, worker_id, config)
 
 
 ### cfc.remote.node.stop_worker
 
-* **stop_worker (node_id, worker_id)
+* **stop_worker** (node_id, worker_id)
 
 
 ## Native Workers
 
-**cfc.remote.worker.**
+**Namespace:**
+
+* **cfc.remote.worker.**
 
 ---
 
-* **get_status (node_id, worker_id)
+* **get_status** (node_id, worker_id)
 
-* **shutdown (node_id, worker_id)
+* **shutdown** (node_id, worker_id)
 
-* **get_worker_log (node_id, worker_id)
+* **get_worker_log** (node_id, worker_id)
 
-* **get_pythonpath (node_id, worker_id)
+* **get_pythonpath** (node_id, worker_id)
 
-* **add_pythonpath (node_id, worker_id)
+* **add_pythonpath** (node_id, worker_id)
 
-* **get_cpu_affinity (node_id, worker_id)
+* **get_cpu_affinity** (node_id, worker_id)
 
-* **set_cpu_affinity (node_id, worker_id)
+* **set_cpu_affinity** (node_id, worker_id)
 
-* **get_profilers (node_id, worker_id)
+* **get_profilers** (node_id, worker_id)
 
-* **start_profiler (node_id, worker_id)
+* **start_profiler** (node_id, worker_id)
 
-* **get_profile (node_id, worker_id)
+* **get_profile** (node_id, worker_id)
 
 
 ## Router Workers
+
+**Namespace:**
+
+* **cfc.remote.router.**
+
 
 ### Router Realms
 
@@ -271,7 +302,7 @@ where
 
 Return a list of IDs of realms in the given router worker.
 
-* **get_router_realms (node_id, worker_id) -> [realm_id]**
+* **get_router_realms** (node_id, worker_id) -> [realm_id]
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -280,26 +311,26 @@ Return a list of IDs of realms in the given router worker.
 
 Return detailed information about the given realm.
 
-* **get_router_realm (node_id, worker_id, realm_id) -> {realm}**
+* **get_router_realm** (node_id, worker_id, realm_id) -> realm
 
 
 #### cfc.remote.router.start_router_realm
 
 Start a new realm on the given router worker.
 
-* **start_router_realm**(node_id, worker_id, realm_id|null, realm_config) -> {realm_started}
+* **start_router_realm** (node_id, worker_id, realm_id, realm_config) -> realm_started
 
 The call does not return until the realm has completely started.
 
 When the new realm *is starting*, an event
 
-* **on_router_realm_starting(node_id, worker_id, realm_id, {realm_starting})**
+* **on_router_realm_starting** (node_id, worker_id, realm_id, realm_starting)
 
 is fired.
 
 When the new realm *is completely started*, an event
 
-* **on_router_realm_started(node_id, worker_id, realm_id, {realm_started})**
+* **on_router_realm_started** (node_id, worker_id, realm_id, realm_started)
 
 is fired.
 
@@ -308,7 +339,7 @@ is fired.
 
 Stop a realm currently running in the given router worker.
 
-* **stop_router_realm (node_id, worker_id, realm_id) -> {realm_stopped}**
+* **stop_router_realm** (node_id, worker_id, realm_id) -> realm_stopped
 
 
 ### Router Realm Roles
@@ -317,7 +348,7 @@ Stop a realm currently running in the given router worker.
 
 Return a list of IDs of roles in the given realm.
 
-* **get_router_realm_roles (node_id, worker_id, realm_id) -> [role_id]**
+* **get_router_realm_roles** (node_id, worker_id, realm_id) -> [role_id]
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -326,65 +357,65 @@ Return a list of IDs of roles in the given realm.
 
 Return detailed information about the given role.
 
-* **get_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role}**
+* **get_router_realm_role* (node_id, worker_id, realm_id, role_id) -> role
 
 
 #### cfc.remote.router.start_router_realm_role
 
 Start a new role on the given router worker and realm.
 
-* **start_router_realm_role (node_id, worker_id, realm_id, role_id|null, realm_role_config) -> {realm_role_created}**
+* **start_router_realm_role** (node_id, worker_id, realm_id, role_id, role_config) -> role_created
 
 
 #### cfc.remote.router.stop_router_realm_role
 
 Stop a role currently running in a realm in a router worker.
 
-* **stop_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role_stopped}**
+* **stop_router_realm_role** (node_id, worker_id, realm_id, role_id) -> role_stopped
 
 
 ### Router Transports
 
 #### cfc.remote.router.get_router_transports
 
-* **get_router_transports (node_id, worker_id) -> [transport_id]**
+* **get_router_transports** (node_id, worker_id) -> [transport_id]
 
 
 #### cfc.remote.router.get_router_transport
 
-* **get_router_transport (node_id, worker_id, transport_id) -> {transport}**
+* **get_router_transport** (node_id, worker_id, transport_id) -> transport
 
 
 #### cfc.remote.router.start_router_transport
 
-* **start_router_transport (node_id, worker_id, transport_id|null, transport_config) -> {transport_started}**
+* **start_router_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
 
 
 #### cfc.remote.router.stop_router_transport
 
-* **stop_router_transport (node_id, worker_id, transport_id) -> {transport_stopped}**
+* **stop_router_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
 
 ### Router Transport Paths
 
 #### cfc.remote.router.get_router_transport_paths
 
-* **get_router_transport_paths (node_id, worker_id, transport_id) -> [path_id]**
+* **get_router_transport_paths** (node_id, worker_id, transport_id) -> [path_id]
 
 
 #### cfc.remote.router.get_router_transport_path
 
-* **get_router_transport_path (node_id, worker_id, transport_id, path_id) -> {path}**
+* **get_router_transport_path** (node_id, worker_id, transport_id, path_id) -> path
 
 
 #### cfc.remote.router.start_router_transport_path
 
-* **start_router_transport_path (node_id, worker_id, transport_id, path_id|null, transport_path_config) -> {transport_path_started}**
+* **start_router_transport_path** (node_id, worker_id, transport_id, path_id, transport_path_config) -> path_started
 
 
 #### cfc.remote.router.stop_router_transport_path
 
-* **stop_router_transport_path (node_id, worker_id, transport_id, path_id) -> {transport_path_stopped}**
+* **stop_router_transport_path** (node_id, worker_id, transport_id, path_id) -> path_stopped
 
 
 ### Router Components
@@ -398,33 +429,35 @@ Router workers are native Crossbar.io processes that can host Python user compon
 
 Return list of IDs of components in this router worker.
 
-* **get_router_components (node_id, worker_id) -> [component_id]**
+* **get_router_components** (node_id, worker_id) -> [component_id]
 
 
 #### cfc.remote.router.get_router_component
 
 Return detailed information about the given router component.
 
-* **get_router_component (node_id, worker_id, component_id) -> {router_component}**
+* **get_router_component** (node_id, worker_id, component_id) -> component
 
 
 #### cfc.remote.router.start_router_component
 
 Start a new (native Python) user component in this router worker.
 
-* **start_router_component (node_id, worker_id, component_id|null, component_config) -> {router_component_started}**
+* **start_router_component** (node_id, worker_id, component_id, component_config) -> component_started
 
 
 #### cfc.remote.router.stop_router_component
 
 Stop a user component running in this router worker.
 
-* **stop_router_component (node_id, worker_id) -> {router_component_stopped}**
+* **stop_router_component** (node_id, worker_id) -> component_stopped
 
 
 ## Container Workers
 
-**cfc.remote.container.**
+**Namespace:**
+
+* **cfc.remote.container.**
 
 Container workers are native Crossbar.io processes that can host Python user components.
 
@@ -437,62 +470,64 @@ Container workers are native Crossbar.io processes that can host Python user com
 
 Return list of IDs of (native Python) components in container.
 
-* **get_container_components (node_id, worker_id) -> [component_id]**
+* **get_container_components** (node_id, worker_id) -> [component_id]
 
 
 ### get_container_component
 
 Return detailed information about container component.
 
-* **get_container_component (node_id, worker_id, component_id) -> {container_component}**
+* **get_container_component** (node_id, worker_id, component_id) -> component
 
 
 ### start_container_component
 
 Start a new (native Python) component in container.
 
-* **start_container_component (node_id, worker_id, component_config) -> {container_component_started}**
+* **start_container_component** (node_id, worker_id, component_config) -> component_started
 
 
 ### stop_container_component
 
 Stop a component running in the container.
 
-* **stop_container_component (node_id, worker_id, component_id) -> {container_component_stopped}**
+* **stop_container_component** (node_id, worker_id, component_id) -> component_stopped
 
 
 ## Proxy Workers
 
-**cfc.remote.proxy.**
+**Namespace:**
+
+* **cfc.remote.proxy.**
 
 ---
 
 ### get_proxy_transports
 
-*Return list of IDs of proxy worker transport in a proxy worker.*
+Return list of IDs of proxy worker transport in a proxy worker.
 
-* **get_proxy_transports (node_id, worker_id) -> [transport_id]**
+* **get_proxy_transports** (node_id, worker_id) -> [transport_id]
 
 
 ### get_proxy_transport
 
-*Return detailed information about proxy worker transport in a proxy worker.*
+Return detailed information about proxy worker transport in a proxy worker.
 
-* **get_proxy_transport (node_id, worker_id, transport_id) -> {proxy_transport}**
+* **get_proxy_transport** (node_id, worker_id, transport_id) -> transport
 
 
 ### start_proxy_transport
 
-*Start a new proxy worker transport in this proxy worker.*
+Start a new proxy worker transport in this proxy worker.
 
-* **start_proxy_transport (node_id, worker_id, transport_id|null, config) -> {on_proxy_transport_started}
+* **start_proxy_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
 
 
 ### stop_proxy_transport
 
-*Stop a proxy worker transport running in a proxy worker.*
+Stop a proxy worker transport running in a proxy worker.
 
-* **stop_proxy_transport (node_id, worker_id, transport_id) -> {on_proxy_transport_stopped}
+* **stop_proxy_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
 
 ## Message Tracing
@@ -660,12 +695,35 @@ and
 
 ### cfc.remote.docker.start_docker_container
 
+Start a Docker container on a host system.
+
 * **start_docker_container** (node_id, container_id, container_config) -> container_started
+
+where
+
+* **node_id** (string): the ID of the node to get the Docker container
+* **container_id** (string or null): optional ID of the Docker container. when not given, auto-generated
+* **container_config** (dict): container configuration object
+
+and
+
+* **container_started** (dict): container started information object
 
 
 ### cfc.remote.docker.stop_docker_container
 
+Stop a Docker container running on a host system.
+
 * **stop_docker_container** (node_id, container_id) -> container_stopped
+
+where
+
+* **node_id** (string): the ID of the node with the Docker container (on the host) to stop
+* **container_id** (string): the ID of the Docker container to stop
+
+and
+
+* **container_stopped** (dict): container stopped information object
 
 
 ### cfc.remote.docker.get_docker_images
