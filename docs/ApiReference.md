@@ -329,14 +329,23 @@ where
 
 ## Router Workers
 
+Routers are the core of Crossbar.io. They are native worker processes that run the routing code of Crossbar.io as well as endpoint listeners, Web services and other transports.
+
+The API here allows for remote and dynamic management of router workers.
+
 **Namespace:**
 
 * **cfc.remote.router.**
 
 
-### Router Realms
+### Realms
 
-#### cfc.remote.router.get_router_realms
+All routing of messages in Crossbar.io is isolated in different routing confinements called realms.
+
+Realms, at the same time, also provide namespace isolation, as URIs as always interpreted with respect to the realm within they occur. URIs portable accross realms - if required - needs to be arranged for by the user.
+
+
+### cfc.remote.router.get_router_realms
 
 Return a list of IDs of realms in the given router worker.
 
@@ -345,14 +354,14 @@ Return a list of IDs of realms in the given router worker.
 > The order of IDs within the list returned is unspecified, but stable.
 
 
-#### cfc.remote.router.get_router_realm
+### cfc.remote.router.get_router_realm
 
 Return detailed information about the given realm.
 
 * **get_router_realm** (node_id, worker_id, realm_id) -> realm
 
 
-#### cfc.remote.router.start_router_realm
+### cfc.remote.router.start_router_realm
 
 Start a new realm on the given router worker.
 
@@ -373,16 +382,23 @@ When the new realm *is completely started*, an event
 is fired.
 
 
-#### cfc.remote.router.stop_router_realm
+### cfc.remote.router.stop_router_realm
 
 Stop a realm currently running in the given router worker.
 
 * **stop_router_realm** (node_id, worker_id, realm_id) -> realm_stopped
 
 
-### Router Realm Roles
+### Roles
 
-#### cfc.remote.router.get_router_realm_roles
+Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**.
+
+This role will then determine the actual permissions the client is granted by the router.
+
+The management of roles on realms and the permissions associated with roles can be dynamically managed using the API in the following.
+
+
+### cfc.remote.router.get_router_realm_roles
 
 Return a list of IDs of roles in the given realm.
 
@@ -391,21 +407,21 @@ Return a list of IDs of roles in the given realm.
 > The order of IDs within the list returned is unspecified, but stable.
 
 
-#### cfc.remote.router.get_router_realm_role
+### cfc.remote.router.get_router_realm_role
 
 Return detailed information about the given role.
 
 * **get_router_realm_role* (node_id, worker_id, realm_id, role_id) -> role
 
 
-#### cfc.remote.router.start_router_realm_role
+### cfc.remote.router.start_router_realm_role
 
 Start a new role on the given router worker and realm.
 
 * **start_router_realm_role** (node_id, worker_id, realm_id, role_id, role_config) -> role_created
 
 
-#### cfc.remote.router.stop_router_realm_role
+### cfc.remote.router.stop_router_realm_role
 
 Stop a role currently running in a realm in a router worker.
 
@@ -414,44 +430,44 @@ Stop a role currently running in a realm in a router worker.
 
 ### Router Transports
 
-#### cfc.remote.router.get_router_transports
+Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
+
+### cfc.remote.router.get_router_transports
 
 * **get_router_transports** (node_id, worker_id) -> [transport_id]
 
 
-#### cfc.remote.router.get_router_transport
+### cfc.remote.router.get_router_transport
 
 * **get_router_transport** (node_id, worker_id, transport_id) -> transport
 
 
-#### cfc.remote.router.start_router_transport
+### cfc.remote.router.start_router_transport
 
 * **start_router_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
 
 
-#### cfc.remote.router.stop_router_transport
+### cfc.remote.router.stop_router_transport
 
 * **stop_router_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
 
-### Router Transport Paths
-
-#### cfc.remote.router.get_router_transport_paths
+### cfc.remote.router.get_router_transport_paths
 
 * **get_router_transport_paths** (node_id, worker_id, transport_id) -> [path_id]
 
 
-#### cfc.remote.router.get_router_transport_path
+### cfc.remote.router.get_router_transport_path
 
 * **get_router_transport_path** (node_id, worker_id, transport_id, path_id) -> path
 
 
-#### cfc.remote.router.start_router_transport_path
+### cfc.remote.router.start_router_transport_path
 
 * **start_router_transport_path** (node_id, worker_id, transport_id, path_id, transport_path_config) -> path_started
 
 
-#### cfc.remote.router.stop_router_transport_path
+### cfc.remote.router.stop_router_transport_path
 
 * **stop_router_transport_path** (node_id, worker_id, transport_id, path_id) -> path_stopped
 
@@ -463,28 +479,28 @@ Router workers are native Crossbar.io processes that can host Python user compon
 > Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizors.
 
 
-#### cfc.remote.router.get_router_components
+### cfc.remote.router.get_router_components
 
 Return list of IDs of components in this router worker.
 
 * **get_router_components** (node_id, worker_id) -> [component_id]
 
 
-#### cfc.remote.router.get_router_component
+### cfc.remote.router.get_router_component
 
 Return detailed information about the given router component.
 
 * **get_router_component** (node_id, worker_id, component_id) -> component
 
 
-#### cfc.remote.router.start_router_component
+### cfc.remote.router.start_router_component
 
 Start a new (native Python) user component in this router worker.
 
 * **start_router_component** (node_id, worker_id, component_id, component_config) -> component_started
 
 
-#### cfc.remote.router.stop_router_component
+### cfc.remote.router.stop_router_component
 
 Stop a user component running in this router worker.
 
