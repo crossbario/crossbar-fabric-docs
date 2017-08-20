@@ -102,7 +102,7 @@ where
 ---
 
 
-## Nodes
+## Remote API: Nodes
 
 **crossbarfabriccenter.remote.node.**
 
@@ -144,13 +144,15 @@ and
 
 ### crossbarfabriccenter.remote.node.get_workers
 
-Get list of IDs of worker in node.
+Get list of IDs of workers in node.
 
 * **get_workers (node_id) -> [worker_id]**
 
 where
 
 * **node_id** (string): ID of the node to get workers for
+
+> The order of IDs within the list returned is unspecified, but stable.
 
 ---
 
@@ -170,7 +172,7 @@ where
 * **stop_worker (node_id, worker_id)
 
 
-## Native Workers
+## Remote API: Native Workers
 
 **crossbarfabriccenter.remote.worker.**
 
@@ -197,7 +199,7 @@ where
 * **get_profile (node_id, worker_id)
 
 
-## Router Workers
+## Remote API: Router Workers
 
 ### Router Realms
 
@@ -356,7 +358,7 @@ Stop a user component running in this router worker.
 * **stop_router_component (node_id, worker_id) -> {router_component_stopped}**
 
 
-## Container Workers
+## Remote API: Container Workers
 
 **crossbarfabriccenter.remote.container.**
 
@@ -395,7 +397,7 @@ Stop a component running in the container.
 * **stop_container_component (node_id, worker_id, component_id) -> {container_component_stopped}**
 
 
-## Proxy Workers
+## Remote API: Proxy Workers
 
 **crossbarfabriccenter.remote.proxy.**
 
@@ -461,53 +463,102 @@ Stop a component running in the container.
 * **get_router_trace_data (node_id, worker_id, trace_id, from_seq_ to_seq) -> [{trace_record}]
 
 
-## Docker Control
+## Remote API: Docker Control
 
 **crossbarfabriccenter.remote.docker.**
 
 ---
 
 
-### get_docker_status
+### crossbarfabriccenter.remote.docker.get_docker_status
 
 * **get_docker_status (node_id)
 
 
-### get_docker_containers
+### crossbarfabriccenter.remote.docker.get_docker_containers
 
 * **get_docker_containers (node_id)
 
 
-### get_docker_container
+### crossbarfabriccenter.remote.docker.get_docker_container
 
 * **get_docker_container (node_id, docker_container_id)
 
 
-### start_docker_container
+### crossbarfabriccenter.remote.docker.start_docker_container
 
 * **start_docker_container (node_id, docker_container_id, config)
 
 
-### stop_docker_container
+### crossbarfabriccenter.remote.docker.stop_docker_container
 
 * **stop_docker_container (node_id, docker_container_id)
 
 
-### get_docker_images
+### crossbarfabriccenter.remote.docker.get_docker_images
 
-* **get_docker_images (node_id)
+Get list of IDs of Docker image on a host system.
+
+* **get_docker_images (node_id) -> [image_id]**
+
+where
+
+* **node_id** (string): the ID of the node with the image (on the host) to get
+
+> The order of IDs within the list returned is unspecified, but stable.
+
+---
 
 
-### get_docker_image
+### crossbarfabriccenter.remote.docker.get_docker_image
 
-* **get_docker_image (node_id, image_id)
+Get detailed information about a Docker image on a host system.
+
+* **get_docker_image (node_id, image_id) -> image**
+
+where
+
+* **node_id** (string): the ID of the node with the image (on the host) to get
+* **image_id** (string): the ID of the Docker image to get
+
+and
+
+* **image** (dict): image information object
+
+---
 
 
-### update_docker_image
+### crossbarfabriccenter.remote.docker.update_docker_image
 
-* **update_docker_image (node_id, image_id)
+Update a Docker image on a host system.
+
+* **update_docker_image (node_id, image_id) -> image_updated**
+
+where
+
+* **node_id** (string): the ID of the node to update the image (on the host)
+* **image_id** (string): the ID of the Docker image to remove
+
+and
+
+* **image_update** (dict): image update information object
+
+---
 
 
-### remove_docker_image
+### crossbarfabriccenter.remote.docker.remove_docker_image
 
-* **remove_docker_image (node_id, image_id)
+Remove a Docker image from a host system.
+
+* **remove_docker_image** (node_id, image_id) -> image_removed
+
+where
+
+* **node_id** (string): the ID of the node to remove the image (from the host)
+* **image_id** (string): the ID of the Docker image to remove
+
+and
+
+* **image_removed** (dict): image removal information object
+
+---
