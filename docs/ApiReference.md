@@ -1,6 +1,20 @@
 # Crossbar.io Fabric Center API Reference
 
-**Global User Realm (com.crossbario.fabric)**
+Crossbar.io Fabric Center (CFC) exposes a rich set of APIs to user management tools and applications.
+
+Clients connect to CFC under one óf two realms:
+
+1. the global users realm (com.crossbario.fabric)
+2. a specific user management realm
+
+The former allows users to create new management realms, pair nodes with such realms and manage their user profiles.
+
+The latter actually are for managing user nodes. Both Crossbar.io Fabric nodes and user management tools and apps connect to previously created management realms in regular operation.
+
+
+**Global Users Realm API**
+
+The global users realm (`com.crossbario.fabric`) on CFC exposes the following API:
 
 1. [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
 1. [crossbarfabriccenter.get_management_realms](#crossbarfabriccenterget_management_realms)
@@ -15,9 +29,21 @@
 
 **User Management Realms**
 
+User management realms are created by users. CFC will then automatically start a backend dedicated to the user's management realm.
+
+CFC exposes the following three APIs for :
+
+* **Root API**: management realm wide operations
+* **Remote Management API**: remote access to CF nodes management API
+* **Remote WAMP API**: remote access to CF nodes WAMP API
+
+
+*Root API:*
 1. [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
 1. [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
 1. [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
+
+*Remote Node API:*
 1. [crossbarfabriccenter.remote.node.get_status](#crossbarfabriccenterremotenodeget_status)
 1. [crossbarfabriccenter.remote.node.shutdown](#crossbarfabriccenterremotenodeshutdown)
 1. [crossbarfabriccenter.remote.node.get_workers](#crossbarfabriccenterremotenodeget_workers)
