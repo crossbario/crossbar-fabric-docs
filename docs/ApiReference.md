@@ -55,12 +55,12 @@ This single point of entry allows you to create complex automatic application ma
 **Remote Management API**
 
 * [Nodes](#nodes)
-    1. [cfc.remote.node.get_status](#cfcremotenodeget_status)
-    1. [cfc.remote.node.shutdown](#cfcremotenodeshutdown)
-    1. [cfc.remote.node.get_workers](#cfcremotenodeget_workers)
-    1. [cfc.remote.node.get_worker](#cfcremotenodeget_worker)
-    1. [cfc.remote.node.start_worker](#cfcremotenodestart_worker)
-    1. [cfc.remote.node.stop_worker](#cfcremotenodestop_worker)
+   1. [cfc.remote.node.get_status](#cfcremotenodeget_status)
+   1. [cfc.remote.node.shutdown](#cfcremotenodeshutdown)
+   1. [cfc.remote.node.get_workers](#cfcremotenodeget_workers)
+   1. [cfc.remote.node.get_worker](#cfcremotenodeget_worker)
+   1. [cfc.remote.node.start_worker](#cfcremotenodestart_worker)
+   1. [cfc.remote.node.stop_worker](#cfcremotenodestop_worker)
 * [Workers](#workers)
     1. [cfc.remote.worker.shutdown](#cfcremoteworkershutdown)
     1. [cfc.remote.worker.get_status](#cfcremoteworkerget_status)
