@@ -16,15 +16,15 @@ The latter actually are for managing user nodes. Both Crossbar.io Fabric nodes a
 
 The global users realm (`com.crossbario.fabric`) on CFC exposes the following API:
 
-1. [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
-1. [crossbarfabriccenter.get_management_realms](#crossbarfabriccenterget_management_realms)
-1. [crossbarfabriccenter.get_management_realm](#crossbarfabriccenterget_management_realm)
-1. [crossbarfabriccenter.create_management_realm](#crossbarfabriccentercreate_management_realm)
-1. [crossbarfabriccenter.delete_management_realm](#crossbarfabriccenterdelete_management_realm)
-1. [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
-1. [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
-1. [crossbarfabriccenter.pair_node](#crossbarfabriccenterpair_node)
-1. [crossbarfabriccenter.unpair_node](#crossbarfabriccenterunpair_node)
+1. [cfc.get_status](#cfcget_status)
+1. [cfc.get_management_realms](#cfcget_management_realms)
+1. [cfc.get_management_realm](#cfcget_management_realm)
+1. [cfc.create_management_realm](#cfccreate_management_realm)
+1. [cfc.delete_management_realm](#cfcdelete_management_realm)
+1. [cfc.get_nodes](#cfcget_nodes)
+1. [cfc.get_node](#cfcget_node)
+1. [cfc.pair_node](#cfcpair_node)
+1. [cfc.unpair_node](#cfcunpair_node)
 
 
 **User Management Realms**
@@ -39,76 +39,76 @@ CFC exposes the following three APIs for :
 
 
 *Root API:*
-1. [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
-1. [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
-1. [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
+1. [cfc.get_status](#cfcget_status)
+1. [cfc.get_nodes](#cfcget_nodes)
+1. [cfc.get_node](#cfcget_node)
 
 *Remote Node API:*
-1. [crossbarfabriccenter.remote.node.get_status](#crossbarfabriccenterremotenodeget_status)
-1. [crossbarfabriccenter.remote.node.shutdown](#crossbarfabriccenterremotenodeshutdown)
-1. [crossbarfabriccenter.remote.node.get_workers](#crossbarfabriccenterremotenodeget_workers)
-1. [crossbarfabriccenter.remote.node.get_worker](#crossbarfabriccenterremotenodeget_worker)
-1. [crossbarfabriccenter.remote.node.start_worker](#crossbarfabriccenterremotenodestart_worker)
-1. [crossbarfabriccenter.remote.node.stop_worker](#crossbarfabriccenterremotenodestop_worker)
-1. [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenterremoteworkershutdown)
-1. [crossbarfabriccenter.remote.worker.get_status](#crossbarfabriccenterremoteworkerget_status)
-1. [crossbarfabriccenter.remote.worker.get_pythonpath](#crossbarfabriccenterremoteworkerget_pythonpath)
-1. [crossbarfabriccenter.remote.worker.add_pythonpath](#crossbarfabriccenterremoteworkeradd_pythonpath)
-1. [crossbarfabriccenter.remote.worker.get_worker_log](#crossbarfabriccenterremoteworkerget_worker_log)
-1. [crossbarfabriccenter.remote.worker.get_cpu_affinity](#crossbarfabriccenterremoteworkerget_cpu_affinity)
-1. [crossbarfabriccenter.remote.worker.set_cpu_affinity](#crossbarfabriccenterremoteworkerset_cpu_affinity)
-1. [crossbarfabriccenter.remote.worker.get_profilers](#crossbarfabriccenterremoteworkerget_profilers)
-1. [crossbarfabriccenter.remote.worker.start_profiler](#crossbarfabriccenterremoteworkerstart_profiler)
-1. [crossbarfabriccenter.remote.worker.get_profile](#crossbarfabriccenterremoteworkerget_profile)
-1. [crossbarfabriccenter.remote.router.get_router_realms](#crossbarfabriccenterremoterouterget_router_realms)
-1. [crossbarfabriccenter.remote.router.get_router_realm](#crossbarfabriccenterremoterouterget_router_realm)
-1. [crossbarfabriccenter.remote.router.start_router_realm](#crossbarfabriccenterremoterouterstart_router_realm)
-1. [crossbarfabriccenter.remote.router.stop_router_realm](#crossbarfabriccenterremoterouterstop_router_realm)
-1. [crossbarfabriccenter.remote.router.get_router_realm_roles](#crossbarfabriccenterremoterouterget_router_realm_roles)
-1. [crossbarfabriccenter.remote.router.get_router_realm_role](#crossbarfabriccenterremoterouterget_router_realm_role)
-1. [crossbarfabriccenter.remote.router.start_router_realm_role](#crossbarfabriccenterremoterouterstart_router_realm_role)
-1. [crossbarfabriccenter.remote.router.stop_router_realm_role](#crossbarfabriccenterremoterouterstop_router_realm_role)
-1. [crossbarfabriccenter.remote.router.get_router_transports](#crossbarfabriccenterremoterouterget_router_transports)
-1. [crossbarfabriccenter.remote.router.get_router_transport](#crossbarfabriccenterremoterouterget_router_transport)
-1. [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenterremoterouterstart_router_transport)
-1. [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenterremoterouterstop_router_transport)
-1. [crossbarfabriccenter.remote.router.get_router_transport_paths](#crossbarfabriccenterremoterouterget_router_transport_paths)
-1. [crossbarfabriccenter.remote.router.get_router_transport_path](#crossbarfabriccenterremoterouterget_router_transport_path)
-1. [crossbarfabriccenter.remote.router.start_router_transport_path](#crossbarfabriccenterremoterouterstart_router_transport_path)
-1. [crossbarfabriccenter.remote.router.stop_router_transport_path](#crossbarfabriccenterremoterouterstop_router_transport_path)
-1. [crossbarfabriccenter.remote.router.get_router_components](#crossbarfabriccenterremoterouterget_router_components)
-1. [crossbarfabriccenter.remote.router.get_router_component](#crossbarfabriccenterremoterouterget_router_component)
-1. [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenterremoterouterstart_router_component)
-1. [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenterremoterouterstop_router_component)
-1. [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenterremotecontainerget_container_components)
-1. [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenterremotecontainerget_container_component)
-1. [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenterremotecontainerstart_container_component)
-1. [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenterremotecontainerstop_container_component)
-1. [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenterremoteproxyget_proxy_transports)
-1. [crossbarfabriccenter.remote.proxy.get_proxy_transport](#crossbarfabriccenterremoteproxyget_proxy_transport)
-1. [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenterremoteproxystart_proxy_transport)
-1. [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenterremoteproxystop_proxy_transport)
-1. [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenterremotetracingget_router_traces)
-1. [crossbarfabriccenter.remote.tracing.get_router_trace](#crossbarfabriccenterremotetracingget_router_trace)
-1. [crossbarfabriccenter.remote.tracing.start_router_trace](#crossbarfabriccenterremotetracingstart_router_trace)
-1. [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenterremotetracingstop_router_trace)
-1. [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenterremotetracingget_router_trace_data)
-1. [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenterremotedockerget_docker_status)
-1. [crossbarfabriccenter.remote.docker.get_docker_containers](#crossbarfabriccenterremotedockerget_docker_containers)
-1. [crossbarfabriccenter.remote.docker.get_docker_container](#crossbarfabriccenterremotedockerget_docker_container)
-1. [crossbarfabriccenter.remote.docker.start_docker_container](#crossbarfabriccenterremotedockerstart_docker_container)
-1. [crossbarfabriccenter.remote.docker.stop_docker_container](#crossbarfabriccenterremotedockerstop_docker_container)
-1. [crossbarfabriccenter.remote.docker.get_docker_images](#crossbarfabriccenterremotedockerget_docker_images)
-1. [crossbarfabriccenter.remote.docker.get_docker_image](#crossbarfabriccenterremotedockerget_docker_image)
-1. [crossbarfabriccenter.remote.docker.update_docker_image](#crossbarfabriccenterremotedockerupdate_docker_image)
-1. [crossbarfabriccenter.remote.docker.remove_docker_image](#crossbarfabriccenterremotedockerremove_docker_image)
+1. [cfc.remote.node.get_status](#cfcremotenodeget_status)
+1. [cfc.remote.node.shutdown](#cfcremotenodeshutdown)
+1. [cfc.remote.node.get_workers](#cfcremotenodeget_workers)
+1. [cfc.remote.node.get_worker](#cfcremotenodeget_worker)
+1. [cfc.remote.node.start_worker](#cfcremotenodestart_worker)
+1. [cfc.remote.node.stop_worker](#cfcremotenodestop_worker)
+1. [cfc.remote.worker.shutdown](#cfcremoteworkershutdown)
+1. [cfc.remote.worker.get_status](#cfcremoteworkerget_status)
+1. [cfc.remote.worker.get_pythonpath](#cfcremoteworkerget_pythonpath)
+1. [cfc.remote.worker.add_pythonpath](#cfcremoteworkeradd_pythonpath)
+1. [cfc.remote.worker.get_worker_log](#cfcremoteworkerget_worker_log)
+1. [cfc.remote.worker.get_cpu_affinity](#cfcremoteworkerget_cpu_affinity)
+1. [cfc.remote.worker.set_cpu_affinity](#cfcremoteworkerset_cpu_affinity)
+1. [cfc.remote.worker.get_profilers](#cfcremoteworkerget_profilers)
+1. [cfc.remote.worker.start_profiler](#cfcremoteworkerstart_profiler)
+1. [cfc.remote.worker.get_profile](#cfcremoteworkerget_profile)
+1. [cfc.remote.router.get_router_realms](#cfcremoterouterget_router_realms)
+1. [cfc.remote.router.get_router_realm](#cfcremoterouterget_router_realm)
+1. [cfc.remote.router.start_router_realm](#cfcremoterouterstart_router_realm)
+1. [cfc.remote.router.stop_router_realm](#cfcremoterouterstop_router_realm)
+1. [cfc.remote.router.get_router_realm_roles](#cfcremoterouterget_router_realm_roles)
+1. [cfc.remote.router.get_router_realm_role](#cfcremoterouterget_router_realm_role)
+1. [cfc.remote.router.start_router_realm_role](#cfcremoterouterstart_router_realm_role)
+1. [cfc.remote.router.stop_router_realm_role](#cfcremoterouterstop_router_realm_role)
+1. [cfc.remote.router.get_router_transports](#cfcremoterouterget_router_transports)
+1. [cfc.remote.router.get_router_transport](#cfcremoterouterget_router_transport)
+1. [cfc.remote.router.start_router_transport](#cfcremoterouterstart_router_transport)
+1. [cfc.remote.router.stop_router_transport](#cfcremoterouterstop_router_transport)
+1. [cfc.remote.router.get_router_transport_paths](#cfcremoterouterget_router_transport_paths)
+1. [cfc.remote.router.get_router_transport_path](#cfcremoterouterget_router_transport_path)
+1. [cfc.remote.router.start_router_transport_path](#cfcremoterouterstart_router_transport_path)
+1. [cfc.remote.router.stop_router_transport_path](#cfcremoterouterstop_router_transport_path)
+1. [cfc.remote.router.get_router_components](#cfcremoterouterget_router_components)
+1. [cfc.remote.router.get_router_component](#cfcremoterouterget_router_component)
+1. [cfc.remote.router.start_router_component](#cfcremoterouterstart_router_component)
+1. [cfc.remote.router.stop_router_component](#cfcremoterouterstop_router_component)
+1. [cfc.remote.container.get_container_components](#cfcremotecontainerget_container_components)
+1. [cfc.remote.container.get_container_component](#cfcremotecontainerget_container_component)
+1. [cfc.remote.container.start_container_component](#cfcremotecontainerstart_container_component)
+1. [cfc.remote.container.stop_container_component](#cfcremotecontainerstop_container_component)
+1. [cfc.remote.proxy.get_proxy_transports](#cfcremoteproxyget_proxy_transports)
+1. [cfc.remote.proxy.get_proxy_transport](#cfcremoteproxyget_proxy_transport)
+1. [cfc.remote.proxy.start_proxy_transport](#cfcremoteproxystart_proxy_transport)
+1. [cfc.remote.proxy.stop_proxy_transport](#cfcremoteproxystop_proxy_transport)
+1. [cfc.remote.tracing.get_router_traces](#cfcremotetracingget_router_traces)
+1. [cfc.remote.tracing.get_router_trace](#cfcremotetracingget_router_trace)
+1. [cfc.remote.tracing.start_router_trace](#cfcremotetracingstart_router_trace)
+1. [cfc.remote.tracing.stop_router_trace](#cfcremotetracingstop_router_trace)
+1. [cfc.remote.tracing.get_router_trace_data](#cfcremotetracingget_router_trace_data)
+1. [cfc.remote.docker.get_docker_status](#cfcremotedockerget_docker_status)
+1. [cfc.remote.docker.get_docker_containers](#cfcremotedockerget_docker_containers)
+1. [cfc.remote.docker.get_docker_container](#cfcremotedockerget_docker_container)
+1. [cfc.remote.docker.start_docker_container](#cfcremotedockerstart_docker_container)
+1. [cfc.remote.docker.stop_docker_container](#cfcremotedockerstop_docker_container)
+1. [cfc.remote.docker.get_docker_images](#cfcremotedockerget_docker_images)
+1. [cfc.remote.docker.get_docker_image](#cfcremotedockerget_docker_image)
+1. [cfc.remote.docker.update_docker_image](#cfcremotedockerupdate_docker_image)
+1. [cfc.remote.docker.remove_docker_image](#cfcremotedockerremove_docker_image)
 
 ---
 
 
 ## Global
 
-### crossbarfabriccenter.get_status
+### cfc.get_status
 
 Return management realm status information.
 
@@ -117,7 +117,7 @@ Return management realm status information.
 ---
 
 
-### crossbarfabriccenter.get_nodes
+### cfc.get_nodes
 
 Return list of IDs of nodes in the management realm.
 
@@ -128,7 +128,7 @@ Return list of IDs of nodes in the management realm.
 ---
 
 
-### crossbarfabriccenter.get_node
+### cfc.get_node
 
 Return detailed information about a node in the management realm.
 
@@ -143,11 +143,11 @@ where
 
 ## Nodes
 
-**crossbarfabriccenter.remote.node.**
+**cfc.remote.node.**
 
 ---
 
-### crossbarfabriccenter.remote.node.get_status
+### cfc.remote.node.get_status
 
 Retrieve status information from a node.
 
@@ -164,7 +164,7 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.node.shutdown
+### cfc.remote.node.shutdown
 
 Orderly shutdown a node.
 
@@ -181,7 +181,7 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.node.get_workers
+### cfc.remote.node.get_workers
 
 Get list of IDs of workers in node.
 
@@ -196,24 +196,24 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.node.get_worker
+### cfc.remote.node.get_worker
 
 * **get_worker (node_id, worker_id)
 
 
-### crossbarfabriccenter.remote.node.start_worker
+### cfc.remote.node.start_worker
 
 * **start_worker (node_id, worker_id, config)
 
 
-### crossbarfabriccenter.remote.node.stop_worker
+### cfc.remote.node.stop_worker
 
 * **stop_worker (node_id, worker_id)
 
 
 ## Native Workers
 
-**crossbarfabriccenter.remote.worker.**
+**cfc.remote.worker.**
 
 ---
 
@@ -242,7 +242,7 @@ where
 
 ### Router Realms
 
-#### crossbarfabriccenter.remote.router.get_router_realms
+#### cfc.remote.router.get_router_realms
 
 Return a list of IDs of realms in the given router worker.
 
@@ -251,14 +251,14 @@ Return a list of IDs of realms in the given router worker.
 > The order of IDs within the list returned is unspecified, but stable.
 
 
-#### crossbarfabriccenter.remote.router.get_router_realm
+#### cfc.remote.router.get_router_realm
 
 Return detailed information about the given realm.
 
 * **get_router_realm (node_id, worker_id, realm_id) -> {realm}**
 
 
-#### crossbarfabriccenter.remote.router.start_router_realm
+#### cfc.remote.router.start_router_realm
 
 Start a new realm on the given router worker.
 
@@ -279,7 +279,7 @@ When the new realm *is completely started*, an event
 is fired.
 
 
-#### crossbarfabriccenter.remote.router.stop_router_realm
+#### cfc.remote.router.stop_router_realm
 
 Stop a realm currently running in the given router worker.
 
@@ -288,7 +288,7 @@ Stop a realm currently running in the given router worker.
 
 ### Router Realm Roles
 
-#### crossbarfabriccenter.remote.router.get_router_realm_roles
+#### cfc.remote.router.get_router_realm_roles
 
 Return a list of IDs of roles in the given realm.
 
@@ -297,21 +297,21 @@ Return a list of IDs of roles in the given realm.
 > The order of IDs within the list returned is unspecified, but stable.
 
 
-#### crossbarfabriccenter.remote.router.get_router_realm_role
+#### cfc.remote.router.get_router_realm_role
 
 Return detailed information about the given role.
 
 * **get_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role}**
 
 
-#### crossbarfabriccenter.remote.router.start_router_realm_role
+#### cfc.remote.router.start_router_realm_role
 
 Start a new role on the given router worker and realm.
 
 * **start_router_realm_role (node_id, worker_id, realm_id, role_id|null, realm_role_config) -> {realm_role_created}**
 
 
-#### crossbarfabriccenter.remote.router.stop_router_realm_role
+#### cfc.remote.router.stop_router_realm_role
 
 Stop a role currently running in a realm in a router worker.
 
@@ -320,44 +320,44 @@ Stop a role currently running in a realm in a router worker.
 
 ### Router Transports
 
-#### crossbarfabriccenter.remote.router.get_router_transports
+#### cfc.remote.router.get_router_transports
 
 * **get_router_transports (node_id, worker_id) -> [transport_id]**
 
 
-#### crossbarfabriccenter.remote.router.get_router_transport
+#### cfc.remote.router.get_router_transport
 
 * **get_router_transport (node_id, worker_id, transport_id) -> {transport}**
 
 
-#### crossbarfabriccenter.remote.router.start_router_transport
+#### cfc.remote.router.start_router_transport
 
 * **start_router_transport (node_id, worker_id, transport_id|null, transport_config) -> {transport_started}**
 
 
-#### crossbarfabriccenter.remote.router.stop_router_transport
+#### cfc.remote.router.stop_router_transport
 
 * **stop_router_transport (node_id, worker_id, transport_id) -> {transport_stopped}**
 
 
 ### Router Transport Paths
 
-#### crossbarfabriccenter.remote.router.get_router_transport_paths
+#### cfc.remote.router.get_router_transport_paths
 
 * **get_router_transport_paths (node_id, worker_id, transport_id) -> [path_id]**
 
 
-#### crossbarfabriccenter.remote.router.get_router_transport_path
+#### cfc.remote.router.get_router_transport_path
 
 * **get_router_transport_path (node_id, worker_id, transport_id, path_id) -> {path}**
 
 
-#### crossbarfabriccenter.remote.router.start_router_transport_path
+#### cfc.remote.router.start_router_transport_path
 
 * **start_router_transport_path (node_id, worker_id, transport_id, path_id|null, transport_path_config) -> {transport_path_started}**
 
 
-#### crossbarfabriccenter.remote.router.stop_router_transport_path
+#### cfc.remote.router.stop_router_transport_path
 
 * **stop_router_transport_path (node_id, worker_id, transport_id, path_id) -> {transport_path_stopped}**
 
@@ -369,28 +369,28 @@ Router workers are native Crossbar.io processes that can host Python user compon
 > Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizors.
 
 
-#### crossbarfabriccenter.remote.router.get_router_components
+#### cfc.remote.router.get_router_components
 
 Return list of IDs of components in this router worker.
 
 * **get_router_components (node_id, worker_id) -> [component_id]**
 
 
-#### crossbarfabriccenter.remote.router.get_router_component
+#### cfc.remote.router.get_router_component
 
 Return detailed information about the given router component.
 
 * **get_router_component (node_id, worker_id, component_id) -> {router_component}**
 
 
-#### crossbarfabriccenter.remote.router.start_router_component
+#### cfc.remote.router.start_router_component
 
 Start a new (native Python) user component in this router worker.
 
 * **start_router_component (node_id, worker_id, component_id|null, component_config) -> {router_component_started}**
 
 
-#### crossbarfabriccenter.remote.router.stop_router_component
+#### cfc.remote.router.stop_router_component
 
 Stop a user component running in this router worker.
 
@@ -399,7 +399,7 @@ Stop a user component running in this router worker.
 
 ## Container Workers
 
-**crossbarfabriccenter.remote.container.**
+**cfc.remote.container.**
 
 Container workers are native Crossbar.io processes that can host Python user components.
 
@@ -438,7 +438,7 @@ Stop a component running in the container.
 
 ## Proxy Workers
 
-**crossbarfabriccenter.remote.proxy.**
+**cfc.remote.proxy.**
 
 ---
 
@@ -476,7 +476,7 @@ Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-ti
 
 **Namespace:**
 
-* **crossbarfabriccenter.remote.tracing.**
+* **cfc.remote.tracing.**
 
 ---
 
@@ -580,12 +580,12 @@ Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
 
 **Namespace:**
 
-* **crossbarfabriccenter.remote.docker.**
+* **cfc.remote.docker.**
 
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_status
+### cfc.remote.docker.get_docker_status
 
 Get status information from Docker on host system.
 
@@ -602,7 +602,7 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_containers
+### cfc.remote.docker.get_docker_containers
 
 Get list of IDs of Docker containers running on host system
 
@@ -615,7 +615,7 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_container
+### cfc.remote.docker.get_docker_container
 
 Get detailed information for Docker container on host system.
 
@@ -633,17 +633,17 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.start_docker_container
+### cfc.remote.docker.start_docker_container
 
 * **start_docker_container** (node_id, container_id, container_config) -> container_started
 
 
-### crossbarfabriccenter.remote.docker.stop_docker_container
+### cfc.remote.docker.stop_docker_container
 
 * **stop_docker_container** (node_id, container_id) -> container_stopped
 
 
-### crossbarfabriccenter.remote.docker.get_docker_images
+### cfc.remote.docker.get_docker_images
 
 Get list of IDs of Docker image on a host system.
 
@@ -658,7 +658,7 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_image
+### cfc.remote.docker.get_docker_image
 
 Get detailed information about a Docker image on a host system.
 
@@ -676,7 +676,7 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.update_docker_image
+### cfc.remote.docker.update_docker_image
 
 Update a Docker image on a host system.
 
@@ -694,7 +694,7 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.remove_docker_image
+### cfc.remote.docker.remove_docker_image
 
 Remove a Docker image from a host system.
 
