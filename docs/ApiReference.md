@@ -73,7 +73,7 @@
 
 Return management realm status information.
 
-* **get_status** () -> {global_status}
+* **get_status () -> {global_status}**
 
 ---
 
@@ -82,7 +82,7 @@ Return management realm status information.
 
 Return list of IDs of nodes in the management realm.
 
-* get_nodes () -> [node_id]
+* **get_nodes () -> [node_id]**
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -93,11 +93,11 @@ Return list of IDs of nodes in the management realm.
 
 Return detailed information about a node in the management realm.
 
-* get_node (node_id) -> {node}
+* **get_node (node_id) -> {node}**
 
 where
 
-* node_id (string): ID of the node to retrieve information for
+* **node_id** (string): ID of the node to retrieve information for
 
 ---
 
@@ -108,15 +108,64 @@ where
 
 ---
 
-* **get_status (node_id)
+### crossbarfabriccenter.remote.node.get_status
 
-* **shutdown (node_id)
+Retrieve status information from a node.
 
-* **get_workers (node_id)
+* **get_status (node_id) -> node_status**
+
+where
+
+* **node_id** (string): ID of the node to retrieve status from
+
+and
+
+* **node_status** (dict): Node status information object.
+
+---
+
+
+### crossbarfabriccenter.remote.node.shutdown
+
+Orderly shutdown a node.
+
+* **shutdown (node_id) -> node_shutdown**
+
+where
+
+* **node_id** (string): ID of the node to shut down
+
+and
+
+* **node_shutdown** (dict): Node (final) shutdown information object.
+
+---
+
+
+### crossbarfabriccenter.remote.node.get_workers
+
+Get list of IDs of worker in node.
+
+* **get_workers (node_id) -> [worker_id]**
+
+where
+
+* **node_id** (string): ID of the node to get workers for
+
+---
+
+
+### crossbarfabriccenter.remote.node.get_worker
 
 * **get_worker (node_id, worker_id)
 
+
+### crossbarfabriccenter.remote.node.start_worker
+
 * **start_worker (node_id, worker_id, config)
+
+
+### crossbarfabriccenter.remote.node.stop_worker
 
 * **stop_worker (node_id, worker_id)
 
