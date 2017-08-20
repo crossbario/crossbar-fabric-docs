@@ -44,94 +44,86 @@ This single point of entry allows you to create complex automatic application ma
 
 **Global API**
 
-1. [cfc.get_status](#cfcget_status)
-1. [cfc.get_nodes](#cfcget_nodes)
-1. [cfc.get_node](#cfcget_node)
+* [cfc.get_status](#cfcget_status)
+* [cfc.get_nodes](#cfcget_nodes)
+* [cfc.get_node](#cfcget_node)
 
 **Remote Meta API**
 
-1. [cfc.remote.router.meta.*](#cfcremoteroutermeta)
+* [cfc.remote.router.meta.*](#cfcremoteroutermeta)
 
 **Remote Management API**
 
-*Nodes*
-
-1. [cfc.remote.node.get_status](#cfcremotenodeget_status)
-1. [cfc.remote.node.shutdown](#cfcremotenodeshutdown)
-1. [cfc.remote.node.get_workers](#cfcremotenodeget_workers)
-1. [cfc.remote.node.get_worker](#cfcremotenodeget_worker)
-1. [cfc.remote.node.start_worker](#cfcremotenodestart_worker)
-1. [cfc.remote.node.stop_worker](#cfcremotenodestop_worker)
-
-*Workers*
-
-1. [cfc.remote.worker.shutdown](#cfcremoteworkershutdown)
-1. [cfc.remote.worker.get_status](#cfcremoteworkerget_status)
-1. [cfc.remote.worker.get_pythonpath](#cfcremoteworkerget_pythonpath)
-1. [cfc.remote.worker.add_pythonpath](#cfcremoteworkeradd_pythonpath)
-1. [cfc.remote.worker.get_worker_log](#cfcremoteworkerget_worker_log)
-1. [cfc.remote.worker.get_cpu_affinity](#cfcremoteworkerget_cpu_affinity)
-1. [cfc.remote.worker.set_cpu_affinity](#cfcremoteworkerset_cpu_affinity)
-1. [cfc.remote.worker.get_profilers](#cfcremoteworkerget_profilers)
-1. [cfc.remote.worker.start_profiler](#cfcremoteworkerstart_profiler)
-1. [cfc.remote.worker.get_profile](#cfcremoteworkerget_profile)
-
-*Routers*
-
-1. [cfc.remote.router.get_router_realms](#cfcremoterouterget_router_realms)
-1. [cfc.remote.router.get_router_realm](#cfcremoterouterget_router_realm)
-1. [cfc.remote.router.start_router_realm](#cfcremoterouterstart_router_realm)
-1. [cfc.remote.router.stop_router_realm](#cfcremoterouterstop_router_realm)
-1. [cfc.remote.router.get_router_realm_roles](#cfcremoterouterget_router_realm_roles)
-1. [cfc.remote.router.get_router_realm_role](#cfcremoterouterget_router_realm_role)
-1. [cfc.remote.router.start_router_realm_role](#cfcremoterouterstart_router_realm_role)
-1. [cfc.remote.router.stop_router_realm_role](#cfcremoterouterstop_router_realm_role)
-1. [cfc.remote.router.get_router_transports](#cfcremoterouterget_router_transports)
-1. [cfc.remote.router.get_router_transport](#cfcremoterouterget_router_transport)
-1. [cfc.remote.router.start_router_transport](#cfcremoterouterstart_router_transport)
-1. [cfc.remote.router.stop_router_transport](#cfcremoterouterstop_router_transport)
-1. [cfc.remote.router.get_router_transport_paths](#cfcremoterouterget_router_transport_paths)
-1. [cfc.remote.router.get_router_transport_path](#cfcremoterouterget_router_transport_path)
-1. [cfc.remote.router.start_router_transport_path](#cfcremoterouterstart_router_transport_path)
-1. [cfc.remote.router.stop_router_transport_path](#cfcremoterouterstop_router_transport_path)
-1. [cfc.remote.router.get_router_components](#cfcremoterouterget_router_components)
-1. [cfc.remote.router.get_router_component](#cfcremoterouterget_router_component)
-1. [cfc.remote.router.start_router_component](#cfcremoterouterstart_router_component)
-1. [cfc.remote.router.stop_router_component](#cfcremoterouterstop_router_component)
-
-*Containers*
-
-1. [cfc.remote.container.get_container_components](#cfcremotecontainerget_container_components)
-1. [cfc.remote.container.get_container_component](#cfcremotecontainerget_container_component)
-1. [cfc.remote.container.start_container_component](#cfcremotecontainerstart_container_component)
-1. [cfc.remote.container.stop_container_component](#cfcremotecontainerstop_container_component)
-
-*Proxies*
-
-1. [cfc.remote.proxy.get_proxy_transports](#cfcremoteproxyget_proxy_transports)
-1. [cfc.remote.proxy.get_proxy_transport](#cfcremoteproxyget_proxy_transport)
-1. [cfc.remote.proxy.start_proxy_transport](#cfcremoteproxystart_proxy_transport)
-1. [cfc.remote.proxy.stop_proxy_transport](#cfcremoteproxystop_proxy_transport)
-
-*Tracing*
-
-1. [cfc.remote.tracing.get_router_traces](#cfcremotetracingget_router_traces)
-1. [cfc.remote.tracing.get_router_trace](#cfcremotetracingget_router_trace)
-1. [cfc.remote.tracing.start_router_trace](#cfcremotetracingstart_router_trace)
-1. [cfc.remote.tracing.stop_router_trace](#cfcremotetracingstop_router_trace)
-1. [cfc.remote.tracing.get_router_trace_data](#cfcremotetracingget_router_trace_data)
-
-*Docker*
-
-1. [cfc.remote.docker.get_docker_status](#cfcremotedockerget_docker_status)
-1. [cfc.remote.docker.get_docker_containers](#cfcremotedockerget_docker_containers)
-1. [cfc.remote.docker.get_docker_container](#cfcremotedockerget_docker_container)
-1. [cfc.remote.docker.start_docker_container](#cfcremotedockerstart_docker_container)
-1. [cfc.remote.docker.stop_docker_container](#cfcremotedockerstop_docker_container)
-1. [cfc.remote.docker.get_docker_images](#cfcremotedockerget_docker_images)
-1. [cfc.remote.docker.get_docker_image](#cfcremotedockerget_docker_image)
-1. [cfc.remote.docker.update_docker_image](#cfcremotedockerupdate_docker_image)
-1. [cfc.remote.docker.remove_docker_image](#cfcremotedockerremove_docker_image)
+* [Nodes](#nodes)
+    1. [cfc.remote.node.get_status](#cfcremotenodeget_status)
+    1. [cfc.remote.node.shutdown](#cfcremotenodeshutdown)
+    1. [cfc.remote.node.get_workers](#cfcremotenodeget_workers)
+    1. [cfc.remote.node.get_worker](#cfcremotenodeget_worker)
+    1. [cfc.remote.node.start_worker](#cfcremotenodestart_worker)
+    1. [cfc.remote.node.stop_worker](#cfcremotenodestop_worker)
+* [Workers](#workers)
+    1. [cfc.remote.worker.shutdown](#cfcremoteworkershutdown)
+    1. [cfc.remote.worker.get_status](#cfcremoteworkerget_status)
+    1. [cfc.remote.worker.get_pythonpath](#cfcremoteworkerget_pythonpath)
+    1. [cfc.remote.worker.add_pythonpath](#cfcremoteworkeradd_pythonpath)
+    1. [cfc.remote.worker.get_worker_log](#cfcremoteworkerget_worker_log)
+    1. [cfc.remote.worker.get_cpu_affinity](#cfcremoteworkerget_cpu_affinity)
+    1. [cfc.remote.worker.set_cpu_affinity](#cfcremoteworkerset_cpu_affinity)
+    1. [cfc.remote.worker.get_profilers](#cfcremoteworkerget_profilers)
+    1. [cfc.remote.worker.start_profiler](#cfcremoteworkerstart_profiler)
+    1. [cfc.remote.worker.get_profile](#cfcremoteworkerget_profile)
+* [Routers](#routers)
+    * [Router Realms](#routerrealms)
+        1. [cfc.remote.router.get_router_realms](#cfcremoterouterget_router_realms)
+        1. [cfc.remote.router.get_router_realm](#cfcremoterouterget_router_realm)
+        1. [cfc.remote.router.start_router_realm](#cfcremoterouterstart_router_realm)
+        1. [cfc.remote.router.stop_router_realm](#cfcremoterouterstop_router_realm)
+    * [Realm Roles](Realm Roles)
+        1. [cfc.remote.router.get_realm_roles](#cfcremoterouterget_realm_roles)
+        1. [cfc.remote.router.get_realm_role](#cfcremoterouterget_realm_role)
+        1. [cfc.remote.router.start_realm_role](#cfcremoterouterstart_realm_role)
+        1. [cfc.remote.router.stop_realm_role](#cfcremoterouterstop_realm_role)
+    * [Router Transports](#routertransports):
+        1. [cfc.remote.router.get_router_transports](#cfcremoterouterget_router_transports)
+        1. [cfc.remote.router.get_router_transport](#cfcremoterouterget_router_transport)
+        1. [cfc.remote.router.start_router_transport](#cfcremoterouterstart_router_transport)
+        1. [cfc.remote.router.stop_router_transport](#cfcremoterouterstop_router_transport)
+    * [Transport Paths](#transportpaths):
+        1. [cfc.remote.router.get_transport_paths](#cfcremoterouterget_transport_paths)
+        1. [cfc.remote.router.get_transport_path](#cfcremoterouterget_transport_path)
+        1. [cfc.remote.router.start_transport_path](#cfcremoterouterstart_transport_path)
+        1. [cfc.remote.router.stop_transport_path](#cfcremoterouterstop_transport_path)
+    * [Router Components](#routercomponents):
+        1. [cfc.remote.router.get_router_components](#cfcremoterouterget_router_components)
+        1. [cfc.remote.router.get_router_component](#cfcremoterouterget_router_component)
+        1. [cfc.remote.router.start_router_component](#cfcremoterouterstart_router_component)
+        1. [cfc.remote.router.stop_router_component](#cfcremoterouterstop_router_component)
+* [Containers*](#containers)
+    1. [cfc.remote.container.get_container_components](#cfcremotecontainerget_container_components)
+    1. [cfc.remote.container.get_container_component](#cfcremotecontainerget_container_component)
+    1. [cfc.remote.container.start_container_component](#cfcremotecontainerstart_container_component)
+    1. [cfc.remote.container.stop_container_component](#cfcremotecontainerstop_container_component)
+* [Proxies](#proxies)
+    1. [cfc.remote.proxy.get_proxy_transports](#cfcremoteproxyget_proxy_transports)
+    1. [cfc.remote.proxy.get_proxy_transport](#cfcremoteproxyget_proxy_transport)
+    1. [cfc.remote.proxy.start_proxy_transport](#cfcremoteproxystart_proxy_transport)
+    1. [cfc.remote.proxy.stop_proxy_transport](#cfcremoteproxystop_proxy_transport)
+* [Tracing](#tracing)
+    1. [cfc.remote.tracing.get_router_traces](#cfcremotetracingget_router_traces)
+    1. [cfc.remote.tracing.get_router_trace](#cfcremotetracingget_router_trace)
+    1. [cfc.remote.tracing.start_router_trace](#cfcremotetracingstart_router_trace)
+    1. [cfc.remote.tracing.stop_router_trace](#cfcremotetracingstop_router_trace)
+    1. [cfc.remote.tracing.get_router_trace_data](#cfcremotetracingget_router_trace_data)
+* [Docker](#docker)
+    1. [cfc.remote.docker.get_docker_status](#cfcremotedockerget_docker_status)
+    1. [cfc.remote.docker.get_docker_containers](#cfcremotedockerget_docker_containers)
+    1. [cfc.remote.docker.get_docker_container](#cfcremotedockerget_docker_container)
+    1. [cfc.remote.docker.start_docker_container](#cfcremotedockerstart_docker_container)
+    1. [cfc.remote.docker.stop_docker_container](#cfcremotedockerstop_docker_container)
+    1. [cfc.remote.docker.get_docker_images](#cfcremotedockerget_docker_images)
+    1. [cfc.remote.docker.get_docker_image](#cfcremotedockerget_docker_image)
+    1. [cfc.remote.docker.update_docker_image](#cfcremotedockerupdate_docker_image)
+    1. [cfc.remote.docker.remove_docker_image](#cfcremotedockerremove_docker_image)
 
 ---
 
