@@ -1,5 +1,70 @@
 # Crossbar.io Fabric Center API Reference
 
+**Overview:**
+
+1. [crossbarfabriccenter.get_status](#crossbarfabriccenter.get_status)
+1. [crossbarfabriccenter.get_nodes](#crossbarfabriccenter.get_nodes)
+1. [crossbarfabriccenter.get_node](#crossbarfabriccenter.get_node)
+1. [crossbarfabriccenter.remote.node.get_status](#crossbarfabriccenter.remote.node.get_status)
+1. [crossbarfabriccenter.remote.node.shutdown](#crossbarfabriccenter.remote.node.shutdown)
+1. [crossbarfabriccenter.remote.node.get_workers](#crossbarfabriccenter.remote.node.get_workers)
+1. [crossbarfabriccenter.remote.node.get_worker](#crossbarfabriccenter.remote.node.get_worker)
+1. [crossbarfabriccenter.remote.node.start_worker](#crossbarfabriccenter.remote.node.start_worker)
+1. [crossbarfabriccenter.remote.node.stop_worker](#crossbarfabriccenter.remote.node.stop_worker)
+1. [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenter.remote.worker.shutdown)
+1. [crossbarfabriccenter.remote.worker.get_status](#crossbarfabriccenter.remote.worker.get_status)
+1. [crossbarfabriccenter.remote.worker.get_pythonpath](#crossbarfabriccenter.remote.worker.get_pythonpath)
+1. [crossbarfabriccenter.remote.worker.add_pythonpath](#crossbarfabriccenter.remote.worker.add_pythonpath)
+1. [crossbarfabriccenter.remote.worker.get_worker_log](#crossbarfabriccenter.remote.worker.get_worker_log)
+1. [crossbarfabriccenter.remote.worker.get_cpu_affinity](#crossbarfabriccenter.remote.worker.get_cpu_affinity)
+1. [crossbarfabriccenter.remote.worker.set_cpu_affinity](#crossbarfabriccenter.remote.worker.set_cpu_affinity)
+1. [crossbarfabriccenter.remote.worker.get_profilers](#crossbarfabriccenter.remote.worker.get_profilers)
+1. [crossbarfabriccenter.remote.worker.start_profiler](#crossbarfabriccenter.remote.worker.start_profiler)
+1. [crossbarfabriccenter.remote.worker.get_profile](#crossbarfabriccenter.remote.worker.get_profile)
+1. [crossbarfabriccenter.remote.router.get_router_realms](#crossbarfabriccenter.remote.router.get_router_realms)
+1. [crossbarfabriccenter.remote.router.get_router_realm](#crossbarfabriccenter.remote.router.get_router_realm)
+1. [crossbarfabriccenter.remote.router.start_router_realm](#crossbarfabriccenter.remote.router.start_router_realm)
+1. [crossbarfabriccenter.remote.router.stop_router_realm](#crossbarfabriccenter.remote.router.stop_router_realm)
+1. [crossbarfabriccenter.remote.router.get_router_realm_roles](#crossbarfabriccenter.remote.router.get_router_realm_roles)
+1. [crossbarfabriccenter.remote.router.get_router_realm_role](#crossbarfabriccenter.remote.router.get_router_realm_role)
+1. [crossbarfabriccenter.remote.router.start_router_realm_role](#crossbarfabriccenter.remote.router.start_router_realm_role)
+1. [crossbarfabriccenter.remote.router.stop_router_realm_role](#crossbarfabriccenter.remote.router.stop_router_realm_role)
+1. [crossbarfabriccenter.remote.router.get_router_transports](#crossbarfabriccenter.remote.router.get_router_transports)
+1. [crossbarfabriccenter.remote.router.get_router_transport](#crossbarfabriccenter.remote.router.get_router_transport)
+1. [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenter.remote.router.start_router_transport)
+1. [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenter.remote.router.stop_router_transport)
+1. [crossbarfabriccenter.remote.router.get_router_transport_paths](#crossbarfabriccenter.remote.router.get_router_transport_paths)
+1. [crossbarfabriccenter.remote.router.get_router_transport_path](#crossbarfabriccenter.remote.router.get_router_transport_path)
+1. [crossbarfabriccenter.remote.router.start_router_transport_path](#crossbarfabriccenter.remote.router.start_router_transport_path)
+1. [crossbarfabriccenter.remote.router.stop_router_transport_path](#crossbarfabriccenter.remote.router.stop_router_transport_path)
+1. [crossbarfabriccenter.remote.router.get_router_components](#crossbarfabriccenter.remote.router.get_router_components)
+1. [crossbarfabriccenter.remote.router.get_router_component](#crossbarfabriccenter.remote.router.get_router_component)
+1. [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenter.remote.router.start_router_component)
+1. [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenter.remote.router.stop_router_component)
+1. [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenter.remote.container.get_container_components)
+1. [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenter.remote.container.get_container_component)
+1. [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenter.remote.container.start_container_component)
+1. [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenter.remote.container.stop_container_component)
+1. [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenter.remote.proxy.get_proxy_transports)
+1. [crossbarfabriccenter.remote.proxy.get_proxy_transport](#crossbarfabriccenter.remote.proxy.get_proxy_transport)
+1. [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenter.remote.proxy.start_proxy_transport)
+1. [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenter.remote.proxy.stop_proxy_transport)
+1. [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenter.remote.tracing.get_router_traces)
+1. [crossbarfabriccenter.remote.tracing.get_router_trace](#crossbarfabriccenter.remote.tracing.get_router_trace)
+1. [crossbarfabriccenter.remote.tracing.start_router_trace](#crossbarfabriccenter.remote.tracing.start_router_trace)
+1. [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenter.remote.tracing.stop_router_trace)
+1. [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenter.remote.tracing.get_router_trace_data)
+1. [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenter.remote.docker.get_docker_status)
+1. [crossbarfabriccenter.remote.docker.get_docker_containers](#crossbarfabriccenter.remote.docker.get_docker_containers)
+1. [crossbarfabriccenter.remote.docker.get_docker_container](#crossbarfabriccenter.remote.docker.get_docker_container)
+1. [crossbarfabriccenter.remote.docker.start_docker_container](#crossbarfabriccenter.remote.docker.start_docker_container)
+1. [crossbarfabriccenter.remote.docker.stop_docker_container](#crossbarfabriccenter.remote.docker.stop_docker_container)
+1. [crossbarfabriccenter.remote.docker.get_docker_images](#crossbarfabriccenter.remote.docker.get_docker_images)
+1. [crossbarfabriccenter.remote.docker.get_docker_image](#crossbarfabriccenter.remote.docker.get_docker_image)
+1. [crossbarfabriccenter.remote.docker.update_docker_image](#crossbarfabriccenter.remote.docker.update_docker_image)
+1. [crossbarfabriccenter.remote.docker.remove_docker_image](#crossbarfabriccenter.remote.docker.remove_docker_image)
+
+---
 
 ## Global
 
@@ -84,19 +149,19 @@ Return detailed information about the given realm.
 
 Start a new realm on the given router worker.
 
-* **start_router_realm (node_id, worker_id, realm_id|null, realm_config) -> {realm_started}**
+* **start_router_realm**(node_id, worker_id, realm_id|null, realm_config) -> {realm_started}
 
 The call does not return until the realm has completely started.
 
-When the new realm is starting, an event
+When the new realm *is starting*, an event
 
-* **on_router_realm_starting**
+* **on_router_realm_starting(node_id, worker_id, realm_id, {realm_starting})**
 
 is fired.
 
-When the new realm is completely started, an event
+When the new realm *is completely started*, an event
 
-* **on_router_realm_started**
+* **on_router_realm_started(node_id, worker_id, realm_id, {realm_started})**
 
 is fired.
 
