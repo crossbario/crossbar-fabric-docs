@@ -1,6 +1,6 @@
 # Crossbar.io Fabric Center API Reference
 
-**Global Realm**
+**Global User Realm (com.crossbario.fabric)**
 
 1. [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
 1. [crossbarfabriccenter.get_management_realms](#crossbarfabriccenterget_management_realms)
@@ -13,7 +13,7 @@
 1. [crossbarfabriccenter.unpair_node](#crossbarfabriccenterunpair_node)
 
 
-**Management Realms**
+**User Management Realms**
 
 1. [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
 1. [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
