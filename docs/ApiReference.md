@@ -268,23 +268,61 @@ where
 
 ---
 
+### cfc.remote.worker.get_status
+
 * **get_status** (node_id, worker_id)
+
+---
+
+### cfc.remote.worker.shutdown
 
 * **shutdown** (node_id, worker_id)
 
+---
+
+### cfc.remote.worker.
+
 * **get_worker_log** (node_id, worker_id)
+
+---
+
+### cfc.remote.worker.get_pythonpath
 
 * **get_pythonpath** (node_id, worker_id)
 
+---
+
+### cfc.remote.worker.add_pythonpath
+
 * **add_pythonpath** (node_id, worker_id)
+
+---
+
+### cfc.remote.worker.get_cpu_affinity
 
 * **get_cpu_affinity** (node_id, worker_id)
 
+---
+
+### cfc.remote.worker.set_cpu_affinity
+
 * **set_cpu_affinity** (node_id, worker_id)
+
+---
+
+### cfc.remote.worker.get_profilers
 
 * **get_profilers** (node_id, worker_id)
 
+---
+
+### cfc.remote.worker.start_profiler
+
 * **start_profiler** (node_id, worker_id)
+
+---
+
+### cfc.remote.worker.get_profile
 
 * **get_profile** (node_id, worker_id)
 
@@ -466,28 +504,28 @@ Container workers are native Crossbar.io processes that can host Python user com
 ---
 
 
-### get_container_components
+### cfc.remote.container.get_container_components
 
 Return list of IDs of (native Python) components in container.
 
 * **get_container_components** (node_id, worker_id) -> [component_id]
 
 
-### get_container_component
+### cfc.remote.container.get_container_component
 
 Return detailed information about container component.
 
 * **get_container_component** (node_id, worker_id, component_id) -> component
 
 
-### start_container_component
+### cfc.remote.container.start_container_component
 
 Start a new (native Python) component in container.
 
 * **start_container_component** (node_id, worker_id, component_config) -> component_started
 
 
-### stop_container_component
+### cfc.remote.container.stop_container_component
 
 Stop a component running in the container.
 
@@ -502,28 +540,28 @@ Stop a component running in the container.
 
 ---
 
-### get_proxy_transports
+### cfc.remote.proxy.get_proxy_transports
 
 Return list of IDs of proxy worker transport in a proxy worker.
 
 * **get_proxy_transports** (node_id, worker_id) -> [transport_id]
 
 
-### get_proxy_transport
+### cfc.remote.proxy.get_proxy_transport
 
 Return detailed information about proxy worker transport in a proxy worker.
 
 * **get_proxy_transport** (node_id, worker_id, transport_id) -> transport
 
 
-### start_proxy_transport
+### cfc.remote.proxy.start_proxy_transport
 
 Start a new proxy worker transport in this proxy worker.
 
 * **start_proxy_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
 
 
-### stop_proxy_transport
+### cfc.remote.proxy.stop_proxy_transport
 
 Stop a proxy worker transport running in a proxy worker.
 
@@ -541,7 +579,7 @@ Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-ti
 ---
 
 
-### get_router_traces
+### cfc.remote.tracing.get_router_traces
 
 Return list of IDs of traces on a router worker.
 
@@ -555,7 +593,7 @@ where
 ---
 
 
-### get_router_trace
+### cfc.remote.tracing.get_router_trace
 
 Return detailed information about a trace on a router worker.
 
@@ -574,7 +612,7 @@ and
 ---
 
 
-### start_router_trace
+### cfc.remote.tracing.start_router_trace
 
 Starts a new trace on a router worker.
 
@@ -593,7 +631,7 @@ and
 ---
 
 
-### stop_router_trace
+### cfc.remote.tracing.stop_router_trace
 
 Stops a running trace on a router worker.
 
@@ -612,7 +650,7 @@ and
 ---
 
 
-### get_router_trace_data
+### cfc.remote.tracing.get_router_trace_data
 
 Return trace records from a trace on a router worker.
 
