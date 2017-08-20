@@ -2,8 +2,6 @@
 
 import pprint
 
-from twisted.internet.defer import inlineCallbacks
-
 import client
 
 GET_NODES = u'crossbarfabriccenter.get_nodes'
@@ -20,8 +18,11 @@ GET_ROUTER_REALMS = u'crossbarfabriccenter.remote.router.get_router_realms'
 # exactly the same as a WAMP client locally attached to the respective app router
 # would see.
 #
+
+
 def _remote_root(uri):
     s = u'crossbarfabriccenter.node.{{node_id}}.worker.{{worker_id}}.realm.{{realm}}.root.{uri}'.format(uri=uri)
+
     def _fun(node_id, worker_id, realm):
         return s.format(node_id=node_id, worker_id=worker_id, realm=realm)
     return _fun
@@ -50,25 +51,25 @@ GET_SESSION = _remote_root(u'wamp.session.get')
 #     =>
 #  - crossbarfabricenter.remote.realm.{uri:string}(node_id, worker_id, realm_id, *args, **kwargs)
 
-@inlineCallbacks
-def main(session):
+
+async def main(session):
     """
     Iterate over all nodes, and all workers on each nodes to retrieve and
     print worker information. then exit.
     """
     verbose = True
-    nodes = yield session.call(GET_NODES)
+    nodes = await session.call(GET_NODES)
     for node_id in nodes:
-        workers = yield session.call(GET_WORKERS, node_id)
+        workers = await session.call(GET_WORKERS, node_id)
         for worker_id in workers:
-            worker = yield session.call(GET_WORKER, node_id, worker_id)
+            worker = await session.call(GET_WORKER, node_id, worker_id)
             if worker[u'type'] == u'router':
-                realms = yield session.call(GET_ROUTER_REALMS, node_id, worker_id)
+                realms = await session.call(GET_ROUTER_REALMS, node_id, worker_id)
                 for realm in realms:
-                    sessions = yield session.call(GET_SESSIONS(node_id, worker_id, realm))
+                    sessions = await session.call(GET_SESSIONS(node_id, worker_id, realm))
                     print('node "{}" / router "{}" / realm "{}" has currently {} sessions connected: {}'.format(realm, node_id, worker_id, len(sessions), sessions))
                     for session_id in sessions:
-                        session_info = yield session.call(GET_SESSION(node_id, worker_id, realm), session_id)
+                        session_info = await session.call(GET_SESSION(node_id, worker_id, realm), session_id)
                         if verbose:
                             pprint.pprint(session_info)
 
