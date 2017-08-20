@@ -433,41 +433,115 @@ Stop a component running in the container.
 
 ## Message Tracing
 
-**crossbarfabriccenter.remote.tracing.**
+Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
+
+**Namespace:**
+
+* **crossbarfabriccenter.remote.tracing.**
 
 ---
 
 
 ### get_router_traces
 
-* **get_router_traces (node_id, worker_id) -> [trace_id]
+Return list of IDs of traces on a router worker.
+
+* **get_router_traces** (node_id, worker_id) -> [trace_id]
+
+where
+
+* **node_id** (string): the ID of the node to get traces from
+* **worker_id** (string): the ID of the worker to get traces from
+
+---
 
 
 ### get_router_trace
 
-* **get_router_trace (node_id, worker_id, trace_id) -> {trace}
+Return detailed information about a trace on a router worker.
+
+* **get_router_trace (node_id, worker_id, trace_id) -> trace
+
+where
+
+* **node_id** (string): the ID of the node to get trace from
+* **worker_id** (string): the ID of the worker to get trace from
+* **trace_id** (string): the ID of the trace to get
+
+and
+
+* **trace** (dict): trace information object
+
+---
 
 
 ### start_router_trace
 
-* **start_router_trace (node_id, worker_id, trace_id|null, config) -> {on_trace_started}
+Starts a new trace on a router worker.
+
+* **start_router_trace** (node_id, worker_id, trace_id, trace_config) -> trace_started
+
+where
+
+* **node_id** (string): the ID of the node to start the trace on
+* **worker_id** (string): the ID of the worker to start the trace on
+* **trace_id** (string or null): optional ID of the trace to start. when not given, auto-assign
+
+and
+
+* **trace_started** (dict): trace startup information object
+
+---
 
 
 ### stop_router_trace
 
-* **stop_router_trace (node_id, worker_id, trace_id) -> {on_trace_stopped}
+Stops a running trace on a router worker.
+
+* **stop_router_trace** (node_id, worker_id, trace_id) -> trace_stopped
+
+where
+
+* **node_id** (string): the ID of the node to stop the trace on
+* **worker_id** (string): the ID of the worker to stop the trace on
+* **trace_id** (string or null): the ID of the trace to stop
+
+and
+
+* **trace_stopped** (dict): trace stop information object
+
+---
 
 
 ### get_router_trace_data
 
-* **get_router_trace_data (node_id, worker_id, trace_id, from_seq_ to_seq) -> [{trace_record}]
+Return trace records from a trace on a router worker.
+
+* **get_router_trace_data** (node_id, worker_id, trace_id, from_seq_ to_seq, limit) -> [trace_record]
+
+where
+
+* **node_id** (string): the ID of the node to get trace records from
+* **worker_id** (string): the ID of the worker to get trace records from
+* **trace_id** (string or null): the ID of the trace to get trace records from
+* **from_seq** (int):
+* **to_seq** (int):
+* **limit** (int):
+
+and
+
+* **[trace_record]** (list of dict): list of trace records retrieved
+
+---
 
 
 ## Docker Control
 
 Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
 
-* **namespace: crossbarfabriccenter.remote.docker.**
+**Namespace:**
+
+* **crossbarfabriccenter.remote.docker.**
 
 ---
 
