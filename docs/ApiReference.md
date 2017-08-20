@@ -17,14 +17,16 @@ The latter actually are for managing user nodes. Both Crossbar.io Fabric nodes a
 The global users realm (`com.crossbario.fabric`) on CFC exposes the following API:
 
 * [cfc.get_status](#cfcget_status)
-* [cfc.get_management_realms](#cfcget_management_realms)
-* [cfc.get_management_realm](#cfcget_management_realm)
-* [cfc.create_management_realm](#cfccreate_management_realm)
-* [cfc.delete_management_realm](#cfcdelete_management_realm)
-* [cfc.get_nodes](#cfcget_nodes)
-* [cfc.get_node](#cfcget_node)
-* [cfc.pair_node](#cfcpair_node)
-* [cfc.unpair_node](#cfcunpair_node)
+* [Management Realms](#managementrealms)
+    * [cfc.get_management_realms](#cfcget_management_realms)
+    * [cfc.get_management_realm](#cfcget_management_realm)
+    * [cfc.create_management_realm](#cfccreate_management_realm)
+    * [cfc.delete_management_realm](#cfcdelete_management_realm)
+* [Nodes](#nodes)
+    * [cfc.get_nodes](#cfcget_nodes)
+    * [cfc.get_node](#cfcget_node)
+    * [cfc.pair_node](#cfcpair_node)
+    * [cfc.unpair_node](#cfcunpair_node)
 
 
 ## User Management Realms
@@ -48,9 +50,11 @@ This single point of entry allows you to create complex automatic application ma
 * [cfc.get_nodes](#cfcget_nodes)
 * [cfc.get_node](#cfcget_node)
 
+
 **Remote Meta API**
 
 * [cfc.remote.router.meta.*](#cfcremoteroutermeta)
+
 
 **Remote Management API**
 
