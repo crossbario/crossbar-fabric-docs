@@ -12,7 +12,7 @@ The former allows users to create new management realms, pair nodes with such re
 The latter actually are for managing user nodes. Both Crossbar.io Fabric nodes and user management tools and apps connect to previously created management realms in regular operation.
 
 
-**Global Users Realm API**
+## Global Users Realm API
 
 The global users realm (`com.crossbario.fabric`) on CFC exposes the following API:
 
@@ -27,29 +27,39 @@ The global users realm (`com.crossbario.fabric`) on CFC exposes the following AP
 1. [cfc.unpair_node](#cfcunpair_node)
 
 
-**User Management Realms**
+## User Management Realms
 
 User management realms are created by users. CFC will then automatically start a backend dedicated to the user's management realm.
 
 CFC exposes the following three APIs for :
 
-* **Root API**: management realm wide operations
+* **Global API**: management realm wide operations
+* **Remote Meta API**: remote access to CF nodes WAMP meta API
 * **Remote Management API**: remote access to CF nodes management API
-* **Remote WAMP API**: remote access to CF nodes WAMP API
 
+**Global API**
 
-*Root API:*
 1. [cfc.get_status](#cfcget_status)
 1. [cfc.get_nodes](#cfcget_nodes)
 1. [cfc.get_node](#cfcget_node)
 
-*Remote Node API:*
+**Remote Meta API**
+
+1. [cfc.remote.router.meta.*](#cfcremoteroutermeta)
+
+**Remote Management API**
+
+*Nodes*
+
 1. [cfc.remote.node.get_status](#cfcremotenodeget_status)
 1. [cfc.remote.node.shutdown](#cfcremotenodeshutdown)
 1. [cfc.remote.node.get_workers](#cfcremotenodeget_workers)
 1. [cfc.remote.node.get_worker](#cfcremotenodeget_worker)
 1. [cfc.remote.node.start_worker](#cfcremotenodestart_worker)
 1. [cfc.remote.node.stop_worker](#cfcremotenodestop_worker)
+
+*Workers*
+
 1. [cfc.remote.worker.shutdown](#cfcremoteworkershutdown)
 1. [cfc.remote.worker.get_status](#cfcremoteworkerget_status)
 1. [cfc.remote.worker.get_pythonpath](#cfcremoteworkerget_pythonpath)
@@ -60,6 +70,9 @@ CFC exposes the following three APIs for :
 1. [cfc.remote.worker.get_profilers](#cfcremoteworkerget_profilers)
 1. [cfc.remote.worker.start_profiler](#cfcremoteworkerstart_profiler)
 1. [cfc.remote.worker.get_profile](#cfcremoteworkerget_profile)
+
+*Routers*
+
 1. [cfc.remote.router.get_router_realms](#cfcremoterouterget_router_realms)
 1. [cfc.remote.router.get_router_realm](#cfcremoterouterget_router_realm)
 1. [cfc.remote.router.start_router_realm](#cfcremoterouterstart_router_realm)
@@ -80,19 +93,31 @@ CFC exposes the following three APIs for :
 1. [cfc.remote.router.get_router_component](#cfcremoterouterget_router_component)
 1. [cfc.remote.router.start_router_component](#cfcremoterouterstart_router_component)
 1. [cfc.remote.router.stop_router_component](#cfcremoterouterstop_router_component)
+
+*Containers*
+
 1. [cfc.remote.container.get_container_components](#cfcremotecontainerget_container_components)
 1. [cfc.remote.container.get_container_component](#cfcremotecontainerget_container_component)
 1. [cfc.remote.container.start_container_component](#cfcremotecontainerstart_container_component)
 1. [cfc.remote.container.stop_container_component](#cfcremotecontainerstop_container_component)
+
+*Proxies*
+
 1. [cfc.remote.proxy.get_proxy_transports](#cfcremoteproxyget_proxy_transports)
 1. [cfc.remote.proxy.get_proxy_transport](#cfcremoteproxyget_proxy_transport)
 1. [cfc.remote.proxy.start_proxy_transport](#cfcremoteproxystart_proxy_transport)
 1. [cfc.remote.proxy.stop_proxy_transport](#cfcremoteproxystop_proxy_transport)
+
+*Tracing*
+
 1. [cfc.remote.tracing.get_router_traces](#cfcremotetracingget_router_traces)
 1. [cfc.remote.tracing.get_router_trace](#cfcremotetracingget_router_trace)
 1. [cfc.remote.tracing.start_router_trace](#cfcremotetracingstart_router_trace)
 1. [cfc.remote.tracing.stop_router_trace](#cfcremotetracingstop_router_trace)
 1. [cfc.remote.tracing.get_router_trace_data](#cfcremotetracingget_router_trace_data)
+
+*Docker*
+
 1. [cfc.remote.docker.get_docker_status](#cfcremotedockerget_docker_status)
 1. [cfc.remote.docker.get_docker_containers](#cfcremotedockerget_docker_containers)
 1. [cfc.remote.docker.get_docker_container](#cfcremotedockerget_docker_container)
