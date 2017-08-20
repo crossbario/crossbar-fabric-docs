@@ -10,9 +10,9 @@ async def main(session):
     """
     nodes = await session.call(u'crossbarfabriccenter.get_nodes')
     for node_id in nodes:
-        workers = await session.call(u'crossbarfabriccenter.remote.get_workers', node_id)
+        workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
         for worker_id in workers:
-            worker = await session.call(u'crossbarfabriccenter.remote.get_worker', node_id, worker_id)
+            worker = await session.call(u'crossbarfabriccenter.remote.node.get_worker', node_id, worker_id)
             session.log.info('Node "{node_id}" / Worker "{worker_id}": {worker}', node_id=node_id, worker_id=worker_id, worker=worker)
 
 
