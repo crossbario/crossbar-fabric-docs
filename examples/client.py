@@ -1,32 +1,24 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-import six
-import sys
-import os
 import argparse
+import asyncio
 import binascii
-import pprint
+import os
+import sys
 
 import txaio
-txaio.use_twisted()
 
-from twisted.internet import reactor
-from twisted.internet.defer import inlineCallbacks
-from twisted.internet.error import ReactorNotRunning
-
-from autobahn.twisted.wamp import ApplicationSession
-from autobahn.twisted.wamp import ApplicationRunner
-from autobahn.twisted.util import sleep
+from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner
 from autobahn.wamp import cryptosign
 
 
 class ManagementClientSession(ApplicationSession):
 
     def __init__(self, config=None):
-        ApplicationSession.__init__(self, config)
+        super().__init__(config)
         self._key = self.config.extra[u'key']
 
-    def onConnect(self):
+    async def onConnect(self):
         self.log.info("connected to router")
 
         # authentication extra information for wamp-cryptosign
@@ -36,7 +28,6 @@ class ManagementClientSession(ApplicationSession):
             u'pubkey': self._key.public_key(),
             u'trustroot': None,
             u'challenge': None,
-
             u'channel_binding': u'tls-unique'
         }
 
@@ -48,21 +39,17 @@ class ManagementClientSession(ApplicationSession):
                   authextra=extra)
 
     def onChallenge(self, challenge):
-        # sign the challenge with our private key.
-        signed_challenge = self._key.sign_challenge(self, challenge)
+        # sign and send back the challenge with our private key.
+        return self._key.sign_challenge(self, challenge)
 
-        # send back the signed challenge for verification
-        return signed_challenge
-
-    @inlineCallbacks
-    def onJoin(self, details):
+    async def onJoin(self, details):
         self.log.info("CFC session joined: {details}", details=details)
         main = self.config.extra.get(u'main', None)
         if main:
             self.log.info('running main() ...')
             return_code = 0
             try:
-                return_code = yield main(self)
+                return_code = await main(self)
             except:
                 # something bad happened: investigate your side or pls file an issue;)
                 return_code = -1
@@ -78,24 +65,26 @@ class ManagementClientSession(ApplicationSession):
             self.log.info('no main() configured!')
             self.leave()
 
-    def onLeave(self, details):
+    async def onLeave(self, details):
         self.log.info("CFC session closed: {details}", details=details)
         self.disconnect()
 
-    def onDisconnect(self):
-        try:
-            reactor.stop()
-        except ReactorNotRunning:
-            pass
+    async def onDisconnect(self):
+        asyncio.get_event_loop().stop()
 
 
 def run(main=None):
     # parse command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--debug', dest='debug', action='store_true', default=False, help='Enable logging at level "debug".')
-    parser.add_argument('--url', dest='url', type=six.text_type, default=u'wss://fabric.crossbario.com', help='The Crossbar.io Fabric Center (CFC) WebSocket URL (default: wss://fabric.crossbario.com')
-    parser.add_argument('--realm', dest='realm', type=six.text_type, help='The management realm to join on CFC')
-    parser.add_argument('--keyfile', dest='keyfile', type=six.text_type, default=u'~/.cbf/default.priv', help='The private client key file to use for authentication.')
+    parser.add_argument('--debug', dest='debug', action='store_true', default=False,
+                        help='Enable logging at level "debug".')
+    parser.add_argument('--url', dest='url', type=str, default=u'ws://localhost:9000/ws',
+                        help='The Crossbar.io Fabric Center (CFC) WebSocket URL '
+                             '(default: wss://fabric.crossbario.com')
+    parser.add_argument('--realm', dest='realm', type=str,
+                        help='The management realm to join on CFC')
+    parser.add_argument('--keyfile', dest='keyfile', type=str, default=u'~/.cbf/default.priv',
+                        help='The private client key file to use for authentication.')
     args = parser.parse_args()
 
     if args.debug:
@@ -139,7 +128,7 @@ def run(main=None):
     runner.run(ManagementClientSession)
 
     return_code = extra[u'return_code']
-    if type(return_code) in six.integer_types and return_code != 0:
+    if isinstance(return_code, int) and return_code != 0:
         sys.exit(return_code)
 
 
