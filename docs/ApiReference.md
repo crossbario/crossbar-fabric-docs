@@ -62,35 +62,50 @@
 
 ## Router Workers
 
-**crossbarfabriccenter.remote.router.**
-
----
-
 ### Router Realms
 
 #### crossbarfabriccenter.remote.router.get_router_realms
 
 Return a list of IDs of realms in the given router worker.
 
-* **get_router_realms (node_id, worker_id) -> [realm_id]
+* **get_router_realms (node_id, worker_id) -> [realm_id]**
+
+> The order of IDs within the list returned is unspecified, but stable.
+
 
 #### crossbarfabriccenter.remote.router.get_router_realm
 
 Return detailed information about the given realm.
 
-* **get_router_realm (node_id, worker_id, realm_id) -> {realm}
+* **get_router_realm (node_id, worker_id, realm_id) -> {realm}**
+
 
 #### crossbarfabriccenter.remote.router.start_router_realm
 
 Start a new realm on the given router worker.
 
-* **start_router_realm (node_id, worker_id, realm_id|null, realm_config) -> {realm_started}
+* **start_router_realm (node_id, worker_id, realm_id|null, realm_config) -> {realm_started}**
+
+The call does not return until the realm has completely started.
+
+When the new realm is starting, an event
+
+* **on_router_realm_starting**
+
+is fired.
+
+When the new realm is completely started, an event
+
+* **on_router_realm_started**
+
+is fired.
+
 
 #### crossbarfabriccenter.remote.router.stop_router_realm
 
 Stop a realm currently running in the given router worker.
 
-* **stop_router_realm (node_id, worker_id, realm_id) -> {realm_stopped}
+* **stop_router_realm (node_id, worker_id, realm_id) -> {realm_stopped}**
 
 
 ### Router Realm Roles
@@ -99,63 +114,74 @@ Stop a realm currently running in the given router worker.
 
 Return a list of IDs of roles in the given realm.
 
-* **get_router_realm_roles (node_id, worker_id, realm_id) -> [role_id]
+* **get_router_realm_roles (node_id, worker_id, realm_id) -> [role_id]**
+
+> The order of IDs within the list returned is unspecified, but stable.
+
 
 #### crossbarfabriccenter.remote.router.get_router_realm_role
 
 Return detailed information about the given role.
 
-* **get_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role}
+* **get_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role}**
+
 
 #### crossbarfabriccenter.remote.router.start_router_realm_role
 
 Start a new role on the given router worker and realm.
 
-* **start_router_realm_role (node_id, worker_id, realm_id, role_id|null, realm_role_config) -> {realm_role_created}
+* **start_router_realm_role (node_id, worker_id, realm_id, role_id|null, realm_role_config) -> {realm_role_created}**
+
 
 #### crossbarfabriccenter.remote.router.stop_router_realm_role
 
 Stop a role currently running in a realm in a router worker.
 
-* **stop_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role_stopped}
+* **stop_router_realm_role (node_id, worker_id, realm_id, role_id) -> {realm_role_stopped}**
 
 
 ### Router Transports
 
 #### crossbarfabriccenter.remote.router.get_router_transports
 
-* **get_router_transports (node_id, worker_id) -> [transport_id]
+* **get_router_transports (node_id, worker_id) -> [transport_id]**
+
 
 #### crossbarfabriccenter.remote.router.get_router_transport
 
-* **get_router_transport (node_id, worker_id, transport_id) -> {transport}
+* **get_router_transport (node_id, worker_id, transport_id) -> {transport}**
+
 
 #### crossbarfabriccenter.remote.router.start_router_transport
 
-* **start_router_transport (node_id, worker_id, transport_id|null, transport_config) -> {transport_started}
+* **start_router_transport (node_id, worker_id, transport_id|null, transport_config) -> {transport_started}**
+
 
 #### crossbarfabriccenter.remote.router.stop_router_transport
 
-* **stop_router_transport (node_id, worker_id, transport_id) -> {transport_stopped}
+* **stop_router_transport (node_id, worker_id, transport_id) -> {transport_stopped}**
 
 
 ### Router Transport Paths
 
 #### crossbarfabriccenter.remote.router.get_router_transport_paths
 
-* **get_router_transport_paths (node_id, worker_id, transport_id) -> [path_id]
+* **get_router_transport_paths (node_id, worker_id, transport_id) -> [path_id]**
+
 
 #### crossbarfabriccenter.remote.router.get_router_transport_path
 
-* **get_router_transport_path (node_id, worker_id, transport_id, path_id) -> {path}
+* **get_router_transport_path (node_id, worker_id, transport_id, path_id) -> {path}**
+
 
 #### crossbarfabriccenter.remote.router.start_router_transport_path
 
-* **start_router_transport_path (node_id, worker_id, transport_id, path_id|null, transport_path_config) -> {transport_path_started}
+* **start_router_transport_path (node_id, worker_id, transport_id, path_id|null, transport_path_config) -> {transport_path_started}**
+
 
 #### crossbarfabriccenter.remote.router.stop_router_transport_path
 
-* **stop_router_transport_path (node_id, worker_id, transport_id, path_id) -> {transport_path_stopped}
+* **stop_router_transport_path (node_id, worker_id, transport_id, path_id) -> {transport_path_stopped}**
 
 
 ### Router Components
@@ -163,6 +189,7 @@ Stop a role currently running in a realm in a router worker.
 Router workers are native Crossbar.io processes that can host Python user components.
 
 > Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizors.
+
 
 #### crossbarfabriccenter.remote.router.get_router_components
 
