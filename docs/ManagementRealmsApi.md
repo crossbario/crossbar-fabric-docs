@@ -182,6 +182,40 @@ and
 
 ---
 
+### crossbarfabriccenter.remote.meta.*
+
+Crossbar.io implements the WAMP meta API at the app router level:
+
+* [Session Meta Events and Procedures](http://crossbar.io/docs/Session-Metaevents-and-Procedures/)
+* [Subscription Meta Events and Procedures](http://crossbar.io/docs/Subscription-Meta-Events-and-Procedures/)
+* [Registration Meta-Events and Procedures](http://crossbar.io/docs/Registration-Meta-Events-and-Procedures/)
+
+Exposing the WAMP meta API at the app router level is enabled by default, but can be disabled by setting `enable_meta_api: false` in the [realms options](https://github.com/crossbario/crossbar/blob/master/docs/pages/administration/router/Router-Realms.md#realm-options).
+
+Exposing the WAMP meta API to CFC however is disabled by default, and needs to be enabled by setting `bridge_meta_api: true` in the router options.
+
+If the bridging of the WAMP meta API is enabled, all above procedures and topics will be available prefixed with an additional `crossbarfabriccenter.remote.meta.`.
+
+So, for example, the WAMP meta API procedure
+
+* `wamp.session.list ()`
+
+that returns a list of WAMP session IDs of session currently joined on the realm is exposed via CFC under
+
+* `crossbarfabriccenter.remote.meta.wamp.session.list (node_id, worker_id, realm_id)`
+
+This allows CFC clients to remotely call into the WAMP meta API of any of the CF nodes connected.
+
+WAMP meta events are translated similar. That is, events destined for topic
+
+* `wamp.session.on_join (session_id, session_details)`
+
+can be subscribed under
+
+* `crossbarfabriccenter.remote.meta.wamp.session.on_join (node_id, worker_id, realm_id, session_id, session_details)`
+
+---
+
 
 ### crossbarfabriccenter.remote.node.get_status
 
