@@ -65,7 +65,7 @@ This single point of entry allows you to create complex automatic application ma
    * [crossbarfabriccenter.remote.node.get_worker](#crossbarfabriccenterremotenodeget_worker)
    * [crossbarfabriccenter.remote.node.start_worker](#crossbarfabriccenterremotenodestart_worker)
    * [crossbarfabriccenter.remote.node.stop_worker](#crossbarfabriccenterremotenodestop_worker)
-* [Workers](#workers)
+* [Native Workers](#nativeworkers)
     * [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenterremoteworkershutdown)
     * [crossbarfabriccenter.remote.worker.get_status](#crossbarfabriccenterremoteworkerget_status)
     * [crossbarfabriccenter.remote.worker.get_pythonpath](#crossbarfabriccenterremoteworkerget_pythonpath)
@@ -77,7 +77,7 @@ This single point of entry allows you to create complex automatic application ma
     * [crossbarfabriccenter.remote.worker.get_profilers](#crossbarfabriccenterremoteworkerget_profilers)
     * [crossbarfabriccenter.remote.worker.start_profiler](#crossbarfabriccenterremoteworkerstart_profiler)
     * [crossbarfabriccenter.remote.worker.get_profile](#crossbarfabriccenterremoteworkerget_profile)
-* [Routers](#routers)
+* [Router Workers](#routerworkers)
     * [Router Realms](#routerrealms)
         * [crossbarfabriccenter.remote.router.get_router_realms](#crossbarfabriccenterremoterouterget_router_realms)
         * [crossbarfabriccenter.remote.router.get_router_realm](#crossbarfabriccenterremoterouterget_router_realm)
@@ -103,23 +103,23 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.get_router_component](#crossbarfabriccenterremoterouterget_router_component)
         * [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenterremoterouterstart_router_component)
         * [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenterremoterouterstop_router_component)
-* [Containers*](#containers)
+* [Container Workers*](#containerworkers)
     * [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenterremotecontainerget_container_components)
     * [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenterremotecontainerget_container_component)
     * [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenterremotecontainerstart_container_component)
     * [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenterremotecontainerstop_container_component)
-* [Proxies](#proxies)
+* [Proxy Workers](#proxyworkers)
     * [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenterremoteproxyget_proxy_transports)
     * [crossbarfabriccenter.remote.proxy.get_proxy_transport](#crossbarfabriccenterremoteproxyget_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenterremoteproxystart_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenterremoteproxystop_proxy_transport)
-* [Tracing](#tracing)
+* [Message Tracing](#messagetracing)
     * [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenterremotetracingget_router_traces)
     * [crossbarfabriccenter.remote.tracing.get_router_trace](#crossbarfabriccenterremotetracingget_router_trace)
     * [crossbarfabriccenter.remote.tracing.start_router_trace](#crossbarfabriccenterremotetracingstart_router_trace)
     * [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenterremotetracingstop_router_trace)
     * [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenterremotetracingget_router_trace_data)
-* [Docker](#docker)
+* [Docker Control](#dockercontrol)
     * [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenterremotedockerget_docker_status)
     * [crossbarfabriccenter.remote.docker.get_docker_containers](#crossbarfabriccenterremotedockerget_docker_containers)
     * [crossbarfabriccenter.remote.docker.get_docker_container](#crossbarfabriccenterremotedockerget_docker_container)
@@ -523,7 +523,7 @@ The API here allows for remote and dynamic management of router workers.
 * **crossbarfabriccenter.remote.router.**
 
 
-### Realms
+### Router Realms
 
 All routing of messages in Crossbar.io is isolated in different routing confinements called realms.
 
@@ -631,7 +631,7 @@ is fired.
 ---
 
 
-### Roles
+### Realm Roles
 
 Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**.
 
