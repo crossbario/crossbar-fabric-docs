@@ -22,7 +22,7 @@ This single point of entry allows you to create complex automatic application ma
 
 ## Remote Meta API
 
-* [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoteroutermeta)
+* [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta)
 
 
 ## Remote Management API
@@ -194,7 +194,7 @@ Exposing the WAMP meta API at the app router level is enabled by default, but ca
 
 Exposing the WAMP meta API to CFC however is disabled by default, and needs to be enabled by setting `bridge_meta_api: true` in the router options.
 
-If the bridging of the WAMP meta API is enabled, all above procedures and topics will be available prefixed with an additional `crossbarfabriccenter.remote.meta.`.
+If the bridging of the WAMP meta API is enabled, all above procedures and topics will be available prefixed with an additional `crossbarfabriccenter.remote.realm.meta.`.
 
 So, for example, the WAMP meta API procedure
 
@@ -204,7 +204,7 @@ that returns a list of WAMP session IDs of session currently joined on the realm
 
 * `crossbarfabriccenter.remote.realm.meta.wamp.session.list (node_id, worker_id, realm_id)`
 
-This allows CFC clients to remotely call into the WAMP meta API of any of the CF nodes connected.
+Since this works pattern based (note the "*" at the end of the URI crossbarfabriccenter.remote.realm.meta.*) allows CFC clients to remotely call into any WAMP meta API procedure of any of the CF nodes connected.
 
 WAMP meta events are translated similar. That is, events destined for topic
 
@@ -213,6 +213,10 @@ WAMP meta events are translated similar. That is, events destined for topic
 can be subscribed under
 
 * `crossbarfabriccenter.remote.realm.meta.wamp.session.on_join (node_id, worker_id, realm_id, session_id, session_details)`
+
+The WAMP meta API defines (meta) topics for various events like a session joining or leaving, registering a procedure or subscribing to a topic and so on. Making this functionality available remotely, and to many nodes, but from a single point of entry for the CFC client, this allows to cover a lot of scenarios.
+
+> Caution: Depending on the application, many subscribes to topics could happen per second, and exposing all these WAMP meta events not only on the (local) app router, but also remotely to CFC can generate a lot of traffic.
 
 ---
 
