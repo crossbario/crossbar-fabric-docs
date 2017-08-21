@@ -44,15 +44,19 @@ This single point of entry allows you to create complex automatic application ma
 
 
 
-* [Nodes](#nodes) - **crossbarfabriccenter.remote.node.**
+* **Nodes:** **crossbarfabriccenter.remote.node.**
   Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
+
    * [crossbarfabriccenter.remote.node.get_status](#crossbarfabriccenterremotenodeget_status)
    * [crossbarfabriccenter.remote.node.shutdown](#crossbarfabriccenterremotenodeshutdown)
    * [crossbarfabriccenter.remote.node.get_workers](#crossbarfabriccenterremotenodeget_workers)
    * [crossbarfabriccenter.remote.node.get_worker](#crossbarfabriccenterremotenodeget_worker)
    * [crossbarfabriccenter.remote.node.start_worker](#crossbarfabriccenterremotenodestart_worker)
    * [crossbarfabriccenter.remote.node.stop_worker](#crossbarfabriccenterremotenodestop_worker)
-* [Native Workers](#native-workers)
+
+* **Native Workers:** **crossbarfabriccenter.remote.worker.**
+  Native workers are node worker processes of the types **router**, **container** and **proxy**. The API here allows to retrieve worker logs, control the worker CPU affinity and run code profilers in a live running system.
+
     * [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenterremoteworkershutdown)
     * [crossbarfabriccenter.remote.worker.get_status](#crossbarfabriccenterremoteworkerget_status)
     * [crossbarfabriccenter.remote.worker.get_pythonpath](#crossbarfabriccenterremoteworkerget_pythonpath)
@@ -266,25 +270,6 @@ Stop a worker currently running on a node.
 and
 
 * **worker_stopped** (dict): worker stopped information object
-
----
-
-
-## Native Workers
-
-Native workers are node worker processes of the following types:
-
-* **router**
-* **container**
-* **proxy**
-
-In particular, **guest** workers are *not* native workers.
-
-The API here is available for native workers and includes features like controlling the worker CPU affinity or running code profilers in (native) workers of a running system.
-
-**Namespace:**
-
-* **crossbarfabriccenter.remote.worker.**
 
 ---
 
