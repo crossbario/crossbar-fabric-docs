@@ -192,7 +192,7 @@ Crossbar.io implements the WAMP meta API at the app router level:
 
 Exposing the WAMP meta API at the app router level is enabled by default, but can be disabled by setting `enable_meta_api: false` in the [realms options](https://github.com/crossbario/crossbar/blob/master/docs/pages/administration/router/Router-Realms.md#realm-options).
 
-Exposing the WAMP meta API to CFC however is disabled by default, and needs to be enabled by setting `bridge_meta_api: true` in the router options.
+Exposing the WAMP meta API to CFC however is disabled by default, and **needs to be enabled by setting `bridge_meta_api: true`** in the router options.
 
 If the bridging of the WAMP meta API is enabled, all above procedures and topics will be available prefixed with an additional `crossbarfabriccenter.remote.realm.meta.`.
 
@@ -204,7 +204,11 @@ that returns a list of WAMP session IDs of session currently joined on the realm
 
 * `crossbarfabriccenter.remote.realm.meta.wamp.session.list (node_id, worker_id, realm_id)`
 
-Since this works pattern based (note the "*" at the end of the URI crossbarfabriccenter.remote.realm.meta.*) allows CFC clients to remotely call into any WAMP meta API procedure of any of the CF nodes connected.
+Since the CFC exposed procedure needs to know the realm on which to actually call into the WAMP meta API of that realm, the CFC procedure has additional (positional) parameters prepended, notably, node_id, worker_id and realm_id.
+
+In this case, the original procedure did not take any parameters, and hence the CFC flavor of the procedure has exactly the three mentioned additional parameters. Had the original procedure already a positional argument, that would appear _after_ the extra parameters required by CFC (recap that the latter are always _prepended_ to any already existing procedure parameters).
+
+The translation works pattern based (note the `*` at the end of the URI `crossbarfabriccenter.remote.realm.meta.*`), this allows CFC clients to remotely call into any WAMP meta API procedure of any of the CF nodes connected, which can be a very powerful vector into the guts of your application - live and in production.
 
 WAMP meta events are translated similar. That is, events destined for topic
 
