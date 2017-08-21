@@ -15,7 +15,11 @@ The repository contains the public documentation (source), example source code a
 You will need
 
 * Docker
-* Python 3 (and virtualenv)
+* Python 3 (and [virtualenv](https://virtualenv.pypa.io/))
+
+We will use Docker to start a Crossbar.io Fabric node locally. The node will connect to Crossbar.io Fabric Center, which allows the node to be managed and monitored remotely.
+
+Management clients, such as Crossbar.io Fabric Shell, or custom user programs and scripts can connect to Crossbar.io Fabric Center to remotely and dynamically manage the Crossbar.io Fabric nodes connected to the respective management realm.
 
 
 ### Fabric Shell
@@ -84,14 +88,16 @@ Now, start the shell in interactive mode:
 cbsh
 ```
 
-This will bring up a full screen console mode interactive shell.
+This will bring up a full screen console mode interactive shell. You can now query, control and manage your Crossbar.io Fabric nodes. Please see below.
 
 
 ### Creating a management realm
 
-To create a CFC management realm for your CF node, start cbsh and enter
+To create a CFC management realm for your CF nodes, start cbsh and enter
 
-    create management-realm my-realm-1
+    create management-realm <realm-name>
+
+Here, chose a `<realm-name` for your management realm. The name must be unique globally within CFC.
 
 
 ### Fabric Nodes
@@ -107,4 +113,10 @@ When the node is started the first time, a new node public/private key pair is g
 
 To pair a CF node to a management realm, start cbsh and enter
 
-    pair node my-realm-1 78aaf7... my-node-1
+    pair node <realm-name> <public-key> <node-id>
+
+Chose your management realm name for `<realm-name>`.
+
+Use your node's public key (in Hex) for `<public-key>` (the public key Hex value is printed to the log when the node starts).
+
+Finally, chose a `<node-id>` the node should be assigned to. The node ID needs to be unique within the management realm.
