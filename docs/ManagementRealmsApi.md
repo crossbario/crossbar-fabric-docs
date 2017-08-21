@@ -1,33 +1,51 @@
-# Management Realm API
+# Management Realms API
 
-User management realms are created by users. CFC will then automatically start a backend dedicated to the user's management realm.
+Each user created **management realm** (eg `com.example.my-mgmt-realm1`) on Crossbar.io Fabric Center (CFC) exposes the following APIs to clients:
 
-CFC exposes the following three APIs for :
-
-* **Global API**: management realm wide operations
-* **Remote Meta API**: remote access to CF nodes WAMP meta API
-* **Remote Management API**: remote access to CF nodes management API
+* **[Global API](#global-api)**: management realm wide operations
+* **[Remote Meta API](#remote-meta-api)**: remote access to CF nodes WAMP meta API
+* **[Remote Management API](#remote-management-api)**: remote access to CF nodes management API
 
 CFC clients can use all three APIs at the same time, and use the functionality provided over whole sets of CF nodes in the management realm.
 
 This single point of entry allows you to create complex automatic application management functions using standard programming patterns, and very little user code to write.
 
+---
 
-**Global API**
+
+## Global API
+
+### Procedures Index
 
 * [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
 * [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
 * [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
 
 
-**Remote Meta API**
+## Remote Meta API
+
+### Procedures Index
 
 * [crossbarfabriccenter.remote.router.meta.*](#crossbarfabriccenterremoteroutermeta)
 
 
-**Remote Management API**
+## Remote Management API
 
-* [Nodes](#nodes)
+### Procedures Index
+
+## Nodes
+
+
+**Namespace:**
+
+*
+
+---
+
+
+
+* [Nodes](#nodes) - **crossbarfabriccenter.remote.node.**
+  Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
    * [crossbarfabriccenter.remote.node.get_status](#crossbarfabriccenterremotenodeget_status)
    * [crossbarfabriccenter.remote.node.shutdown](#crossbarfabriccenterremotenodeshutdown)
    * [crossbarfabriccenter.remote.node.get_workers](#crossbarfabriccenterremotenodeget_workers)
@@ -102,11 +120,11 @@ This single point of entry allows you to create complex automatic application ma
 ---
 
 
-## Global
+## Procedures Reference
 
-**Namespace:**
+Signature and descriptions of API procedures.
 
-* **crossbarfabriccenter.**
+---
 
 
 ### crossbarfabriccenter.get_status
@@ -146,17 +164,6 @@ where
 and
 
 * **node** (dict): node information object
-
----
-
-
-## Nodes
-
-Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
-
-**Namespace:**
-
-* **crossbarfabriccenter.remote.node.**
 
 ---
 

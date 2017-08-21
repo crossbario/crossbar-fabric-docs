@@ -1,9 +1,10 @@
-# Global Realm API
+# Accounts Realm API
 
-The global users realm (`com.crossbario.fabric`) on CFC exposes the following API:
+The **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Center exposes the following API to clients:
 
-* [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
-* [Management Realms](#managementrealms)
+* [General](#general)
+    * [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
+* [Management Realms](#management-realms)
     * [crossbarfabriccenter.get_management_realms](#crossbarfabriccenterget_management_realms)
     * [crossbarfabriccenter.get_management_realm](#crossbarfabriccenterget_management_realm)
     * [crossbarfabriccenter.create_management_realm](#crossbarfabriccentercreate_management_realm)
@@ -13,3 +14,13 @@ The global users realm (`com.crossbario.fabric`) on CFC exposes the following AP
     * [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
     * [crossbarfabriccenter.pair_node](#crossbarfabriccenterpair_node)
     * [crossbarfabriccenter.unpair_node](#crossbarfabriccenterunpair_node)
+
+---
+
+## General
+
+## Management Realms
+
+## Nodes
+
+## User Profile
