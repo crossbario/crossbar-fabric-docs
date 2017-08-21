@@ -1,35 +1,4 @@
-# Crossbar.io Fabric Center API Reference
-
-Crossbar.io Fabric Center (CFC) exposes a rich set of APIs to user management tools and applications.
-
-Clients connect to CFC under one óf two realms:
-
-* the global users realm (com.crossbario.fabric)
-2. a specific user management realm
-
-The former allows users to create new management realms, pair nodes with such realms and manage their user profiles.
-
-The latter actually are for managing user nodes. Both Crossbar.io Fabric nodes and user management tools and apps connect to previously created management realms in regular operation.
-
-
-## Global Users Realm API
-
-The global users realm (`com.crossbario.fabric`) on CFC exposes the following API:
-
-* [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
-* [Management Realms](#managementrealms)
-    * [crossbarfabriccenter.get_management_realms](#crossbarfabriccenterget_management_realms)
-    * [crossbarfabriccenter.get_management_realm](#crossbarfabriccenterget_management_realm)
-    * [crossbarfabriccenter.create_management_realm](#crossbarfabriccentercreate_management_realm)
-    * [crossbarfabriccenter.delete_management_realm](#crossbarfabriccenterdelete_management_realm)
-* [Nodes](#nodes)
-    * [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
-    * [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
-    * [crossbarfabriccenter.pair_node](#crossbarfabriccenterpair_node)
-    * [crossbarfabriccenter.unpair_node](#crossbarfabriccenterunpair_node)
-
-
-## User Management Realms
+# Management Realm API
 
 User management realms are created by users. CFC will then automatically start a backend dedicated to the user's management realm.
 
