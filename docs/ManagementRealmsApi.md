@@ -15,8 +15,6 @@ This single point of entry allows you to create complex automatic application ma
 
 ## Global API
 
-### Procedures Index
-
 * [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
 * [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
 * [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
@@ -24,14 +22,10 @@ This single point of entry allows you to create complex automatic application ma
 
 ## Remote Meta API
 
-### Procedures Index
-
 * [crossbarfabriccenter.remote.router.meta.*](#crossbarfabriccenterremoteroutermeta)
 
 
 ## Remote Management API
-
-### Procedures Index
 
 * **Nodes (crossbarfabriccenter.remote.node.)**
   Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
