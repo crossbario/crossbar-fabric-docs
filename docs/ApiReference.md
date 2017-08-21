@@ -350,56 +350,135 @@ and
 
 ### crossbarfabriccenter.remote.worker.get_worker_log
 
-* **get_worker_log** (node_id, worker_id)
+Retrieve log output from node workers.
+
+* **get_worker_log** (node_id, worker_id, limit) -> [log_record]
+
+where
+
+* **node_id** (string): ID of node running the worker to get logs for
+* **worker_id** (string): ID of the worker to get logs for
+* **limit** (int): maximum number of log lines to return (default: 100)
+
+and
+
+* **log_record** (dict or string): when the worker support rich logging, a structured log record. when the worker only supports plain logging, a non-structured plain string (the line that was logged)
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.get_pythonpath
 
-* **get_pythonpath** (node_id, worker_id)
+Returns the current Python module search paths in the (native) worker.
+
+* **get_pythonpath** (node_id, worker_id) -> [string]
+
+where
+
+* **node_id** (string): ID of node running the worker to get Python search paths for
+* **worker_id** (string): ID of the worker to get Python search paths for
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.add_pythonpath
 
-* **add_pythonpath** (node_id, worker_id)
+* **add_pythonpath** (node_id, worker_id, paths, prepend) -> path_added
+
+where
+
+* **node_id** (string): ID of node running the worker to add Python search p
+* **worker_id** (string): ID of the worker to add Python search paths to
+* **prepend** (boolean): if True, prepend the search paths to the current list, else append at the end
+
+and
+
+* **path_added** (dict): Python search paths added information object
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.get_cpu_affinity
 
-* **get_cpu_affinity** (node_id, worker_id)
+Get current CPU affinity of this worker (process) returning a list of CPU IDs. CPU (cores) are numbered beginning with 0.
+
+* **get_cpu_affinity** (node_id, worker_id) -> [int]
+
+where
+
+* **node_id** (string): ID of node running the worker to get CPU affinity for
+* **worker_id** (string): ID of the worker to get CPU affinity for
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.set_cpu_affinity
 
-* **set_cpu_affinity** (node_id, worker_id)
+Set current CPU affinity of this worker (process).
+
+CPU (cores) are numbered beginning with 0, and `cpus` must be a list of IDs given the CPUs eligible to run this worker.
+
+* **set_cpu_affinity** (node_id, worker_id, cpus) -> cpu_affinity_set
+
+where
+
+* **node_id** (string): ID of node running the worker to set CPU affinity for
+* **worker_id** (string): ID of the worker to set CPU affinity for
+* **cpus** (list of int): the CPU (core) IDs to set the affinity to
+
+and
+
+* **cpu_affinity_set** (dict): CPU affinity set information object
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.get_profilers
 
-* **get_profilers** (node_id, worker_id)
+Return the Python profilers available in the (native) worker.
+
+> Currently, the only profiler available is [vmprof](https://vmprof.readthedocs.io/).
+
+* **get_profilers** (node_id, worker_id) -> [profiler]
+
+where
+
+* **node_id** (string): ID of node running the worker to get available profilers for
+* **worker_id** (string): ID of the worker to get available profilers for
+
+and
+
+* **profiler** (dict): profiler information object.
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.start_profiler
 
-* **start_profiler** (node_id, worker_id)
+* **start_profiler** (node_id, worker_id, profiler, runtime, async) -> profile_started or [profile_record]
+
+where
+
+* **node_id** (string): ID of node running the worker to profile
+* **worker_id** (string): ID of the worker to profile
+* **profiler** (string): the profiler to use (default: vmprof)
+* **runtime** (float): profiling run-time in seconds (default: 10)
+* **async** (boolean): if True, start profile asynchronously and immediately return `profile_started`. if False, wait for the profile to finish before returning from the call (with `profile_result`)
+
+and call result
+
+* **profile_started** (dict): profile started information object
+
+or
+
+* **profile_record** (dict): profile result record
 
 ---
 
 
 ### crossbarfabriccenter.remote.worker.get_profile
 
-* **get_profile** (node_id, worker_id)
+* **get_profile** (node_id, worker_id) -> [profile_record]
 
 
 ## Router Workers
