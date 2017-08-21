@@ -9,5 +9,5 @@ Welcome to the Crossbar.io Fabric Documentation.
 * [API](Api.md)
    * [Accounts Realm API](AccountsRealmApi.md)
    * [Management Realms API](ManagementRealmsApi.md)
-* [Message Tracing](Message Tracing.md)
+* [Message Tracing](MessageTracing.md)
 * [Change Log](ChangeLog.md)
