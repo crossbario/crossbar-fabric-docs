@@ -71,6 +71,7 @@ This single point of entry allows you to create complex automatic application ma
     * [crossbarfabriccenter.remote.worker.get_pythonpath](#crossbarfabriccenterremoteworkerget_pythonpath)
     * [crossbarfabriccenter.remote.worker.add_pythonpath](#crossbarfabriccenterremoteworkeradd_pythonpath)
     * [crossbarfabriccenter.remote.worker.get_worker_log](#crossbarfabriccenterremoteworkerget_worker_log)
+    * [crossbarfabriccenter.remote.worker.get_cpu_count](#crossbarfabriccenterremoteworkerget_cpu_count)
     * [crossbarfabriccenter.remote.worker.get_cpu_affinity](#crossbarfabriccenterremoteworkerget_cpu_affinity)
     * [crossbarfabriccenter.remote.worker.set_cpu_affinity](#crossbarfabriccenterremoteworkerset_cpu_affinity)
     * [crossbarfabriccenter.remote.worker.get_profilers](#crossbarfabriccenterremoteworkerget_profilers)
@@ -398,6 +399,22 @@ and
 ---
 
 
+### crossbarfabriccenter.remote.worker.get_cpu_count
+
+Returns the CPU core count on the machine this worker (process) is running on.
+
+> Given `CPU_COUNT`, valid CPU (core) IDs then are `[0, CPU_COUNT[`.
+
+* **get_cpu_count** (node_id, worker_id) -> int
+
+where
+
+* **node_id** (string): ID of node running the worker to get CPU count for
+* **worker_id** (string): ID of the worker to get CPU count for
+
+---
+
+
 ### crossbarfabriccenter.remote.worker.get_cpu_affinity
 
 Get current CPU affinity of this worker (process) returning a list of CPU IDs. CPU (cores) are numbered beginning with 0.
@@ -478,7 +495,21 @@ or
 
 ### crossbarfabriccenter.remote.worker.get_profile
 
-* **get_profile** (node_id, worker_id) -> [profile_record]
+Return the profile of a previously run worker profiling run.
+
+* **get_profile** (node_id, worker_id, profile_id) -> [profile_record]
+
+where
+
+* **node_id** (string): ID of node running the worker on which the profile was run
+* **worker_id** (string): ID of the worker on which the profile was run
+* **profile_id** (string): ID of the profiling run to retrieve profile for
+
+and
+
+* **profile_record** (dict): profile result record
+
+---
 
 
 ## Router Workers
@@ -505,7 +536,14 @@ Return a list of IDs of realms in the given router worker.
 
 * **get_router_realms** (node_id, worker_id) -> [realm_id]
 
+where
+
+* **node_id** (string): ID of node running the worker to get realms for
+* **worker_id** (string): ID of the worker to get realms for
+
 > The order of IDs within the list returned is unspecified, but stable.
+
+---
 
 
 ### crossbarfabriccenter.remote.router.get_router_realm
@@ -514,12 +552,34 @@ Return detailed information about the given realm.
 
 * **get_router_realm** (node_id, worker_id, realm_id) -> realm
 
+where
+
+* **node_id** (string): ID of node running the (router) worker with the realm to to get information for
+* **worker_id** (string): ID of the (router) worker with the realm to get informatin for
+* **realm_id** (string): ID of the realm to get information for
+
+and
+
+* **realm** (dict): realm information object
+
+---
+
 
 ### crossbarfabriccenter.remote.router.start_router_realm
 
 Start a new realm on the given router worker.
 
 * **start_router_realm** (node_id, worker_id, realm_id, realm_config) -> realm_started
+
+where
+
+* **node_id** (string): ID of node running the (router) worker to start the realm on
+* **worker_id** (string): ID of the (router) worker to start the realm on
+* **realm_id** (string): optional ID of the realm to start. if not provided, auto-generated.
+
+and
+
+* **realm_started** (dict): realm started information object
 
 The call does not return until the realm has completely started.
 
@@ -535,12 +595,40 @@ When the new realm *is completely started*, an event
 
 is fired.
 
+---
+
 
 ### crossbarfabriccenter.remote.router.stop_router_realm
 
 Stop a realm currently running in the given router worker.
 
 * **stop_router_realm** (node_id, worker_id, realm_id) -> realm_stopped
+
+where
+
+* **node_id** (string): ID of node running the (router) worker with the realm to stop
+* **worker_id** (string): ID of the (router) worker with the realm to stop
+* **realm_id** (string): ID of the realm to stop
+
+and
+
+* **realm_stopped** (dict): realm stopped information object
+
+The call does not return until the realm has completely stopped.
+
+When the realm *is stopping*, an event
+
+* **on_router_realm_stopping** (node_id, worker_id, realm_id, realm_stopping)
+
+is fired.
+
+When the realm *is completely stopped*, an event
+
+* **on_router_realm_stopped** (node_id, worker_id, realm_id, realm_stopped)
+
+is fired.
+
+---
 
 
 ### Roles
@@ -558,7 +646,15 @@ Return a list of IDs of roles in the given realm.
 
 * **get_realm_roles** (node_id, worker_id, realm_id) -> [role_id]
 
+where
+
+* **node_id** (string): ID of node running the (router) worker to get roles for
+* **worker_id** (string): ID of the (router) worker to get roles for
+* **realm_id** (string): ID of the realm to get roles for
+
 > The order of IDs within the list returned is unspecified, but stable.
+
+---
 
 
 ### crossbarfabriccenter.remote.router.get_realm_role
@@ -567,12 +663,52 @@ Return detailed information about the given role.
 
 * **get_realm_role* (node_id, worker_id, realm_id, role_id) -> role
 
+where
+
+* **node_id** (string): ID of node running the (router) worker with the role to get information for
+* **worker_id** (string): ID of the (router) worker with the role to get informationn for
+* **realm_id** (string): ID of the realm with the role to get information for
+* **role_id** (string): ID of the role to get information for
+
+and
+
+* **role** (dict): role information object
+
+---
+
 
 ### crossbarfabriccenter.remote.router.start_realm_role
 
 Start a new role on the given router worker and realm.
 
-* **start_realm_role** (node_id, worker_id, realm_id, role_id, role_config) -> role_created
+* **start_realm_role** (node_id, worker_id, realm_id, role_id, role_config) -> role_started
+
+where
+
+* **node_id** (string): ID of node running the (router) worker to start the role on
+* **worker_id** (string): ID of the (router) worker to start the role on
+* **realm_id** (string): ID of the realm to start the role on
+* **realm_id** (string): optional ID of the role to start. if not provided, auto-generated.
+
+and
+
+* **role_started** (dict): role started information object
+
+The call does not return until the role has completely started.
+
+When the new role *is starting*, an event
+
+* **on_realm_role_starting** (node_id, worker_id, realm_id, role_id, role_starting)
+
+is fired.
+
+When the new role *is completely started*, an event
+
+* **on_router_role_started** (node_id, worker_id, realm_id, role_id, role_started)
+
+is fired.
+
+---
 
 
 ### crossbarfabriccenter.remote.router.stop_realm_role
@@ -580,6 +716,33 @@ Start a new role on the given router worker and realm.
 Stop a role currently running in a realm in a router worker.
 
 * **stop_realm_role** (node_id, worker_id, realm_id, role_id) -> role_stopped
+
+where
+
+* **node_id** (string): ID of node running the (router) worker to stop the role on
+* **worker_id** (string): ID of the (router) worker to stop the role on
+* **realm_id** (string): ID of the realm to stop the role on
+* **realm_id** (string): ID of the role to stop.
+
+and
+
+* **role_stopped** (dict): role stopped information object
+
+The call does not return until the role has completely stopped.
+
+When the role *is stopping*, an event
+
+* **on_realm_role_stopping** (node_id, worker_id, realm_id, role_id, role_stopping)
+
+is fired.
+
+When the role *is completely stopped*, an event
+
+* **on_router_role_stopped** (node_id, worker_id, realm_id, role_id, role_stopped)
+
+is fired.
+
+---
 
 
 ### Router Transports
