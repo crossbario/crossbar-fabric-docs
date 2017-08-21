@@ -8,6 +8,7 @@ The repository contains the public documentation (source), example source code a
 
 ---
 
+
 ## Getting Started
 
 ### Requirements
@@ -22,12 +23,24 @@ We will use Docker to start a Crossbar.io Fabric node locally. The node will con
 Management clients, such as Crossbar.io Fabric Shell, or custom user programs and scripts can connect to Crossbar.io Fabric Center to remotely and dynamically manage the Crossbar.io Fabric nodes connected to the respective management realm.
 
 
+### Fabric Nodes
+
+Start a new Crossbar.io Fabric Docker container connecting to Crossbar.io Fabric Center (CFC):
+
+    docker run -it --rm crossbario/crossbar-fabric:latest
+
+When the node is started the first time, a new node public/private key pair is generated. Further, the node will first need to be paired with CFC.
+
+
 ### Fabric Shell
 
 [Crossbar.io Fabric Shell](https://github.com/crossbario/crossbar-fabric-shell) is a management client Python package that includes
 
 * an interactive management shell
 * a management client library
+
+
+#### Installation
 
 To install, create a new dedicated Python virtualenv, activate it and install Crossbar.io Fabric Shell [from PyPI](https://pypi.python.org/pypi/crossbarfabricshell) in there:
 
@@ -38,6 +51,9 @@ pip install crossbarfabricshell
 ```
 
 > Note: we do not recommend installing cbsh into a Python environment shared with other applications, or shared system wide. cbsh is well packaged and follows best practices, but we cannot support all combinations of dependencies. A Python virtualenv comes with a good compromise for isolation versus overhead.
+
+
+#### Registration
 
 Now register or login to Crossbar.io Fabric Center by running:
 
@@ -90,8 +106,9 @@ cbsh
 
 This will bring up a full screen console mode interactive shell. You can now query, control and manage your Crossbar.io Fabric nodes. Please see below.
 
+#### Usage
 
-### Creating a management realm
+**Creating a management realm**
 
 To create a CFC management realm for your CF nodes, start cbsh and enter
 
@@ -99,17 +116,7 @@ To create a CFC management realm for your CF nodes, start cbsh and enter
 
 Here, chose a `<realm-name` for your management realm. The name must be unique globally within CFC.
 
-
-### Fabric Nodes
-
-Start a new Crossbar.io Fabric Docker container connecting to Crossbar.io Fabric Center (CFC):
-
-    docker run -it --rm crossbario/crossbar-fabric:latest
-
-When the node is started the first time, a new node public/private key pair is generated. Further, the node will first need to be paired with CFC.
-
-
-### Pairing a node
+**Pairing a node**
 
 To pair a CF node to a management realm, start cbsh and enter
 
