@@ -69,49 +69,54 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.start_router_realm](#crossbarfabriccenterremoterouterstart_router_realm)
         * [crossbarfabriccenter.remote.router.stop_router_realm](#crossbarfabriccenterremoterouterstop_router_realm)
 
-    * [Realm Roles](#realm-roles)
+    * **Realm Roles**
+      Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**. This role will then determine the actual permissions the client is granted by the router.
 
         * [crossbarfabriccenter.remote.router.get_realm_roles](#crossbarfabriccenterremoterouterget_realm_roles)
         * [crossbarfabriccenter.remote.router.get_realm_role](#crossbarfabriccenterremoterouterget_realm_role)
         * [crossbarfabriccenter.remote.router.start_realm_role](#crossbarfabriccenterremoterouterstart_realm_role)
         * [crossbarfabriccenter.remote.router.stop_realm_role](#crossbarfabriccenterremoterouterstop_realm_role)
 
-    * [Router Transports](#router-transports)
+    * **Router Transports**
+      Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
         * [crossbarfabriccenter.remote.router.get_router_transports](#crossbarfabriccenterremoterouterget_router_transports)
         * [crossbarfabriccenter.remote.router.get_router_transport](#crossbarfabriccenterremoterouterget_router_transport)
         * [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenterremoterouterstart_router_transport)
         * [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenterremoterouterstop_router_transport)
 
-    * [Transport Paths](#transport-paths)
+    * **Transport Paths**
+      Some router transports, such as Web transports, allow to configure *path services* attached to URL parts in a Web resource tree. The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
 
         * [crossbarfabriccenter.remote.router.get_transport_paths](#crossbarfabriccenterremoterouterget_transport_paths)
         * [crossbarfabriccenter.remote.router.get_transport_path](#crossbarfabriccenterremoterouterget_transport_path)
         * [crossbarfabriccenter.remote.router.start_transport_path](#crossbarfabriccenterremoterouterstart_transport_path)
         * [crossbarfabriccenter.remote.router.stop_transport_path](#crossbarfabriccenterremoterouterstop_transport_path)
 
-    * [Router Components](#router-components)
+    * **Router Components**
+      Router workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizers.
 
         * [crossbarfabriccenter.remote.router.get_router_components](#crossbarfabriccenterremoterouterget_router_components)
         * [crossbarfabriccenter.remote.router.get_router_component](#crossbarfabriccenterremoterouterget_router_component)
         * [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenterremoterouterstart_router_component)
         * [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenterremoterouterstop_router_component)
 
-* [Container Workers](#container-workers)
+* **Container Workers**
 
     * [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenterremotecontainerget_container_components)
     * [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenterremotecontainerget_container_component)
     * [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenterremotecontainerstart_container_component)
     * [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenterremotecontainerstop_container_component)
 
-* [Proxy Workers](#proxy-workers)
+* **Proxy Workers**
 
     * [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenterremoteproxyget_proxy_transports)
     * [crossbarfabriccenter.remote.proxy.get_proxy_transport](#crossbarfabriccenterremoteproxyget_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenterremoteproxystart_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenterremoteproxystop_proxy_transport)
 
-* [Message Tracing](#message-tracing)
+* **Message Tracing (crossbarfabriccenter.remote.tracing.)**
+  Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
 
     * [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenterremotetracingget_router_traces)
     * [crossbarfabriccenter.remote.tracing.get_router_trace](#crossbarfabriccenterremotetracingget_router_trace)
@@ -119,7 +124,10 @@ This single point of entry allows you to create complex automatic application ma
     * [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenterremotetracingstop_router_trace)
     * [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenterremotetracingget_router_trace_data)
 
-* [Docker Control](#docker-control)
+* **Docker Control (crossbarfabriccenter.remote.docker.)**
+  Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
+
+
     * [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenterremotedockerget_docker_status)
     * [crossbarfabriccenter.remote.docker.get_docker_containers](#crossbarfabriccenterremotedockerget_docker_containers)
     * [crossbarfabriccenter.remote.docker.get_docker_container](#crossbarfabriccenterremotedockerget_docker_container)
@@ -482,18 +490,6 @@ and
 ---
 
 
-## Router Workers
-
-
-**Namespace:**
-
-*
-
-
-### Router Realms
-
-
-
 ### crossbarfabriccenter.remote.router.get_router_realms
 
 Return a list of IDs of realms in the given router worker.
@@ -593,15 +589,6 @@ When the realm *is completely stopped*, an event
 is fired.
 
 ---
-
-
-### Realm Roles
-
-Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**.
-
-This role will then determine the actual permissions the client is granted by the router.
-
-The management of roles on realms and the permissions associated with roles can be dynamically managed using the API in the following.
 
 
 ### crossbarfabriccenter.remote.router.get_realm_roles
@@ -709,11 +696,6 @@ is fired.
 ---
 
 
-### Router Transports
-
-Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
-
-
 ### crossbarfabriccenter.remote.router.get_router_transports
 
 Return a list of IDs of transports for the given router.
@@ -816,13 +798,6 @@ is fired.
 ---
 
 
-### Transport Paths
-
-Some router transports, such as Web transports, allow to configure *path services* attached to URL parts in a Web resource tree.
-
-The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
-
-
 ### crossbarfabriccenter.remote.router.get_transport_paths
 
 * **get_transport_paths** (node_id, worker_id, transport_id) -> [path_id]
@@ -841,14 +816,6 @@ The API here allows to dynamically configure Web services, such as a static Web 
 ### crossbarfabriccenter.remote.router.stop_transport_path
 
 * **stop_transport_path** (node_id, worker_id, transport_id, path_id) -> path_stopped
-
-
-
-### Router Components
-
-Router workers are native Crossbar.io processes that can host Python user components.
-
-> Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizors.
 
 
 ### crossbarfabriccenter.remote.router.get_router_components
@@ -955,15 +922,6 @@ Stop a proxy worker transport running in a proxy worker.
 
 * **stop_proxy_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
-
-## Message Tracing
-
-Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
-
-**Namespace:**
-
-* **crossbarfabriccenter.remote.tracing.**
-
 ---
 
 
@@ -1058,17 +1016,6 @@ where
 and
 
 * **[trace_record]** (list of dict): list of trace records retrieved
-
----
-
-
-## Docker Control
-
-Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
-
-**Namespace:**
-
-* **crossbarfabriccenter.remote.docker.**
 
 ---
 
