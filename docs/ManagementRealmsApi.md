@@ -22,7 +22,7 @@ This single point of entry allows you to create complex automatic application ma
 
 ## Remote Meta API
 
-* [crossbarfabriccenter.remote.router.meta.*](#crossbarfabriccenterremoteroutermeta)
+* [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoteroutermeta)
 
 
 ## Remote Management API
@@ -182,7 +182,7 @@ and
 
 ---
 
-### crossbarfabriccenter.remote.meta.*
+### crossbarfabriccenter.remote.realm.meta.*
 
 Crossbar.io implements the WAMP meta API at the app router level:
 
@@ -202,7 +202,7 @@ So, for example, the WAMP meta API procedure
 
 that returns a list of WAMP session IDs of session currently joined on the realm is exposed via CFC under
 
-* `crossbarfabriccenter.remote.meta.wamp.session.list (node_id, worker_id, realm_id)`
+* `crossbarfabriccenter.remote.realm.meta.wamp.session.list (node_id, worker_id, realm_id)`
 
 This allows CFC clients to remotely call into the WAMP meta API of any of the CF nodes connected.
 
@@ -212,7 +212,7 @@ WAMP meta events are translated similar. That is, events destined for topic
 
 can be subscribed under
 
-* `crossbarfabriccenter.remote.meta.wamp.session.on_join (node_id, worker_id, realm_id, session_id, session_details)`
+* `crossbarfabriccenter.remote.realm.meta.wamp.session.on_join (node_id, worker_id, realm_id, session_id, session_details)`
 
 ---
 
