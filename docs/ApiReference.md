@@ -749,25 +749,107 @@ is fired.
 
 Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
+
 ### crossbarfabriccenter.remote.router.get_router_transports
 
+Return a list of IDs of transports for the given router.
+
 * **get_router_transports** (node_id, worker_id) -> [transport_id]
+
+where
+
+* **node_id** (string): ID of node running the router to get transports for
+* **worker_id** (string): ID of the (router) worker to get transports for
+
+> The order of IDs within the list returned is unspecified, but stable.
+
+---
 
 
 ### crossbarfabriccenter.remote.router.get_router_transport
 
+Return detailed information about the given router transport.
+
 * **get_router_transport** (node_id, worker_id, transport_id) -> transport
+
+where
+
+* **node_id** (string): ID of node running the router with the transport to get information for
+* **worker_id** (string): ID of the (router) worker with the transport to get information for
+* **transport_id** (string): ID of the (router) transport to get information for
+
+where
+
+* **transport** (dict): router transport information object
+
+---
 
 
 ### crossbarfabriccenter.remote.router.start_router_transport
 
+Start a new router transport on the given (router) worker.
+
 * **start_router_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
+
+where
+
+* **node_id** (string): ID of node running the router to start the transport on
+* **worker_id** (string): ID of the (router) worker to start the transport on
+* **transport_id** (string): optional ID of the (router) transport to start. when not given, auto-generated
+* **transport_config** (dict): configuration of the transport to start
+
+and
+
+* **transport_started** (dict): transport started information
+
+The call does not return until the transport has completely started.
+
+When the new transport *is starting*, an event
+
+* **on_router_transport_starting** (node_id, worker_id, transport_id, transport_starting)
+
+is fired.
+
+When the new transport *is completely started*, an event
+
+* **on_router_transport_started** (node_id, worker_id, transport_id, transport_started)
+
+is fired.
+
+---
 
 
 ### crossbarfabriccenter.remote.router.stop_router_transport
 
+Stop a router transport currently running in the given (router) worker.
+
 * **stop_router_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
+where
+
+* **node_id** (string): ID of node running the router to stop the transport on
+* **worker_id** (string): ID of the (router) worker to stop the transport on
+* **transport_id** (string): ID of the (router) transport to stop
+
+where
+
+* **transport_stopped** (dict): transport stopped information
+
+The call does not return until the transport has completely stopped.
+
+When the transport *is stopping*, an event
+
+* **on_router_transport_stopping** (node_id, worker_id, transport_id, transport_stopping)
+
+is fired.
+
+When the transport *is completely stopped*, an event
+
+* **on_router_transport_stopped** (node_id, worker_id, transport_id, transport_stopped)
+
+is fired.
+
+---
 
 
 ### Transport Paths
@@ -931,6 +1013,8 @@ where
 
 * **node_id** (string): the ID of the node to get traces from
 * **worker_id** (string): the ID of the worker to get traces from
+
+> The order of IDs within the list returned is unspecified, but stable.
 
 ---
 
