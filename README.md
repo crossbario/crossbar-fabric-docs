@@ -1,9 +1,12 @@
-# Crossbar.io Fabric Documentation
+# Crossbar.io Fabric Public
 
-The repository also contains the documentation (source) and example code for Crossbar.io Fabric:
+The repository contains the public documentation (source), example source code and user issues for Crossbar.io Fabric:
 
-* [Crossbar.io Fabric Documentation (Source)](docs/Documentation.md)
+* [Crossbar.io Fabric Documentation (Source)](docs)
 * [Crossbar.io Fabric Examples](examples)
+* [Crossbar.io Fabric Issue Tracker](https://github.com/crossbario/crossbar-fabric-public/issues)
+
+---
 
 ## Getting Started
 
@@ -17,7 +20,12 @@ You will need
 
 ### Fabric Shell
 
-Create a fresh, dedicated Python virtualenv for Crossbar.io Fabric Shell:
+[Crossbar.io Fabric Shell](https://github.com/crossbario/crossbar-fabric-shell) is a management client Python package that includes
+
+* an interactive management shell
+* a management client library
+
+To install, create a new dedicated Python virtualenv, activate it and install Crossbar.io Fabric Shell [from PyPI](https://pypi.python.org/pypi/crossbarfabricshell) in there:
 
 ```console
 virtualenv ~/.cbsh
@@ -25,29 +33,58 @@ source ~/.cbsh/bin/activate
 pip install crossbarfabricshell
 ```
 
-> Note: we do not recommend installing cbsh into a shared Python environment, certainly not the system wide Python enviroment.
+> Note: we do not recommend installing cbsh into a Python environment shared with other applications, or shared system wide. cbsh is well packaged and follows best practices, but we cannot support all combinations of dependencies. A Python virtualenv comes with a good compromise for isolation versus overhead.
 
-Now register or login to Crossbar.io Fabric Center:
+Now register or login to Crossbar.io Fabric Center by running:
 
 ```console
 cbsh auth
 ```
 
-An activation code will be sent by email to you.
+This will ask for an email address, and otherwise optionally allows to set a customer CFC URL, which should be left at default.
 
-Go on providing the activation code you received:
+On a fresh system, the following files will be generated:
 
 ```console
-cbsh auth --code ...
+(cpy362_1) oberstet@thinkpad-t430s:~$ ll ~/.cbf/
+insgesamt 20
+drwxrwxr-x  2 oberstet oberstet 4096 Aug 14 13:16 ./
+drwxr-xr-x 94 oberstet oberstet 4096 Aug 20 21:49 ../
+-rw-rw-r--  1 oberstet oberstet   78 Aug 14 13:16 config.ini
+-rw-------  1 oberstet oberstet  332 Aug 14 13:16 default.priv
+-rw-r--r--  1 oberstet oberstet  227 Aug 14 13:16 default.pub
 ```
 
-That's it! You are now authenticated.
+The `default.priv` and `default.pub` are your private and public key files. Keep the `default.priv` safe!
 
-Started the shell in interactive mode:
+The `config.ini` is the main cbsh configuration file:
+
+```
+(cpy362_1) oberstet@thinkpad-t430s:~$ cat ~/.cbf/config.ini
+[default]
+
+url=wss://fabric.crossbario.com/ws
+privkey=default.priv
+pubkey=default.pub
+```
+
+Lastly, an activation code will be sent to you by email. The activation code should arrive promptly, and you can go on providing the activation code you received on the command line:
+
+```console
+cbsh auth --code <YOUR ACTIVATION CODE>
+```
+
+When successful, this will print out a short welcome notice and then exit again.
+
+That's it! You are authenticated, and the public key is known to CFC from now on. Which means, authentication when running cbsh, or other clients using your private key (`default.priv`) will successfully authenticate against CFC.
+
+Now, start the shell in interactive mode:
 
 ```console
 cbsh
 ```
+
+This will bring up a full screen console mode interactive shell.
 
 
 ### Creating a management realm
