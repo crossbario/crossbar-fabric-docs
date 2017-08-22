@@ -23,7 +23,9 @@ The following describes a high-security, best-practice system setup of Crossbar.
 ---
 
 
-## Operatings Systems
+## Operating Systems
+
+**In short: use Debian, Ubuntu Server or Ubuntu Core**
 
 Write me.
 
@@ -63,7 +65,11 @@ Possible exceptions:
 
 ## Host Network Segregation
 
+**In short: if possible, use separate networks and interfaces for public Internet facing, and private clients facing sides**
+
 Write me.
+
+---
 
 
 ## Running Dockerized
@@ -287,11 +293,15 @@ CDNs deliver static content like nothing else. And this part of your traffic is 
 
 **In short: use Dockerzized application components.**
 
+Write me.
+
 ---
 
 
 ### Container Components
 
-**In short: use Dockerzized application components.**
+**In short: use Dockerized application components.**
+
+Write me.
 
 ---
