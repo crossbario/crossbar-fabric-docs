@@ -3,6 +3,28 @@
 The following describes a high-security, best-practice system setup of Crossbar.io Fabric and application components.
 
 
+## Running Dockerized
+
+Using Docker is our recommended way of [Getting Started with Crossbar.io](http://crossbar.io/docs/Getting-Started/).
+
+Crossbar.io Fabric is currently available as a Docker image, and it will be available as a Ubuntu Core snap.
+
+**You should only run Crossbar.io Fabric from our official Docker images** which are available on DockerHub here:
+
+* [Crossbar.io Fabric (x86-64)](https://hub.docker.com/r/crossbario/crossbar-fabric/)
+* [Crossbar.io Fabric (armhf)](https://hub.docker.com/r/crossbario/crossbar-fabric-armhf/)
+* [Crossbar.io Fabric (aarch64)](https://hub.docker.com/r/crossbario/crossbar-fabric-aarch64/)
+
+For production, usually only the following network ports are enabled for the Docker container running Crossbar.io Fabric:
+
+* incoming TCP/80 (insecure WebSocket)
+* incoming TCP/443 (secure WebSocket)
+* outgoing TCP/443 (secure WebSocket)
+* outgoing UDP/53 (DNS)
+
+The Crossbar.io Fabric node directory inside the Docker container should be mounted from a host directory that is properly protected using filesystem permissions.
+
+
 ## Going to Production
 
 We have a series of hints and tips [going to production](http://crossbar.io/docs/Going-to-Production/) with Crossbar.io that also touch on security aspects.
