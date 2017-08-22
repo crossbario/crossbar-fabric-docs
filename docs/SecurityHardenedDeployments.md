@@ -1,4 +1,4 @@
-# Crossbar.io Fabric: Security hardened deployments
+# Security hardened deployments
 
 The following describes a high-security, best-practice system setup of Crossbar.io Fabric and application components.
 
@@ -14,7 +14,7 @@ The following describes a high-security, best-practice system setup of Crossbar.
    - [Network Isolation](#network-isolation)
    - [Disk Isolation](#disk-isolation)
    - [Router Connections and Authentication](#router-connections-and-authentication)
-1. [Unneeded and Unwanted Features](#uneeded-and-unwanted-features):
+1. [Unneeded and Unwanted Features](#unneeded-and-unwanted-features):
    - [Static Web Content](#static-web-content)
    - [Web Services](#web-services)
    - [Router Components](#router-components)
@@ -345,17 +345,9 @@ None of these are essential. All of these have other more specialized solutions,
 ---
 
 
-### REST Bridge
-
-**In short: you could run it (it's all Web anyways), but you need it in a WAMP-native system**
-
----
-
-
-
 ### Router Components
 
-**In short: use Dockerzized application components.**
+**In short: use Dockerized application components.**
 
 Write me.
 
