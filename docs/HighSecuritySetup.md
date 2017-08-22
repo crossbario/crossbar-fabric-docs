@@ -14,7 +14,7 @@ The following describes a high-security, best-practice system setup of Crossbar.
    - [Network Isolation](#network-isolation)
    - [Disk Isolation](#disk-isolation)
    - [Router Connections and Authentication](#router-connections-and-authentication)
-1. [What you don't need](#what-you-dont-need)
+1. Everything you don't need:
    - [Static Web Content](#static-web-content)
    - [Router Components](#router-components)
    - [Container Components](#container-components)
@@ -157,7 +157,6 @@ Further, we recommend to redirect port 80 to 443
 }
 ```
 
-
 and run exclusively over TLS and [secure WebSocket](http://crossbar.io/docs/Secure-WebSocket-and-HTTPS/).
 
 ```javascript
@@ -225,6 +224,8 @@ Using Docker in this way comes with a couple of benefits:
 - run-time isolation in both security and resource consumption
 - allows simple and complete network isolation (see below)
 
+---
+
 
 ### Network Isolation
 
@@ -235,6 +236,8 @@ When backend application components provide business logic only, and do not need
 Such backend components do not need to listen for incoming network connections, nor do they need to establish outgoing network connections (other than WAMP, and for that, see below).
 
 To achieve this kind of full network isolation is easy using Docker, since when starting the backend application component in a Docker container without providing a network for the container to connect to, no networking (other than loopback) will be possible for the backend application component.
+
+---
 
 
 ### Disk Isolation
@@ -248,6 +251,8 @@ Since we are running backend application components in Docker containers, filesy
 The one exception being private key files, eg for TLS client certificate based authentication or for WAMP-cryptosign based authentication, both methods being public-private key based.
 
 But _backend_ application components don't even need that - they can be authenticated implicitly when using Unix domain sockets for transport (see below).
+
+---
 
 
 ### Router Connections and Authentication
@@ -273,6 +278,8 @@ For the WAMP transport type used with backend application components, recommende
 
 In this case, TLS is not required, as the traffic between the backend application component and Crossbar.io runs over a UDS, which means through kernel, and protected from other user processes anyways.
 
+---
+
 
 ### Static Web Content
 
@@ -287,6 +294,49 @@ The point with bringing static Web content to the masses with low latency (!) is
 CDNs deliver static content like nothing else. And this part of your traffic is now completely managed by the CDN (= their problem!), including fighting off DDoS attacks on a large scale.
 
 ---
+
+
+### Web Services
+
+**In short: don't use any. there are special packages for most of this stuff, or it is for deprecated old clients (which you also don't want to support, because "they are broken")**
+
+Crossbar.io Fabric support these [Web Transport Services](http://crossbar.io/docs/Web-Transport-and-Services/):
+
+* path
+* static
+* upload
+* websocket
+* longpoll
+* redirect
+* nodeinfo
+* reverseproxy
+* json
+* cgi
+* wsgi
+* resource
+* caller
+* publisher
+* webhook
+* schemadoc
+
+These are all useful and good to use in different scenarios, but in a security optimized setup, we only want the bare minimum of Crossbar.io, which happens to be WAMP routing after all;)
+
+So in a high security production setup, it is recommended to _not_ run a Web transport, and not run any Web transport services. None of these is essential. All of these have other more specialized solutions, like for example _general_ Web and WebSocket (non WAMP) reverse proxying is probably best done using Nginx or some special reverse Web proxy package.
+
+
+### MQTT Bridge
+
+**In short: don't start to use MQTT or migrate old clients to WAMP**
+
+---
+
+
+### REST Bridge
+
+**In short: you could run it (it's all Web anyways), but you need it in a WAMP-native system**
+
+---
+
 
 
 ### Router Components
