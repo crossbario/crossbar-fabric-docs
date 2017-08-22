@@ -103,8 +103,42 @@ and run exclusively over TLS and [secure WebSocket](http://crossbar.io/docs/Secu
         "dhparam": "dhparam.pem",
         "ciphers": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256"
     }
-}
+},
+"options": {
+    "hsts": true,
+    "hsts_max_age": 31536000
+},
 ```
+
+A couple of noteworthy thing about this TLS configuration:
+
+* it runs TLS on standard port TCP/443
+* it uses [HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) with a long lifetime
+* it use a host generated Diffie-Hellman parameter file
+* it uses a hand selected list of active ciphers in a specific order
+* it uses a Let's Encrypt server certificate
+
+All of this combined leads to a A+ ranking on [SSL Labs Test](https://www.ssllabs.com/ssltest/).
+
+It's recommended to test your final setup using above SSL Labs Test. Don't forget to retest after configuration change touching the transports configuration in Crossbar.io Fabric.
+
+
+## Host Firewall
+
+It is highly recommended to run a kernel based, stateful, layer 4 firewall on the host running Crossbar.io Fabric.
+
+On Linux systems running Ubuntu Server eg, this often means Linux **iptables** to access and configure the Linux kernel firewall.
+
+The recommended configuration is as follows:
+
+1. allow incoming traffic on port TCP/443 _incoming_ on the network interface _facing the clients_ that should connect to this Crossbar.io Fabric node
+2. allow outgoing traffic to port TCP/443 _outgoing_ on the network interface _facing the public Internet_ with the CFC uplink connection for node management, or router-to-router links to other CF nodes
+
+Everything else can be forbidden and filtered by the firewall.
+
+If the clients connecting might try port 80 first, this port could be opened as well, as long as the node is configured to redirect that to port 443 (see other chapter here).
+
+If the host is to be managed, you might open port 22 for SSH, possibly further restricted to originating interface or network (only internal).
 
 
 ## Backend Application Components
