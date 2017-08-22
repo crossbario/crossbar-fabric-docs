@@ -29,7 +29,15 @@ Start a new Crossbar.io Fabric Docker container connecting to Crossbar.io Fabric
 
     docker run -it --rm crossbario/crossbar-fabric:latest
 
-When the node is started the first time, a new node public/private key pair is generated. Further, the node will first need to be paired with CFC.
+> Note: above will pull the Crossbar.io Fabric Docker image for x86-64. For ARM (32 bit) based devices like the Pi, use the `crossbario/crossbar-fabric-armhf` image. For ARM 64 bit based devices, use the `crossbario/crossbar-fabric-aarch64` image.
+
+As the node is started the first time, a new node public/private key pair is generated.
+
+This (new) key pair is then used when authenticating to CFC, but the (public) key is still unknown to CFC.
+
+The process of assigning a node public key to a management realm is called "pairing".
+
+Pairing a node with a management realm can be done via Crossbar.io Fabric Shell and programatically via the CFC API today, and there will be a Web user interface too.
 
 
 ### Fabric Shell
