@@ -47,16 +47,24 @@ On Linux systems running Ubuntu Server eg, this often means Linux **iptables** t
 
 The recommended configuration is as follows:
 
-1. allow incoming traffic on port TCP/443 _incoming_ on the network interface _facing the clients_ that should connect to this Crossbar.io Fabric node
-2. allow outgoing traffic to port TCP/443 _outgoing_ on the network interface _facing the public Internet_ with the CFC uplink connection for node management, or router-to-router links to other CF nodes
+1. allow incoming traffic on port TCP/443 (secure Web and WebSocket) _incoming_ on the network interface _facing the clients_ that should connect to this Crossbar.io Fabric node
+2. allow outgoing traffic to port TCP/443 (secure Web and WebSocket) _outgoing_ on the network interface _facing the public Internet_ with the CFC uplink connection for node management, or router-to-router links to other CF nodes
+3. allow outgoing traffic to port UDP/53 (DNS) _outgoing_ on the network interface _facing the public internet_
 
-Everything else can be forbidden and filtered by the firewall.
+**Everything else should be forbidden and filtered by the firewall.**
 
-If the clients connecting might try port 80 first, this port could be opened as well, as long as the node is configured to redirect that to port 443 (see other chapter here).
+Possible exceptions:
 
-If the host is to be managed, you might open port 22 for SSH, possibly further restricted to originating interface or network (only internal).
+* If the clients connecting might try port 80 first, this port could be opened as well, as long as the node is configured to redirect that to port 443 (see other chapter here).
+* If the host is to be managed, you might open port 22 for SSH, possibly further restricted to originating interface or network (only internal).
+* You might also consider enabling at least ICMP ping requests and responses, so that the host can be pinged for administration purposes.
 
 ---
+
+
+## Host Network Segregation
+
+Write me.
 
 
 ## Running Dockerized
