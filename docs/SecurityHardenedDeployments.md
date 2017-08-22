@@ -1,4 +1,4 @@
-# High Security Setup
+# Crossbar.io Fabric: Security hardened deployments
 
 The following describes a high-security, best-practice system setup of Crossbar.io Fabric and application components.
 
@@ -14,10 +14,11 @@ The following describes a high-security, best-practice system setup of Crossbar.
    - [Network Isolation](#network-isolation)
    - [Disk Isolation](#disk-isolation)
    - [Router Connections and Authentication](#router-connections-and-authentication)
-1. Everything you don't need:
+1. [Unneeded and Unwanted Features](#uneeded-and-unwanted-features):
    - [Static Web Content](#static-web-content)
+   - [Web Services](#web-services)
    - [Router Components](#router-components)
-   - [Container Components](#container-components)
+   - [Container Workers and Components](#container-workers-and-components)
    - [Guest Workers](#guest-workers)
 
 ---
@@ -281,6 +282,13 @@ In this case, TLS is not required, as the traffic between the backend applicatio
 ---
 
 
+## Unneeded and Unwanted Features
+
+Write me.
+
+---
+
+
 ### Static Web Content
 
 **In short: use a CDN.**
@@ -298,9 +306,9 @@ CDNs deliver static content like nothing else. And this part of your traffic is 
 
 ### Web Services
 
-**In short: don't use any. there are special packages for most of this stuff, or it is for deprecated old clients (which you also don't want to support, because "they are broken")**
+**In short: don't use any. there are special packages for most of this stuff, or it is for deprecated old clients (which you also don't want to support, because they are a liability)**
 
-Crossbar.io Fabric support these [Web Transport Services](http://crossbar.io/docs/Web-Transport-and-Services/):
+Crossbar.io Fabric supports a rich set of [Web Transport Services](http://crossbar.io/docs/Web-Transport-and-Services/):
 
 * path
 * static
@@ -319,9 +327,15 @@ Crossbar.io Fabric support these [Web Transport Services](http://crossbar.io/doc
 * webhook
 * schemadoc
 
-These are all useful and good to use in different scenarios, but in a security optimized setup, we only want the bare minimum of Crossbar.io, which happens to be WAMP routing after all;)
+These are all useful and good to use in different scenarios.
 
-So in a high security production setup, it is recommended to _not_ run a Web transport, and not run any Web transport services. None of these is essential. All of these have other more specialized solutions, like for example _general_ Web and WebSocket (non WAMP) reverse proxying is probably best done using Nginx or some special reverse Web proxy package.
+But in a security optimized setup, we only want the bare minimum of Crossbar.io, which happens to be WAMP routing after all;)
+
+So in a high security production setup, it is recommended to _not_ run a Web transport, and not run any Web transport services.
+
+None of these are essential. All of these have other more specialized solutions, like for example _general_ Web and WebSocket (non WAMP) reverse proxying is probably best done using Nginx or some special reverse Web proxy package.
+
+---
 
 
 ### MQTT Bridge
@@ -348,7 +362,16 @@ Write me.
 ---
 
 
-### Container Components
+### Container Workers and Components
+
+**In short: use Dockerized application components.**
+
+Write me.
+
+---
+
+
+### Guest Workers
 
 **In short: use Dockerized application components.**
 
