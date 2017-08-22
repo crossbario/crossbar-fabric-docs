@@ -2,6 +2,26 @@
 
 The following describes a high-security, best-practice system setup of Crossbar.io Fabric and application components.
 
+**Contents:**
+
+1. [Operating Systems](#operating-systems)
+1. [Going to Production](#going-to-production)
+1. [Host Firewall](#host-firewall)
+1. [Running Dockerized](#running-dockerized)
+1. [Public facing transports](#public-facing-transports)
+1. [Backend Application Components](#backend-application-components)
+   - [Dockerizing Components](#dockerizing-components)
+   - [Network Isolation](#network-isolation)
+   - [Disk Isolation](#disk-isolation)
+   - [Router Connections and Authentication](#router-connections-and-authentication)
+1. [What you don't need](#what-you-dont-need)
+   - [Static Web Content](#static-web-content)
+   - [Router Components](#router-components)
+   - [Container Components](#container-components)
+   - [Guest Workers](#guest-workers)
+
+---
+
 
 ## Running Dockerized
 
@@ -166,7 +186,7 @@ Using Docker in this way comes with a couple of benefits:
 - allows simple and complete network isolation (see below)
 
 
-### Network and Disk Isolation
+### Network Isolation
 
 When backend application components provide business logic only, and do not need to talk to the outside world other than via WAMP and Crossbar.io, then there is no need for the backend component to be given _any_ network access.
 
@@ -175,7 +195,18 @@ Such backend components do not need to listen for incoming network connections, 
 To achieve this kind of full network isolation is easy using Docker, since when starting the backend application component in a Docker container without providing a network for the container to connect to, no networking (other than loopback) will be possible for the backend application component.
 
 
-### Router Connection and Authentication
+### Disk Isolation
+
+Backend components - in general - should not store data persistently on disk. There should be database backed services elsewhere in overall system. (there are exceptions of course)
+
+Since we are running backend application components in Docker containers, filesystem and disk isolation is already there. In particular, applicaton component hosting Docker containers do not need any specific block devices or filesystems mounted.
+
+The one exception being private key files, eg for TLS client certificate based authentication or for WAMP-cryptosign based authentication, both methods being public-private key based.
+
+But _backend_ application components don't even need that - they can be authenticated implicitly when using Unix domain sockets for transport (see below).
+
+
+### Router Connections and Authentication
 
 So how does the backend application component connect to Crossbar.io, given that we have denied it _any_ kind of network access - even to another container (such as Crossbar.io) running on the same host!
 
@@ -206,3 +237,19 @@ However, the point is not being able to saturate a 10GbE link using a couple of 
 The point with bringing static Web content to the masses with low latency (!) is that you probably want a CDN.
 
 CDNs deliver static content like nothing else. And this part of your traffic is now completely managed by the CDN (= their problem!), including fighting off DDoS attacks on a large scale.
+
+
+## Router Components
+
+Write me.
+
+
+## Container Components
+
+Write me.
+
+
+## Operatings Systems
+
+Write me.
+
