@@ -340,14 +340,14 @@ None of these are essential. All of these have other more specialized solutions,
 
 ### MQTT Bridge
 
-**In short: don't start to use MQTT or migrate old clients to WAMP**
+**In short: don't use MQTT on new stuff and migrate old clients to WAMP in medium term**
 
 ---
 
 
 ### Router Components
 
-**In short: use Dockerized application components.**
+**In short: use Dockerized application components instead.**
 
 Write me.
 
@@ -356,7 +356,7 @@ Write me.
 
 ### Container Workers and Components
 
-**In short: use Dockerized application components.**
+**In short: use Dockerized application components instead.**
 
 Write me.
 
@@ -365,7 +365,7 @@ Write me.
 
 ### Guest Workers
 
-**In short: use Dockerized application components.**
+**In short: use Dockerized application components instead.**
 
 Write me.
 
