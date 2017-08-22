@@ -23,7 +23,45 @@ The following describes a high-security, best-practice system setup of Crossbar.
 ---
 
 
+## Operatings Systems
+
+Write me.
+
+---
+
+
+## Going to Production
+
+We have a series of hints and tips [going to production](http://crossbar.io/docs/Going-to-Production/) with Crossbar.io that also touch on security aspects.
+
+---
+
+
+## Host Firewall
+
+**In short: use Linux iptables and deny any traffic but in- and outgoing traffic on TCP/443.**
+
+It is highly recommended to run a kernel based, stateful, layer 4 firewall on the host running Crossbar.io Fabric.
+
+On Linux systems running Ubuntu Server eg, this often means Linux **iptables** to access and configure the Linux kernel firewall.
+
+The recommended configuration is as follows:
+
+1. allow incoming traffic on port TCP/443 _incoming_ on the network interface _facing the clients_ that should connect to this Crossbar.io Fabric node
+2. allow outgoing traffic to port TCP/443 _outgoing_ on the network interface _facing the public Internet_ with the CFC uplink connection for node management, or router-to-router links to other CF nodes
+
+Everything else can be forbidden and filtered by the firewall.
+
+If the clients connecting might try port 80 first, this port could be opened as well, as long as the node is configured to redirect that to port 443 (see other chapter here).
+
+If the host is to be managed, you might open port 22 for SSH, possibly further restricted to originating interface or network (only internal).
+
+---
+
+
 ## Running Dockerized
+
+**In short: use our official Docker images for Crossbar.io Fabric.**
 
 Using Docker is our recommended way of [Getting Started with Crossbar.io](http://crossbar.io/docs/Getting-Started/).
 
@@ -44,13 +82,12 @@ For production, usually only the following network ports are enabled for the Doc
 
 The Crossbar.io Fabric node directory inside the Docker container should be mounted from a host directory that is properly protected using filesystem permissions.
 
-
-## Going to Production
-
-We have a series of hints and tips [going to production](http://crossbar.io/docs/Going-to-Production/) with Crossbar.io that also touch on security aspects.
+---
 
 
 ## Public facing transports
+
+**In short: use TLS-only with WebSocket**
 
 For WAMP listening transports on Crossbar.io Fabric router workers that accept connections from clients over the public Internet, we recommend this transport:
 
@@ -142,26 +179,12 @@ All of this combined leads to a A+ ranking on [SSL Labs Test](https://www.ssllab
 
 It's recommended to test your final setup using above SSL Labs Test. Don't forget to retest after configuration change touching the transports configuration in Crossbar.io Fabric.
 
-
-## Host Firewall
-
-It is highly recommended to run a kernel based, stateful, layer 4 firewall on the host running Crossbar.io Fabric.
-
-On Linux systems running Ubuntu Server eg, this often means Linux **iptables** to access and configure the Linux kernel firewall.
-
-The recommended configuration is as follows:
-
-1. allow incoming traffic on port TCP/443 _incoming_ on the network interface _facing the clients_ that should connect to this Crossbar.io Fabric node
-2. allow outgoing traffic to port TCP/443 _outgoing_ on the network interface _facing the public Internet_ with the CFC uplink connection for node management, or router-to-router links to other CF nodes
-
-Everything else can be forbidden and filtered by the firewall.
-
-If the clients connecting might try port 80 first, this port could be opened as well, as long as the node is configured to redirect that to port 443 (see other chapter here).
-
-If the host is to be managed, you might open port 22 for SSH, possibly further restricted to originating interface or network (only internal).
+---
 
 
 ## Backend Application Components
+
+**In short: use Docker based app components connected over Unix domain sockets**
 
 Backend application components are WAMP components (often Autobahn based) that are run in the backend parts of an application, often on cloud systems, that is system which are reachable in the public Internet.
 
@@ -170,8 +193,12 @@ To integrate backend application components into the overall system, two things 
 - they need to run somewhere/somehow and also be started by someone
 - they need to connect (and possibly authenticate) to Crossbar.io Fabric nodes
 
+---
+
 
 ### Dockerizing Components
+
+**In short: package and run your app components as Docker images and containers**
 
 The recommended setup runs backend application components in Docker containers.
 
@@ -188,6 +215,8 @@ Using Docker in this way comes with a couple of benefits:
 
 ### Network Isolation
 
+**In short: no need to allow any networking (ingoing and outgoing) for app containers**
+
 When backend application components provide business logic only, and do not need to talk to the outside world other than via WAMP and Crossbar.io, then there is no need for the backend component to be given _any_ network access.
 
 Such backend components do not need to listen for incoming network connections, nor do they need to establish outgoing network connections (other than WAMP, and for that, see below).
@@ -196,6 +225,8 @@ To achieve this kind of full network isolation is easy using Docker, since when 
 
 
 ### Disk Isolation
+
+**In short: no need to mount any disk/filesystem to an app container.**
 
 Backend components - in general - should not store data persistently on disk. There should be database backed services elsewhere in overall system. (there are exceptions of course)
 
@@ -207,6 +238,8 @@ But _backend_ application components don't even need that - they can be authenti
 
 
 ### Router Connections and Authentication
+
+**In short: use Unix domain sockets (per component) with WAMP/RawSocket-CBOR**
 
 So how does the backend application component connect to Crossbar.io, given that we have denied it _any_ kind of network access - even to another container (such as Crossbar.io) running on the same host!
 
@@ -228,7 +261,9 @@ For the WAMP transport type used with backend application components, recommende
 In this case, TLS is not required, as the traffic between the backend application component and Crossbar.io runs over a UDS, which means through kernel, and protected from other user processes anyways.
 
 
-## Static Web Content
+### Static Web Content
+
+**In short: use a CDN.**
 
 Crossbar.io Fabric, when used as a simple Web server for static content is [pretty fast](https://github.com/crossbario/crossbar-examples/tree/master/benchmark/web). Nginx is faster of course. Then who needs to push millions of Web requests per second?
 
@@ -238,18 +273,18 @@ The point with bringing static Web content to the masses with low latency (!) is
 
 CDNs deliver static content like nothing else. And this part of your traffic is now completely managed by the CDN (= their problem!), including fighting off DDoS attacks on a large scale.
 
-
-## Router Components
-
-Write me.
+---
 
 
-## Container Components
+### Router Components
 
-Write me.
+**In short: use Dockerzized application components.**
+
+---
 
 
-## Operatings Systems
+### Container Components
 
-Write me.
+**In short: use Dockerzized application components.**
 
+---
