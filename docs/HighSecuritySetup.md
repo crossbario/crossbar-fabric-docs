@@ -3,6 +3,88 @@
 The following describes a high-security, best-practice system setup of Crossbar.io Fabric and application components.
 
 
+## Going to Production
+
+We have a series of hints and tips [going to production](http://crossbar.io/docs/Going-to-Production/) with Crossbar.io that also touch on security aspects.
+
+
+## Public facing transports
+
+For WAMP listening transports on Crossbar.io Fabric router workers that accept connections from clients over the public Internet, we recommend this transport:
+
+* WebSocket (with all serializers active)
+* WebSocket compression enabled
+* WebSocket [production settings recommendations](http://crossbar.io/docs/WebSocket-Options/#production-settings)
+
+```javascript
+{
+    "type": "websocket",
+    "url": "wss://wamp.example.com",
+    "serializers": [
+        "cbor", "msgpack", "ubjson", "json"
+    ],
+    "options": {
+        "enable_webstatus": true,
+        "max_frame_size": 1048576,
+        "max_message_size": 1048576,
+        "auto_fragment_size": 65536,
+        "fail_by_drop": true,
+        "open_handshake_timeout": 2500,
+        "close_handshake_timeout": 1000,
+        "auto_ping_interval": 10000,
+        "auto_ping_timeout": 5000,
+        "auto_ping_size": 4,
+        "compression": {
+            "deflate": {
+                "request_no_context_takeover": false,
+                "request_max_window_bits": 13,
+                "no_context_takeover": false,
+                "max_window_bits": 13,
+                "memory_level": 5
+            }
+        }
+    }
+}
+```
+
+Further, we recommend to redirect port 80 to 443
+
+```javascript
+{
+    "type": "web",
+    "endpoint": {
+        "type": "tcp",
+        "port": 80
+    },
+    "paths": {
+        "/": {
+            "type": "redirect",
+            "url": "https://wamp.example.com"
+        }
+    }
+}
+```
+
+
+and run exclusively over TLS and [secure WebSocket](http://crossbar.io/docs/Secure-WebSocket-and-HTTPS/).
+
+```javascript
+"endpoint": {
+    "type": "tcp",
+    "port": 443,
+    "tls": {
+        "key": "server.key",
+        "certificate": "server.crt",
+        "chain_certificates": [
+            "lets-encrypt-x3-cross-signed.pem"
+        ],
+        "dhparam": "dhparam.pem",
+        "ciphers": "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256"
+    }
+}
+```
+
+
 ## Backend Application Components
 
 Backend application components are WAMP components (often Autobahn based) that are run in the backend parts of an application, often on cloud systems, that is system which are reachable in the public Internet.
