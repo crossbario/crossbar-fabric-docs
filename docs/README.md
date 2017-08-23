@@ -9,8 +9,8 @@ Welcome to the Crossbar.io Fabric Documentation.
 
 * [Examples](Examples.md)
 * [APIs](Apis.md)
-   * [Accounts Realm API](AccountsRealmApi.md)
-   * [Management Realms API](ManagementRealmsApi.md)
-* [Message Tracing](MessageTracing.md)
-* [Security Hardened Deployments](SecurityHardenedDeployments.md)
-* [Change Log](ChangeLog.md)
+   * [Global API](Global-Api.md)
+   * [Management API](Management-Api.md)
+* [Message Tracing](Message-Tracing.md)
+* [Security Hardened Deployments](Security-Hardened-Deployments.md)
+* [Change Log](Change-Log.md)

@@ -1,7 +1,7 @@
-title: Management Realm API
-toc: [Documentation, API Reference, Management Realm API]
+title: Management API
+toc: [Documentation, API Reference, Management API]
 
-# Management Realms API
+# Management API
 
 Each user created **management realm** (eg `com.example.my-mgmt-realm1`) on Crossbar.io Fabric Center (CFC) exposes the following APIs to clients:
 
