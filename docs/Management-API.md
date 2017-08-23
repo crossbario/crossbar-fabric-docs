@@ -267,6 +267,7 @@ is returned:
 
 ```javascript
 ["node1", "node2"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
