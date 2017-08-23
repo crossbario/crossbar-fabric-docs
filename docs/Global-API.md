@@ -10,7 +10,8 @@ The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes th
 
 ## System API
 
-Prefix: `crossbarfabriccenter.system.` - Status: **alpha**
+Prefix: `crossbarfabriccenter.system.`
+Status: **alpha**
 
 * [ ] [crossbarfabriccenter.system.get_status](#crossbarfabriccentersystemget_status)
 * [ ] [crossbarfabriccenter.system.on_tick](#crossbarfabriccentersystemon_tick)
@@ -18,9 +19,14 @@ Prefix: `crossbarfabriccenter.system.` - Status: **alpha**
 ---
 
 
-## Management Realms
+## Management Realms API
 
-Prefix: `crossbarfabriccenter.mrealm.` - Status: **alpha**
+Prefix: `crossbarfabriccenter.mrealm.`
+
+
+### Management Realms API: Realms
+
+Status: **alpha**
 
 * [ ] [crossbarfabriccenter.mrealm.get_realms](#crossbarfabriccentermrealmget_realms)
 * [ ] [crossbarfabriccenter.mrealm.get_realm](#crossbarfabriccentermrealmget_realm)
@@ -32,7 +38,7 @@ Prefix: `crossbarfabriccenter.mrealm.` - Status: **alpha**
 * [ ] [crossbarfabriccenter.mrealm.on_realm_deleted](#crossbarfabriccentermrealmon_realm_deleted)
 
 
-### Management Realms: **Roles**
+### Management Realms API: Roles
 
 Status: **under development**
 
@@ -43,7 +49,7 @@ Status: **under development**
 * [ ] [crossbarfabriccenter.mrealm.on_role_revoked](#crossbarfabriccentermrealmon_role_revoked)
 
 
-### Management Realms: **Nodes**
+### Management Realms API: Nodes
 
 Status: **alpha**
 
@@ -82,19 +88,20 @@ where
     // CFC global realm (being connected to)
     "realm": "com.crossbario.fabric",
 
+    // CFC startup nonce
+    "nonce": "ad80758d0c40098504aeb220022b84fc",
+
     // UTC system time (ISO 8601 format)
     "now": "2017-08-23T13:01:25.416Z",
-
-    // CFC startup time (ISO 8601 format)
-    "started": "2017-05-23T13:01:25.416Z",
-
-    // CFC uptime in seconds
-    "uptime": 8123,
 
     // CFC tick counter
     "tick": 982344
 }
 ```
+
+The startup nonce is a random value generated at CFC startup time and unchanged while running.
+
+The CFC tick counter is started at a random integer value, and then incremented every 5 seconds.
 
 ---
 
@@ -371,10 +378,11 @@ where
 
 ```javascript
 {
-    // current system time in ISO 8601 format
+    // current CFC system time in ISO 8601 format
     "now": "2017-08-23T13:01:25.416Z",
 
-    // tick count since system start
+    // CFC tick: initialized with a random integer when CFC starts,
+    // and incremented every 5 seconds
     "tick": 89014
 }
 ```
