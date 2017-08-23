@@ -3,48 +3,56 @@ toc: [Documentation, API Reference, Global API]
 
 # Global API
 
-The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes the following APIs to clients:
+The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes the following APIs to clients.
 
-**Procedures**
+---
 
-* *System*
-    * [crossbarfabriccenter.system.get_status](#crossbarfabriccentersystemget_status)
 
-* *Management Realms*
-    * [crossbarfabriccenter.mrealm.get_realms](#crossbarfabriccentermrealmget_realms)
-    * [crossbarfabriccenter.mrealm.get_realm](#crossbarfabriccentermrealmget_realm)
-    * [crossbarfabriccenter.mrealm.create_realm](#crossbarfabriccentermrealmcreate_realm)
-    * [crossbarfabriccenter.mrealm.delete_realm](#crossbarfabriccentermrealmdelete_realm)
+## System API
 
-* *Management Realms: Roles*
-    * [crossbarfabriccenter.mrealm.get_roles](#crossbarfabriccentermrealmget_roles)
-    * [crossbarfabriccenter.mrealm.grant_role](#crossbarfabriccentermrealmgrant_role)
-    * [crossbarfabriccenter.mrealm.revoke_role](#crossbarfabriccentermrealmrevoke_role)
+Prefix: `crossbarfabriccenter.system.` - Status: **alpha**
 
-* *Management Realms: Nodes*
-    * [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
-    * [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
-    * [crossbarfabriccenter.mrealm.pair_node](#crossbarfabriccentermrealmpair_node)
-    * [crossbarfabriccenter.mrealm.unpair_node](#crossbarfabriccentermrealmunpair_node)
+* [ ] [crossbarfabriccenter.system.get_status](#crossbarfabriccentersystemget_status)
+* [ ] [crossbarfabriccenter.system.on_tick](#crossbarfabriccentersystemon_tick)
 
-**Events**
+---
 
-* *System*
-    * [crossbarfabriccenter.system.on_tick](#crossbarfabriccentersystemon_tick)
 
-* *Management Realms*
-    * [crossbarfabriccenter.mrealm.on_realm_creating](#crossbarfabriccentermrealmon_realm_creating)
-    * [crossbarfabriccenter.mrealm.on_realm_created](#crossbarfabriccentermrealmon_realm_created)
-    * [crossbarfabriccenter.mrealm.on_realm_deleting](#crossbarfabriccentermrealmon_realm_deleting)
-    * [crossbarfabriccenter.mrealm.on_realm_deleted](#crossbarfabriccentermrealmon_realm_deleted)
+## Management Realms
 
-* *Management Realms: Roles*
-    * [crossbarfabriccenter.mrealm.on_role_granted](#crossbarfabriccentermrealmon_role_granted)
-    * [crossbarfabriccenter.mrealm.on_role_revoked](#crossbarfabriccentermrealmon_role_revoked)
+Prefix: `crossbarfabriccenter.mrealm.` - Status: **alpha**
 
-* *Management Realms: Nodes*
-    * [crossbarfabriccenter.mrealm.on_node_paired](#crossbarfabriccentermrealmon_node_paired)
-    * [crossbarfabriccenter.mrealm.on_node_unpaired](#crossbarfabriccentermrealmon_node_unpaired)
+* [ ] [crossbarfabriccenter.mrealm.get_realms](#crossbarfabriccentermrealmget_realms)
+* [ ] [crossbarfabriccenter.mrealm.get_realm](#crossbarfabriccentermrealmget_realm)
+* [ ] [crossbarfabriccenter.mrealm.create_realm](#crossbarfabriccentermrealmcreate_realm)
+* [ ] [crossbarfabriccenter.mrealm.delete_realm](#crossbarfabriccentermrealmdelete_realm)
+* [ ] [crossbarfabriccenter.mrealm.on_realm_creating](#crossbarfabriccentermrealmon_realm_creating)
+* [ ] [crossbarfabriccenter.mrealm.on_realm_created](#crossbarfabriccentermrealmon_realm_created)
+* [ ] [crossbarfabriccenter.mrealm.on_realm_deleting](#crossbarfabriccentermrealmon_realm_deleting)
+* [ ] [crossbarfabriccenter.mrealm.on_realm_deleted](#crossbarfabriccentermrealmon_realm_deleted)
+
+
+### Management Realms: **Roles**
+
+Status: **under development**
+
+* [ ] [crossbarfabriccenter.mrealm.get_roles](#crossbarfabriccentermrealmget_roles)
+* [ ] [crossbarfabriccenter.mrealm.grant_role](#crossbarfabriccentermrealmgrant_role)
+* [ ] [crossbarfabriccenter.mrealm.revoke_role](#crossbarfabriccentermrealmrevoke_role)
+* [ ] [crossbarfabriccenter.mrealm.on_role_granted](#crossbarfabriccentermrealmon_role_granted)
+* [ ] [crossbarfabriccenter.mrealm.on_role_revoked](#crossbarfabriccentermrealmon_role_revoked)
+
+
+### Management Realms: **Nodes**
+
+Status: **alpha**
+
+* [ ] [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
+* [ ] [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
+* [ ] [crossbarfabriccenter.mrealm.pair_node](#crossbarfabriccentermrealmpair_node)
+* [ ] [crossbarfabriccenter.mrealm.unpair_node](#crossbarfabriccentermrealmunpair_node)
+* [ ] [crossbarfabriccenter.mrealm.on_node_paired](#crossbarfabriccentermrealmon_node_paired)
+* [ ] [crossbarfabriccenter.mrealm.on_node_unpaired](#crossbarfabriccentermrealmon_node_unpaired)
 
 ---
 
