@@ -7,9 +7,9 @@ Crossbar.io Fabric Center (CFC) exposes a rich set of APIs to user management to
 
 Clients connect to CFC under one of two realms:
 
-1. the CFC **global realm** (`com.crossbario.fabric`), exposing the **[Global API](Global-Api.md)**:
+1. the CFC **global realm** (`com.crossbario.fabric`), exposing the **[Global API](Global-API.md)**:
 
-2. a user created **management realm** (eg `com.example.my-mgmt-realm1`), exposing the **[Management API](Management-Api.md)**
+2. a user created **management realm** (eg `com.example.my-mgmt-realm1`), exposing the **[Management API](Management-API.md)**
 
 The former allows users to create new management realms, pair nodes with such realms and manage their user profiles.
 
