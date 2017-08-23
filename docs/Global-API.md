@@ -3,38 +3,38 @@ toc: [Documentation, APIs, Global API]
 
 # Global API
 
-The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Center exposes the following API to clients:
+The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes the following APIs to clients:
 
 **Procedures**
 
-* *General*
-    * [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
+* *System*
+    * [crossbarfabriccenter.system.get_status](#crossbarfabriccentersystemget_status)
 * *Management Realms*
-    * [crossbarfabriccenter.account.get_management_realms](#crossbarfabriccenteraccountget_management_realms)
-    * [crossbarfabriccenter.account.get_management_realm](#crossbarfabriccenteraccountget_management_realm)
-    * [crossbarfabriccenter.account.create_management_realm](#crossbarfabriccenteraccountcreate_management_realm)
-    * [crossbarfabriccenter.account.delete_management_realm](#crossbarfabriccenteraccountdelete_management_realm)
-    * [crossbarfabriccenter.account.get_realm_roles](#crossbarfabriccenteraccountget_realm_roles)
-    * [crossbarfabriccenter.account.grant_realm_role](#crossbarfabriccenteraccountgrant_realm_role)
-    * [crossbarfabriccenter.account.revoke_realm_role](#crossbarfabriccenteraccountrevoke_realm_role)
-    * [crossbarfabriccenter.account.get_nodes](#crossbarfabriccenteraccountget_nodes)
-    * [crossbarfabriccenter.account.get_node](#crossbarfabriccenteraccountget_node)
-    * [crossbarfabriccenter.account.pair_node](#crossbarfabriccenteraccountpair_node)
-    * [crossbarfabriccenter.account.unpair_node](#crossbarfabriccenteraccountunpair_node)
+    * [crossbarfabriccenter.mrealm.get_management_realms](#crossbarfabriccentermrealmget_management_realms)
+    * [crossbarfabriccenter.mrealm.get_management_realm](#crossbarfabriccentermrealmget_management_realm)
+    * [crossbarfabriccenter.mrealm.create_management_realm](#crossbarfabriccentermrealmcreate_management_realm)
+    * [crossbarfabriccenter.mrealm.delete_management_realm](#crossbarfabriccentermrealmdelete_management_realm)
+    * [crossbarfabriccenter.mrealm.get_realm_roles](#crossbarfabriccentermrealmget_realm_roles)
+    * [crossbarfabriccenter.mrealm.grant_realm_role](#crossbarfabriccentermrealmgrant_realm_role)
+    * [crossbarfabriccenter.mrealm.revoke_realm_role](#crossbarfabriccentermrealmrevoke_realm_role)
+    * [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
+    * [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
+    * [crossbarfabriccenter.mrealm.pair_node](#crossbarfabriccentermrealmpair_node)
+    * [crossbarfabriccenter.mrealm.unpair_node](#crossbarfabriccentermrealmunpair_node)
 
 **Events**
 
-* *General*
-    * [crossbarfabriccenter.on_tick](#crossbarfabriccenteron_tick)
+* *System*
+    * [crossbarfabriccenter.system.on_tick](#crossbarfabriccentersystemon_tick)
 * *Management Realms*
-    * [crossbarfabriccenter.account.on_management_realm_creating](#crossbarfabriccenteraccounton_management_realm_creating)
-    * [crossbarfabriccenter.account.on_management_realm_created](#crossbarfabriccenteraccounton_management_realm_created)
-    * [crossbarfabriccenter.account.on_management_realm_deleting](#crossbarfabriccenteraccounton_management_realm_deleting)
-    * [crossbarfabriccenter.account.on_management_realm_deleted](#crossbarfabriccenteraccounton_management_realm_deleted)
-    * [crossbarfabriccenter.account.on_role_granted](#crossbarfabriccenteraccounton_role_granted)
-    * [crossbarfabriccenter.account.on_role_revoked](#crossbarfabriccenteraccounton_role_revoked)
-    * [crossbarfabriccenter.account.on_node_paired](#crossbarfabriccenteraccounton_node_paired)
-    * [crossbarfabriccenter.account.on_node_unpaired](#crossbarfabriccenteraccounton_node_unpaired)
+    * [crossbarfabriccenter.mrealm.on_management_realm_creating](#crossbarfabriccentermrealmon_management_realm_creating)
+    * [crossbarfabriccenter.mrealm.on_management_realm_created](#crossbarfabriccentermrealmon_management_realm_created)
+    * [crossbarfabriccenter.mrealm.on_management_realm_deleting](#crossbarfabriccentermrealmon_management_realm_deleting)
+    * [crossbarfabriccenter.mrealm.on_management_realm_deleted](#crossbarfabriccentermrealmon_management_realm_deleted)
+    * [crossbarfabriccenter.mrealm.on_role_granted](#crossbarfabriccentermrealmon_role_granted)
+    * [crossbarfabriccenter.mrealm.on_role_revoked](#crossbarfabriccentermrealmon_role_revoked)
+    * [crossbarfabriccenter.mrealm.on_node_paired](#crossbarfabriccentermrealmon_node_paired)
+    * [crossbarfabriccenter.mrealm.on_node_unpaired](#crossbarfabriccentermrealmon_node_unpaired)
 
 ---
 
@@ -46,20 +46,20 @@ Signature and descriptions of API procedures.
 ---
 
 
-### crossbarfabriccenter.get_status
+### crossbarfabriccenter.system.get_status
 
-Return global account service status information.
+Return global CFC service status.
 
 * **get_status** () -> status
 
 where
 
-* **status** (dict): status information object
+* **status** (dict): service status information object
 
 ---
 
 
-### crossbarfabriccenter.account.get_management_realms
+### crossbarfabriccenter.mrealm.get_management_realms
 
 Get list of names of management realms accessible to the user account.
 
@@ -72,7 +72,7 @@ where
 ---
 
 
-### crossbarfabriccenter.account.get_management_realm
+### crossbarfabriccenter.mrealm.get_management_realm
 
 Return detailed information about a management realm.
 
@@ -89,7 +89,7 @@ and
 ---
 
 
-### crossbarfabriccenter.account.create_management_realm
+### crossbarfabriccenter.mrealm.create_management_realm
 
 Create a new management realm.
 
@@ -122,7 +122,7 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.account.delete_management_realm
+### crossbarfabriccenter.mrealm.delete_management_realm
 
 Delete an existing management realm.
 
@@ -158,7 +158,7 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.account.get_realm_roles
+### crossbarfabriccenter.mrealm.get_realm_roles
 
 Get all roles assigned to users on a given management realm.
 
@@ -177,7 +177,7 @@ is returned.
 ---
 
 
-### crossbarfabriccenter.account.grant_realm_role
+### crossbarfabriccenter.mrealm.grant_realm_role
 
 Grant a role to a user on a management realm.
 
@@ -204,7 +204,7 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.account.revoke_realm_role
+### crossbarfabriccenter.mrealm.revoke_realm_role
 
 Revoke a role from a user on a management realm.
 
@@ -231,7 +231,7 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.account.get_nodes
+### crossbarfabriccenter.mrealm.get_nodes
 
 Get IDs of nodes currently paired with the management realm.
 
@@ -244,7 +244,7 @@ where
 ---
 
 
-### crossbarfabriccenter.account.get_node
+### crossbarfabriccenter.mrealm.get_node
 
 Get detailed information about a node paired with the management realm.
 
@@ -261,7 +261,7 @@ and
 ---
 
 
-### crossbarfabriccenter.account.pair_node
+### crossbarfabriccenter.mrealm.pair_node
 
 Pair a node with this management realm.
 
@@ -289,7 +289,7 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.account.unpair_node
+### crossbarfabriccenter.mrealm.unpair_node
 
 Unpair a node currently paired to a management realm from that realm.
 
@@ -319,63 +319,63 @@ Signature and descriptions of API events.
 ---
 
 
-### crossbarfabriccenter.on_tick
+### crossbarfabriccenter.system.on_tick
 
 CFC global status/heartbeat event generated every 5 seconds.
 
 ---
 
 
-### crossbarfabriccenter.account.on_management_realm_creating
+### crossbarfabriccenter.mrealm.on_management_realm_creating
 
 Event generated when a management realm is being created and started.
 
 ---
 
 
-### crossbarfabriccenter.account.on_management_realm_created
+### crossbarfabriccenter.mrealm.on_management_realm_created
 
 Event generated when a management realm has been created and fully started.
 
 ---
 
 
-### crossbarfabriccenter.account.on_management_realm_deleting
+### crossbarfabriccenter.mrealm.on_management_realm_deleting
 
 Event generated when a management realm is being stopped and deleted.
 
 ---
 
 
-### crossbarfabriccenter.account.on_management_realm_deleted
+### crossbarfabriccenter.mrealm.on_management_realm_deleted
 
 Event generated when a management realm has been fully stopped and deleted.
 
 ---
 
 
-### crossbarfabriccenter.account.on_role_granted
+### crossbarfabriccenter.mrealm.on_role_granted
 
 Event generated when a role has been granted to a user on a management realm.
 
 ---
 
 
-### crossbarfabriccenter.account.on_role_revoked
+### crossbarfabriccenter.mrealm.on_role_revoked
 
 Event generated when a role has been revoked from a user on a management realm.
 
 ---
 
 
-### crossbarfabriccenter.account.on_node_paired
+### crossbarfabriccenter.mrealm.on_node_paired
 
 Event generated when a node has been successfully paired with a management realm.
 
 ---
 
 
-### crossbarfabriccenter.account.on_node_unpaired
+### crossbarfabriccenter.mrealm.on_node_unpaired
 
 Event generated when a node has been successfully unpaired from a management realm.
 
