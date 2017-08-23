@@ -2,9 +2,11 @@
 
 The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Center exposes the following API to clients:
 
-* [General](#general)
-    * [crossbarfabriccenter.account.get_status](#crossbarfabriccenterserviceget_status)
-* [Management Realms](#management-realms)
+**Procedures**
+
+* **General**
+    * [crossbarfabriccenter.get_status](#crossbarfabriccenterserviceget_status)
+* **Management Realms**
     * [crossbarfabriccenter.account.get_management_realms](#crossbarfabriccenteraccountget_management_realms)
     * [crossbarfabriccenter.account.get_management_realm](#crossbarfabriccenteraccountget_management_realm)
     * [crossbarfabriccenter.account.create_management_realm](#crossbarfabriccenteraccountcreate_management_realm)
@@ -17,6 +19,73 @@ The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Ce
     * [crossbarfabriccenter.account.pair_node](#crossbarfabriccenteraccountpair_node)
     * [crossbarfabriccenter.account.unpair_node](#crossbarfabriccenteraccountunpair_node)
 
+**Events**
+
+* **General**
+    * [crossbarfabriccenter.on_tick](#crossbarfabriccenteron_tick)
+* **Management Realms**
+    * [crossbarfabriccenter.account.on_management_realm_creating](#crossbarfabriccenteraccounton_management_event_creating)
+    * [crossbarfabriccenter.account.on_management_realm_created](#crossbarfabriccenteraccounton_management_event_created)
+    * [crossbarfabriccenter.account.on_management_realm_deleting](#crossbarfabriccenteraccounton_management_event_deleting)
+    * [crossbarfabriccenter.account.on_management_realm_deleted](#crossbarfabriccenteraccounton_management_event_deleted)
+    * [crossbarfabriccenter.account.on_role_granted](#crossbarfabriccenteraccounton_role_granted)
+    * [crossbarfabriccenter.account.on_role_revoked](#crossbarfabriccenteraccounton_role_revoked)
+
+---
+
+## Events Reference
+
+Signature and descriptions of API events.
+
+---
+
+
+### crossbarfabriccenter.on_tick
+
+CFC global status/heartbeat event generated every 5 seconds.
+
+---
+
+
+### crossbarfabriccenter.account.on_management_realm_creating
+
+Event generated when a management realm is being created and started.
+
+---
+
+
+### crossbarfabriccenter.account.on_management_realm_created
+
+Event generated when a management realm has been created and fully started.
+
+---
+
+
+### crossbarfabriccenter.account.on_management_realm_deleting
+
+Event generated when a management realm is being stopped and deleted.
+
+---
+
+
+### crossbarfabriccenter.account.on_management_realm_deleted
+
+Event generated when a management realm has been fully stopped and deleted.
+
+---
+
+
+### crossbarfabriccenter.account.on_role_granted
+
+Event generated when a role has been granted to a user on a management realm.
+
+---
+
+
+### crossbarfabriccenter.account.on_role_revoked
+
+Event generated when a role has been revoked from a user on a management realm.
+
 ---
 
 
@@ -27,7 +96,7 @@ Signature and descriptions of API procedures.
 ---
 
 
-### crossbarfabriccenter.account.get_status
+### crossbarfabriccenter.get_status
 
 Return global account service status information.
 
