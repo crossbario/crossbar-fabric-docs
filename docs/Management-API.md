@@ -1,5 +1,5 @@
 title: Management API
-toc: [Documentation, API Reference, Management API]
+toc: [Documentation, APIs, Management API]
 
 # Management API
 
