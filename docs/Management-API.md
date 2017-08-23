@@ -18,7 +18,9 @@ This single point of entry allows you to create complex automatic application ma
 
 ## Management Realm API
 
-Prefix: `crossbarfabriccenter.mrealm.` - Status: **supported**
+Prefix: `crossbarfabriccenter.mrealm.`
+
+Status: **supported**
 
 Provides management realm wide procedures.
 
@@ -29,7 +31,9 @@ Provides management realm wide procedures.
 
 ## Remote Realm WAMP Meta API
 
-Prefix: `crossbarfabriccenterremote.realm.meta.` - Status: **supported**
+Prefix: `crossbarfabriccenterremote.realm.meta.`
+
+Status: **supported**
 
 Provides remote access to the WAMP meta API of routing realms on Crossbar.io Fabric nodes currently connected.
 
@@ -43,7 +47,9 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
 
 ### Nodes
 
-Prefix: `crossbarfabriccenter.remote.node.` - Status: **supported**
+Prefix: `crossbarfabriccenter.remote.node.`
+
+Status: **supported**
 
 Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
 
@@ -57,7 +63,9 @@ Nodes are instances of Crossbar.io (Fabric) running on host systems, and running
 
 ### Native Workers
 
-Prefix: `crossbarfabriccenter.remote.worker.`) - Status: **supported**
+Prefix: `crossbarfabriccenter.remote.worker.`)
+
+Status: **supported**
 
 Native workers are node worker processes of the types **router**, **container** and **proxy**. The API here allows to retrieve worker logs, control the worker CPU affinity and run code profilers in a live running system.
 
@@ -155,7 +163,9 @@ Router workers are native Crossbar.io processes that can host Python user compon
 
 ### Container Workers
 
-Prefix: `crossbarfabriccenter.remote.container.` - Status: **supported**
+Prefix: `crossbarfabriccenter.remote.container.`
+
+Status: **supported**
 
 Container workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under.
 
@@ -167,7 +177,9 @@ Container workers are native Crossbar.io processes that can host Python user com
 
 ### Proxy Workers
 
-Prefix: `crossbarfabriccenter.remote.proxy.` - Status: **under development**
+Prefix: `crossbarfabriccenter.remote.proxy.`
+
+Status: **under development**
 
 Proxy workers are native worker processes of Crossbar.io Fabric that can proxy and authenticate frontend WAMP connections, normalize and scrub WAMP messages, and forward to backend router workers in an optimized way. This allows to scale up and scale out the WAMP frontend connection handling layer.
 
@@ -179,7 +191,9 @@ Proxy workers are native worker processes of Crossbar.io Fabric that can proxy a
 
 ### Message Tracing
 
-Prefix: `crossbarfabriccenter.remote.tracing.` - Status: **alpha**
+Prefix: `crossbarfabriccenter.remote.tracing.`
+
+Status: **alpha**
 
 Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single WAMP message level.
 
@@ -192,7 +206,9 @@ Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-ti
 
 ### Docker Control
 
-Prefix: `crossbarfabriccenter.remote.docker.` - Status: **under development**
+Prefix: `crossbarfabriccenter.remote.docker.`
+
+Status: **under development**
 
 Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
 
@@ -225,6 +241,14 @@ Return management realm status information.
 where
 
 * **status** (dict): status information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---
 
@@ -263,7 +287,16 @@ and
 
 * **node** (dict): node information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
+
 
 ### crossbarfabriccenter.remote.realm.meta.*
 
@@ -320,7 +353,15 @@ where
 
 and
 
-* **status** (dict): Node status information object.
+* **status** (dict): Node status information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---
 
@@ -337,7 +378,15 @@ where
 
 and
 
-* **node_shutdown** (dict): Node (final) shutdown information object.
+* **node_shutdown** (dict): Node (final) shutdown information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---
 
@@ -391,6 +440,14 @@ and
 
 * **worker_started** (dict): worker startup information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -406,6 +463,14 @@ Stop a worker currently running on a node.
 and
 
 * **worker_stopped** (dict): worker stopped information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---
 
@@ -425,6 +490,14 @@ and
 
 * **status** (dict): worker status information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -442,6 +515,14 @@ where
 and
 
 * **worker_shutdown** (dict): worker shutdown information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---
 
@@ -462,6 +543,14 @@ and
 
 * **log_record** (dict or string): when the worker support rich logging, a structured log record. when the worker only supports plain logging, a non-structured plain string (the line that was logged)
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -469,12 +558,22 @@ and
 
 Returns the current Python module search paths in the (native) worker.
 
-* **get_pythonpath** (node_id, worker_id) -> [string]
+* **get_pythonpath** (node_id, worker_id) -> [path]
 
 where
 
 * **node_id** (string): ID of node running the worker to get Python search paths for
 * **worker_id** (string): ID of the worker to get Python search paths for
+
+and
+
+* **path** (string): a Python search path (a directory)
+
+is returned:
+
+```javascript
+[".", "/usr/local/lib/python3.6/site-packages"]
+```
 
 ---
 
@@ -493,6 +592,14 @@ and
 
 * **path_added** (dict): Python search paths added information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -509,6 +616,12 @@ where
 * **node_id** (string): ID of node running the worker to get CPU count for
 * **worker_id** (string): ID of the worker to get CPU count for
 
+and the CPU (core) count is returned:
+
+```javascript
+4
+```
+
 ---
 
 
@@ -523,6 +636,12 @@ where
 * **node_id** (string): ID of node running the worker to get CPU affinity for
 * **worker_id** (string): ID of the worker to get CPU affinity for
 
+and the CPU affinity is returned:
+
+```javascript
+[0, 1, 2, 3]
+```
+
 ---
 
 
@@ -532,7 +651,7 @@ Set current CPU affinity of this worker (process).
 
 CPU (cores) are numbered beginning with 0, and `cpus` must be a list of IDs given the CPUs eligible to run this worker.
 
-* **set_cpu_affinity** (node_id, worker_id, cpus) -> cpu_affinity_set
+* **set_cpu_affinity** (node_id, worker_id, cpus) -> [int]
 
 where
 
@@ -540,9 +659,11 @@ where
 * **worker_id** (string): ID of the worker to set CPU affinity for
 * **cpus** (list of int): the CPU (core) IDs to set the affinity to
 
-and
+and the new CPU affinity is returned:
 
-* **cpu_affinity_set** (dict): CPU affinity set information object
+```javascript
+[1]
+```
 
 ---
 
@@ -564,6 +685,14 @@ and
 
 * **profiler** (dict): profiler information object.
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -583,9 +712,23 @@ and call result
 
 * **profile_started** (dict): profile started information object
 
+```javascript
+{
+   // FIXME
+}
+```
+
 or
 
 * **profile_record** (dict): profile result record
+
+```javascript
+{
+   // FIXME
+}
+```
+
+is returned.
 
 ---
 
@@ -606,6 +749,14 @@ and
 
 * **profile_record** (dict): profile result record
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -619,6 +770,16 @@ where
 
 * **node_id** (string): ID of node running the worker to get realms for
 * **worker_id** (string): ID of the worker to get realms for
+
+and
+
+* **realm_id** (string): realm ID
+
+is returned:
+
+```javascript
+["-my-realm-1", "my-realm-2"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -641,6 +802,14 @@ and
 
 * **realm** (dict): realm information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -660,11 +829,19 @@ and
 
 * **realm_started** (dict): realm started information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the realm has completely started.
 
 When the new realm *is starting*, an event
 
-* **on_realm_starting** (node_id, worker_id, realm_id, realm_starting)
+* **on_realm_starting** (node_id, worker_id, realm_id)
 
 is fired.
 
@@ -693,11 +870,19 @@ and
 
 * **realm_stopped** (dict): realm stopped information object
 
+is returned
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the realm has completely stopped.
 
 When the realm *is stopping*, an event
 
-* **on_realm_stopping** (node_id, worker_id, realm_id, realm_stopping)
+* **on_realm_stopping** (node_id, worker_id, realm_id)
 
 is fired.
 
@@ -722,6 +907,16 @@ where
 * **worker_id** (string): ID of the (router) worker to get roles for
 * **realm_id** (string): ID of the realm to get roles for
 
+and
+
+* **role_id** (string): role ID
+
+is returned:
+
+```javascript
+["role1", "role2", "role3"]
+```
+
 > The order of IDs within the list returned is unspecified, but stable.
 
 ---
@@ -744,6 +939,14 @@ and
 
 * **role** (dict): role information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -764,15 +967,15 @@ and
 
 * **role_started** (dict): role started information object
 
-The call does not return until the role has completely started.
+is returned:
 
-When the new role *is starting*, an event
+```javascript
+{
+   // FIXME
+}
+```
 
-* **on_realm_role_starting** (node_id, worker_id, realm_id, role_id, role_starting)
-
-is fired.
-
-When the new role *is completely started*, an event
+When the new role *is started*, an event
 
 * **on_router_role_started** (node_id, worker_id, realm_id, role_id, role_started)
 
@@ -798,15 +1001,17 @@ and
 
 * **role_stopped** (dict): role stopped information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the role has completely stopped.
 
-When the role *is stopping*, an event
-
-* **on_realm_role_stopping** (node_id, worker_id, realm_id, role_id, role_stopping)
-
-is fired.
-
-When the role *is completely stopped*, an event
+When the role *is stopped*, an event
 
 * **on_router_role_stopped** (node_id, worker_id, realm_id, role_id, role_stopped)
 
@@ -826,6 +1031,16 @@ where
 * **worker_id** (string): ID of the (router) worker to get permissions for
 * **realm_id** (string): ID of the realm to get permissions for
 * **role_id** (string): ID of the role to get permissions for
+
+and
+
+* **permission_id** (string): permission ID
+
+is returned:
+
+```javascript
+["perm1", "perm2", "perm3", "perm4", "perm5"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -850,6 +1065,14 @@ and
 
 * **permission** (dict): permission information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -872,9 +1095,17 @@ and
 
 * **permission_started** (dict): permission started information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the permission has completely started.
 
-When the new permission *is completely started*, an event
+When the new permission *is started*, an event
 
 * **on_role_permission_started** (node_id, worker_id, realm_id, role_id, permission_id, permission_started)
 
@@ -901,9 +1132,17 @@ and
 
 * **permission_stopped** (dict): permission stopped information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the permission has completely stopped.
 
-When the permission *is completely stopped*, an event
+When the permission *is stopped*, an event
 
 * **on_role_permission_stopped** (node_id, worker_id, realm_id, role_id, permission_id, permission_stopped)
 
@@ -922,6 +1161,16 @@ where
 
 * **node_id** (string): ID of node running the router to get transports for
 * **worker_id** (string): ID of the (router) worker to get transports for
+
+and
+
+* **transport_id** (string): transport ID
+
+is returned:
+
+```javascript
+["transport1", "transport2"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -944,6 +1193,14 @@ where
 
 * **transport** (dict): router transport information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -964,11 +1221,19 @@ and
 
 * **transport_started** (dict): transport started information
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the transport has completely started.
 
 When the new transport *is starting*, an event
 
-* **on_transport_starting** (node_id, worker_id, transport_id, transport_starting)
+* **on_transport_starting** (node_id, worker_id, transport_id)
 
 is fired.
 
@@ -997,11 +1262,19 @@ where
 
 * **transport_stopped** (dict): transport stopped information
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 The call does not return until the transport has completely stopped.
 
 When the transport *is stopping*, an event
 
-* **on_transport_stopping** (node_id, worker_id, transport_id, transport_stopping)
+* **on_transport_stopping** (node_id, worker_id, transport_id)
 
 is fired.
 
