@@ -54,7 +54,29 @@ Return global CFC service status.
 
 where
 
-* **status** (dict): service status information object
+* **status** (dict): service status information object:
+
+```javascript
+{
+    // CFC version
+    "version": "v17.8.1",
+
+    // CFC global realm (being connected to)
+    "realm": "com.crossbario.fabric",
+
+    // UTC system time (ISO 8601 format)
+    "now": "2017-08-23T13:01:25.416Z",
+
+    // CFC startup time (ISO 8601 format)
+    "started": "2017-05-23T13:01:25.416Z",
+
+    // CFC uptime in seconds
+    "uptime": 8123,
+
+    // CFC tick counter
+    "tick": 982344
+}
+```
 
 ---
 
@@ -322,6 +344,22 @@ Signature and descriptions of API events.
 ### crossbarfabriccenter.system.on_tick
 
 CFC global status/heartbeat event generated every 5 seconds.
+
+* **on_tick** (ticked)
+
+where
+
+* **ticked** (dict): ticked information
+
+```javascript
+{
+    // current system time in ISO 8601 format
+    "now": "2017-08-23T13:01:25.416Z",
+
+    // tick count since system start
+    "tick": 89014
+}
+```
 
 ---
 
