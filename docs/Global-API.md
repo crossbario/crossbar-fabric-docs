@@ -117,6 +117,14 @@ where
 
 * **realm_name** (string): name of a management realm.
 
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
+
 ---
 
 
@@ -133,6 +141,14 @@ where
 and
 
 * **realm** (dict): realm information object
+
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
 
 ---
 
@@ -236,7 +252,15 @@ and
 
 * **user_roles_map** (dict): a mapping from user_ids (string) to list of roles (strings)
 
-is returned.
+is returned:
+
+```javascript
+{
+    "alice": ["owner"],
+    "bob": ["admin", "developer"],
+    "sam": ["developer"]
+}
+```
 
 ---
 
