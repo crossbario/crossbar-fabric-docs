@@ -398,12 +398,12 @@ where
 
 Event generated when a management realm has been created and fully started.
 
-* **on_realm_created** (realm_name, realm_creating)
+* **on_realm_created** (realm_name, realm_created)
 
 where
 
 * **realm_name** (string): the name of the realm that was created
-* **realm_creating** (dict): realm created information object:
+* **realm_created** (dict): realm created information object:
 
 ```javascript
 {
@@ -443,7 +443,7 @@ Event generated when a management realm has been fully stopped and deleted.
 where
 
 * **realm_name** (string): the name of the realm that was deleted
-* **realm_deleting** (dict): realm deleted information object:
+* **realm_deleted** (dict): realm deleted information object:
 
 ```javascript
 {
