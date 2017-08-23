@@ -18,7 +18,7 @@ This single point of entry allows you to create complex automatic application ma
 
 ## Management Realm API
 
-Provides management realm wide procedures:
+Provides management realm wide procedures.
 
 * **Management Realms** (`crossbarfabriccenter.mrealm.`) - Status: **supported**
 
@@ -29,14 +29,16 @@ Provides management realm wide procedures:
 
 ## Remote Node Meta API
 
-Provides remote access to the WAMP meta API of any Crossbar.io Fabric node *currently connected*:
+Provides remote access to the WAMP meta API of any Crossbar.io Fabric node *currently connected*.
 
-* [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta) - Status: **supported**
+* **Management Realms** (`crossbarfabriccenterremote.realm.meta.`) - Status: **supported**
+
+  * [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta)
 
 
 ## Remote Node Management API
 
-Provides remote access to the node management API of any Crossbar.io Fabric node *currently connected*:
+Provides remote access to the node management API of any Crossbar.io Fabric node *currently connected*.
 
 * **Nodes** (`crossbarfabriccenter.remote.node.`) - Status: **supported**
   Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
@@ -66,7 +68,7 @@ Provides remote access to the node management API of any Crossbar.io Fabric node
 * **Router Workers** (`crossbarfabriccenter.remote.router.`)
   Routers are the core of Crossbar.io. They are native worker processes that run the routing code of Crossbar.io as well as endpoint listeners, Web services and other transports. The API here allows for remote and dynamic management of router workers.
 
-    * **Router Realms** - Status: **supported**
+    * **Router Realms** (Status: **supported**)
       All routing of messages in Crossbar.io is isolated in different routing confinements called realms. Realms, at the same time, also provide namespace isolation, as URIs as always interpreted with respect to the realm within they occur. URIs portable accross realms - if required - needs to be arranged for by the user.
 
         * [crossbarfabriccenter.remote.router.get_router_realms](#crossbarfabriccenterremoterouterget_router_realms)
@@ -74,7 +76,7 @@ Provides remote access to the node management API of any Crossbar.io Fabric node
         * [crossbarfabriccenter.remote.router.start_router_realm](#crossbarfabriccenterremoterouterstart_router_realm)
         * [crossbarfabriccenter.remote.router.stop_router_realm](#crossbarfabriccenterremoterouterstop_router_realm)
 
-    * **Realm Roles** - Status: **supported**
+    * **Realm Roles** (Status: **supported**)
       Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**. This role will then determine the actual permissions the client is granted by the router.
 
         * [crossbarfabriccenter.remote.router.get_realm_roles](#crossbarfabriccenterremoterouterget_realm_roles)
@@ -82,7 +84,7 @@ Provides remote access to the node management API of any Crossbar.io Fabric node
         * [crossbarfabriccenter.remote.router.start_realm_role](#crossbarfabriccenterremoterouterstart_realm_role)
         * [crossbarfabriccenter.remote.router.stop_realm_role](#crossbarfabriccenterremoterouterstop_realm_role)
 
-    * **Router Transports** - Status: **supported**
+    * **Router Transports** (Status: **supported**)
       Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
         * [crossbarfabriccenter.remote.router.get_router_transports](#crossbarfabriccenterremoterouterget_router_transports)
@@ -90,7 +92,7 @@ Provides remote access to the node management API of any Crossbar.io Fabric node
         * [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenterremoterouterstart_router_transport)
         * [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenterremoterouterstop_router_transport)
 
-    * **Transport Paths** - Status: **planned**
+    * **Transport Paths** (Status: **planned**)
       Some router transports, such as Web transports, allow to configure *path services* attached to URL parts in a Web resource tree. The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
 
         * [crossbarfabriccenter.remote.router.get_transport_paths](#crossbarfabriccenterremoterouterget_transport_paths)
@@ -98,7 +100,7 @@ Provides remote access to the node management API of any Crossbar.io Fabric node
         * [crossbarfabriccenter.remote.router.start_transport_path](#crossbarfabriccenterremoterouterstart_transport_path)
         * [crossbarfabriccenter.remote.router.stop_transport_path](#crossbarfabriccenterremoterouterstop_transport_path)
 
-    * **Router Components** - Status: **supported**
+    * **Router Components** (Status: **supported**)
       Router workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizers.
 
         * [crossbarfabriccenter.remote.router.get_router_components](#crossbarfabriccenterremoterouterget_router_components)
@@ -153,7 +155,7 @@ Signature and descriptions of API procedures.
 ---
 
 
-### crossbarfabriccenter.get_status
+### crossbarfabriccenter.mrealm.get_status
 
 Return management realm status information.
 
@@ -166,7 +168,7 @@ where
 ---
 
 
-### crossbarfabriccenter.get_nodes
+### crossbarfabriccenter.mrealm.get_nodes
 
 Return list of IDs of nodes in the management realm.
 
@@ -177,7 +179,7 @@ Return list of IDs of nodes in the management realm.
 ---
 
 
-### crossbarfabriccenter.get_node
+### crossbarfabriccenter.mrealm.get_node
 
 Return detailed information about a node in the management realm.
 
