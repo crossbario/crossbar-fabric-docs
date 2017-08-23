@@ -6,7 +6,7 @@ toc: [Documentation, API Reference, Management API]
 Each user created **management realm** (eg `com.example.my-mgmt-realm1`) on Crossbar.io Fabric Center (CFC) exposes the following APIs to clients:
 
 * **[Management Realm API](#management-realm-api)**: management realm wide operations
-* **[Remote Node Meta API](#remote-node-meta-api)**: remote access to CF nodes WAMP meta API
+* **[Remote Realm WAMP Meta API](#remote-realm-wamp-meta-api)**: remote access to CF nodes WAMP meta API
 * **[Remote Node Management API](#remote-node-management-api)**: remote access to CF nodes management API
 
 CFC clients can use all three APIs at the same time, and use the functionality provided over whole sets of CF nodes in the management realm.
@@ -27,18 +27,18 @@ Provides management realm wide procedures.
   * [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
 
 
-## Remote Node Meta API
+## Remote Realm WAMP Meta API
 
-Provides remote access to the WAMP meta API of any Crossbar.io Fabric node *currently connected*.
+Provides remote access to the WAMP meta API of routing realms on Crossbar.io Fabric nodes currently connected.
 
-* **Management Realms** (`crossbarfabriccenterremote.realm.meta.`) - Status: **supported**
+* **Realm WAMP meta API** (`crossbarfabriccenterremote.realm.meta.`) - Status: **supported**
 
   * [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta)
 
 
 ## Remote Node Management API
 
-Provides remote access to the node management API of any Crossbar.io Fabric node *currently connected*.
+Provides remote access to the node management API of Crossbar.io Fabric nodes currently connected.
 
 * **Nodes** (`crossbarfabriccenter.remote.node.`) - Status: **supported**
   Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
