@@ -5,7 +5,7 @@ toc: [Documentation, API Reference, Management API]
 
 Each user created **management realm** (eg `com.example.my-mgmt-realm1`) on Crossbar.io Fabric Center (CFC) exposes the following APIs to clients:
 
-* **[Management Realm Globa API](#management-realm-global-api)**: management realm wide operations
+* **[Management Realm API](#management-realm-api)**: management realm wide operations
 * **[Remote Node Meta API](#remote-node-meta-api)**: remote access to CF nodes WAMP meta API
 * **[Remote Node Management API](#remote-node-management-api)**: remote access to CF nodes management API
 
@@ -16,21 +16,29 @@ This single point of entry allows you to create complex automatic application ma
 ---
 
 
-## Management Realm Global API
+## Management Realm API
 
-* [crossbarfabriccenter.mrealm.get_status](#crossbarfabriccentermrealmget_status)
-* [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
-* [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
+Provides management realm wide procedures:
+
+* **Management Realms** (`crossbarfabriccenter.mrealm.`) - Status: **supported**
+
+  * [crossbarfabriccenter.mrealm.get_status](#crossbarfabriccentermrealmget_status)
+  * [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
+  * [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
 
 
 ## Remote Node Meta API
 
-* [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta)
+Provides remote access to the WAMP meta API of any Crossbar.io Fabric node *currently connected*:
+
+* [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta) - Status: **supported**
 
 
 ## Remote Node Management API
 
-* **Nodes** (crossbarfabriccenter.remote.node.)
+Provides remote access to the node management API of any Crossbar.io Fabric node *currently connected*:
+
+* **Nodes** (`crossbarfabriccenter.remote.node.`) - Status: **supported**
   Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
 
    * [crossbarfabriccenter.remote.node.get_status](#crossbarfabriccenterremotenodeget_status)
@@ -40,7 +48,7 @@ This single point of entry allows you to create complex automatic application ma
    * [crossbarfabriccenter.remote.node.start_worker](#crossbarfabriccenterremotenodestart_worker)
    * [crossbarfabriccenter.remote.node.stop_worker](#crossbarfabriccenterremotenodestop_worker)
 
-* **Native Workers** (crossbarfabriccenter.remote.worker.)
+* **Native Workers** (`crossbarfabriccenter.remote.worker.`) - Status: **supported**
   Native workers are node worker processes of the types **router**, **container** and **proxy**. The API here allows to retrieve worker logs, control the worker CPU affinity and run code profilers in a live running system.
 
     * [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenterremoteworkershutdown)
@@ -55,10 +63,10 @@ This single point of entry allows you to create complex automatic application ma
     * [crossbarfabriccenter.remote.worker.start_profiler](#crossbarfabriccenterremoteworkerstart_profiler)
     * [crossbarfabriccenter.remote.worker.get_profile](#crossbarfabriccenterremoteworkerget_profile)
 
-* **Router Workers** (crossbarfabriccenter.remote.router.)
+* **Router Workers** (`crossbarfabriccenter.remote.router.`)
   Routers are the core of Crossbar.io. They are native worker processes that run the routing code of Crossbar.io as well as endpoint listeners, Web services and other transports. The API here allows for remote and dynamic management of router workers.
 
-    * **Router Realms**
+    * **Router Realms** - Status: **supported**
       All routing of messages in Crossbar.io is isolated in different routing confinements called realms. Realms, at the same time, also provide namespace isolation, as URIs as always interpreted with respect to the realm within they occur. URIs portable accross realms - if required - needs to be arranged for by the user.
 
         * [crossbarfabriccenter.remote.router.get_router_realms](#crossbarfabriccenterremoterouterget_router_realms)
@@ -66,7 +74,7 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.start_router_realm](#crossbarfabriccenterremoterouterstart_router_realm)
         * [crossbarfabriccenter.remote.router.stop_router_realm](#crossbarfabriccenterremoterouterstop_router_realm)
 
-    * **Realm Roles**
+    * **Realm Roles** - Status: **supported**
       Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**. This role will then determine the actual permissions the client is granted by the router.
 
         * [crossbarfabriccenter.remote.router.get_realm_roles](#crossbarfabriccenterremoterouterget_realm_roles)
@@ -74,7 +82,7 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.start_realm_role](#crossbarfabriccenterremoterouterstart_realm_role)
         * [crossbarfabriccenter.remote.router.stop_realm_role](#crossbarfabriccenterremoterouterstop_realm_role)
 
-    * **Router Transports**
+    * **Router Transports** - Status: **supported**
       Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
         * [crossbarfabriccenter.remote.router.get_router_transports](#crossbarfabriccenterremoterouterget_router_transports)
@@ -82,7 +90,7 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenterremoterouterstart_router_transport)
         * [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenterremoterouterstop_router_transport)
 
-    * **Transport Paths**
+    * **Transport Paths** - Status: **planned**
       Some router transports, such as Web transports, allow to configure *path services* attached to URL parts in a Web resource tree. The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
 
         * [crossbarfabriccenter.remote.router.get_transport_paths](#crossbarfabriccenterremoterouterget_transport_paths)
@@ -90,7 +98,7 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.start_transport_path](#crossbarfabriccenterremoterouterstart_transport_path)
         * [crossbarfabriccenter.remote.router.stop_transport_path](#crossbarfabriccenterremoterouterstop_transport_path)
 
-    * **Router Components**
+    * **Router Components** - Status: **supported**
       Router workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizers.
 
         * [crossbarfabriccenter.remote.router.get_router_components](#crossbarfabriccenterremoterouterget_router_components)
@@ -98,21 +106,22 @@ This single point of entry allows you to create complex automatic application ma
         * [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenterremoterouterstart_router_component)
         * [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenterremoterouterstop_router_component)
 
-* **Container Workers**
+* **Container Workers** (`crossbarfabriccenter.remote.container.`) - Status: **supported**
 
     * [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenterremotecontainerget_container_components)
     * [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenterremotecontainerget_container_component)
     * [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenterremotecontainerstart_container_component)
     * [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenterremotecontainerstop_container_component)
 
-* **Proxy Workers**
+* **Proxy Workers** (`crossbarfabriccenter.remote.proxy.`) - Status: **under development**
+  Proxy workers are native worker processes of Crossbar.io Fabric that can proxy and authenticate frontend WAMP connections, normalize and scrub WAMP messages, and forward to backend router workers in an optimized way. This allows to scale up and scale out the WAMP frontend connection handling layer.
 
     * [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenterremoteproxyget_proxy_transports)
     * [crossbarfabriccenter.remote.proxy.get_proxy_transport](#crossbarfabriccenterremoteproxyget_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenterremoteproxystart_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenterremoteproxystop_proxy_transport)
 
-* **Message Tracing** (crossbarfabriccenter.remote.tracing.)
+* **Message Tracing** (`crossbarfabriccenter.remote.tracing.`) - Status: **alpha**
   Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
 
     * [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenterremotetracingget_router_traces)
@@ -121,9 +130,8 @@ This single point of entry allows you to create complex automatic application ma
     * [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenterremotetracingstop_router_trace)
     * [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenterremotetracingget_router_trace_data)
 
-* **Docker Control** (crossbarfabriccenter.remote.docker.)
+* **Docker Control** (`crossbarfabriccenter.remote.docker.`) - Status: **under development**
   Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
-
 
     * [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenterremotedockerget_docker_status)
     * [crossbarfabriccenter.remote.docker.get_docker_containers](#crossbarfabriccenterremotedockerget_docker_containers)
