@@ -20,7 +20,7 @@ This single point of entry allows you to create complex automatic application ma
 
 Prefix: `crossbarfabriccenter.mrealm.`
 
-Status: **supported**
+Status: **alpha**
 
 Provides management realm wide procedures.
 
@@ -33,7 +33,7 @@ Provides management realm wide procedures.
 
 Prefix: `crossbarfabriccenterremote.realm.meta.`
 
-Status: **supported**
+Status: **alpha**
 
 Provides remote access to the WAMP meta API of routing realms on Crossbar.io Fabric nodes currently connected.
 
@@ -49,7 +49,7 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
 
 Prefix: `crossbarfabriccenter.remote.node.`
 
-Status: **supported**
+Status: **alpha**
 
 Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
 
@@ -65,7 +65,7 @@ Nodes are instances of Crossbar.io (Fabric) running on host systems, and running
 
 Prefix: `crossbarfabriccenter.remote.worker.`)
 
-Status: **supported**
+Status: **alpha**
 
 Native workers are node worker processes of the types **router**, **container** and **proxy**. The API here allows to retrieve worker logs, control the worker CPU affinity and run code profilers in a live running system.
 
@@ -91,7 +91,7 @@ Routers are the core of Crossbar.io. They are native worker processes that run t
 
 #### Router Realms
 
-Status: **supported**
+Status: **alpha**
 
 All routing of messages in Crossbar.io is isolated in different routing confinements called realms. Realms, at the same time, also provide namespace isolation, as URIs as always interpreted with respect to the realm within they occur. URIs portable accross realms - if required - needs to be arranged for by the user.
 
@@ -103,7 +103,7 @@ All routing of messages in Crossbar.io is isolated in different routing confinem
 
 #### Realm Roles
 
-Status: **supported**
+Status: **alpha**
 
 Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**. This role will then determine the actual permissions the client is granted by the router.
 
@@ -127,7 +127,7 @@ Permissions specific which WAMP actions is allowed on which URI (pattern) for th
 
 #### Router Transports
 
-Status: **supported**
+Status: **alpha**
 
 Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
@@ -151,7 +151,7 @@ Some router transports, such as Web transports, allow to configure *transport se
 
 #### Router Components
 
-Status: **supported**
+Status: **alpha**
 
 Router workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizers.
 
@@ -165,7 +165,7 @@ Router workers are native Crossbar.io processes that can host Python user compon
 
 Prefix: `crossbarfabriccenter.remote.container.`
 
-Status: **supported**
+Status: **alpha**
 
 Container workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under.
 
