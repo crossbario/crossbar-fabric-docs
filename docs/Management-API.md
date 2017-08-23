@@ -235,6 +235,15 @@ Return list of IDs of nodes in the management realm.
 
 * **get_nodes ()** -> [node_id]
 
+where
+
+* **node_id** (string): ID of a node (that is paired with the management realm)
+
+is returned:
+
+```javascript
+["node1", "node2"]
+
 > The order of IDs within the list returned is unspecified, but stable.
 
 ---

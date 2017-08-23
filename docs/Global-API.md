@@ -11,6 +11,7 @@ The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes th
 ## System API
 
 Prefix: `crossbarfabriccenter.system.`
+
 Status: **alpha**
 
 * [ ] [crossbarfabriccenter.system.get_status](#crossbarfabriccentersystemget_status)
@@ -152,11 +153,19 @@ and
 
 * **realm_created** (dict): realm creation information object
 
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
+
 The call does not return until the management realm has been completely created and all CFC side components for the management realm started.
 
 When the new management realm *is being created*, an event
 
-* **on_realm_creating** (realm_name, realm_creating)
+* **on_realm_creating** (realm_name)
 
 is fired.
 
@@ -188,11 +197,19 @@ and
 
 * **realm_deleted** (dict): realm deletion information object
 
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
+
 The call does not return until the management realm has been completely deleted and all CFC side components for the management realm stopped.
 
 When a management realm *is being deleted*, an event
 
-* **on_realm_deleting** (realm_name, realm_deleting)
+* **on_realm_deleting** (realm_name)
 
 is fired.
 
@@ -240,7 +257,13 @@ and
 
 * **role_granted** (dict): role granted information object
 
-is returned.
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
 
 When the role has been granted successfully, an event
 
@@ -255,7 +278,7 @@ is fired.
 
 Revoke a role from a user on a management realm.
 
-* **grant_role** (realm_name, user_id, role_name) -> role_granted
+* **revoke_role** (realm_name, user_id, role_name) -> role_revoked
 
 where
 
@@ -267,7 +290,13 @@ and
 
 * **role_revoked** (dict): role revoked information object
 
-is returned.
+is returned:
+
+```javascript
+{
+    // FIXME
+}
+```
 
 When the role has been revoked successfully, an event
 
@@ -288,6 +317,14 @@ where
 
 * **node_id** (string): ID of a node (that is paired with the management realm)
 
+is returned:
+
+```javascript
+["node1", "node2"]
+```
+
+> The order of IDs within the list returned is unspecified, but stable.
+
 ---
 
 
@@ -304,6 +341,14 @@ where
 and
 
 * **node** (dict): node information object
+
+is returned:
+
+```javascript
+{
+    // FIXME
+}
+```
 
 ---
 
@@ -327,6 +372,14 @@ and
 
 * **node_paired** (dict): node paired information object
 
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
+
 When the node has been paired successfully, an event
 
 * **on_node_paired** (realm_name, node_id, node_paired)
@@ -349,6 +402,14 @@ where
 and
 
 * **node_unpaired** (dict): node unpaired information object
+
+is returned:
+
+```javascript
+{
+    // FIXME
+}
+```
 
 When the node has been unpaired successfully, an event
 
