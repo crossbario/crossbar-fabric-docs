@@ -1,5 +1,5 @@
-title: Crossbar.io Fabric Center API Reference
-toc: [Documentation, API Reference]
+title: APIs
+toc: [Documentation, APIs]
 
 # Crossbar.io Fabric Center API Reference
 
