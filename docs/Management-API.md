@@ -71,10 +71,10 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
     * **Router Realms** (Status: **supported**)
       All routing of messages in Crossbar.io is isolated in different routing confinements called realms. Realms, at the same time, also provide namespace isolation, as URIs as always interpreted with respect to the realm within they occur. URIs portable accross realms - if required - needs to be arranged for by the user.
 
-        * [crossbarfabriccenter.remote.router.get_router_realms](#crossbarfabriccenterremoterouterget_router_realms)
-        * [crossbarfabriccenter.remote.router.get_router_realm](#crossbarfabriccenterremoterouterget_router_realm)
-        * [crossbarfabriccenter.remote.router.start_router_realm](#crossbarfabriccenterremoterouterstart_router_realm)
-        * [crossbarfabriccenter.remote.router.stop_router_realm](#crossbarfabriccenterremoterouterstop_router_realm)
+        * [crossbarfabriccenter.remote.router.get_realms](#crossbarfabriccenterremoterouterget_realms)
+        * [crossbarfabriccenter.remote.router.get_realm](#crossbarfabriccenterremoterouterget_realm)
+        * [crossbarfabriccenter.remote.router.start_realm](#crossbarfabriccenterremoterouterstart_realm)
+        * [crossbarfabriccenter.remote.router.stop_realm](#crossbarfabriccenterremoterouterstop_realm)
 
     * **Realm Roles** (Status: **supported**)
       Roles are bundles of permissions defined on a realm. When a client connects to the router and authenticates successfully, it is assigned a **role**. This role will then determine the actual permissions the client is granted by the router.
@@ -95,10 +95,10 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
     * **Router Transports** (Status: **supported**)
       Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
-        * [crossbarfabriccenter.remote.router.get_router_transports](#crossbarfabriccenterremoterouterget_router_transports)
-        * [crossbarfabriccenter.remote.router.get_router_transport](#crossbarfabriccenterremoterouterget_router_transport)
-        * [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenterremoterouterstart_router_transport)
-        * [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenterremoterouterstop_router_transport)
+        * [crossbarfabriccenter.remote.router.get_transports](#crossbarfabriccenterremoterouterget_transports)
+        * [crossbarfabriccenter.remote.router.get_transport](#crossbarfabriccenterremoterouterget_transport)
+        * [crossbarfabriccenter.remote.router.start_transport](#crossbarfabriccenterremoterouterstart_transport)
+        * [crossbarfabriccenter.remote.router.stop_transport](#crossbarfabriccenterremoterouterstop_transport)
 
     * **Transport Services** (Status: **planned**)
       Some router transports, such as Web transports, allow to configure *transport services* attached to URL parts in a Web resource tree. The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
@@ -111,48 +111,48 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
     * **Router Components** (Status: **supported**)
       Router workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizers.
 
-        * [crossbarfabriccenter.remote.router.get_router_components](#crossbarfabriccenterremoterouterget_router_components)
-        * [crossbarfabriccenter.remote.router.get_router_component](#crossbarfabriccenterremoterouterget_router_component)
-        * [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenterremoterouterstart_router_component)
-        * [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenterremoterouterstop_router_component)
+        * [crossbarfabriccenter.remote.router.get_components](#crossbarfabriccenterremoterouterget_components)
+        * [crossbarfabriccenter.remote.router.get_component](#crossbarfabriccenterremoterouterget_component)
+        * [crossbarfabriccenter.remote.router.start_component](#crossbarfabriccenterremoterouterstart_component)
+        * [crossbarfabriccenter.remote.router.stop_component](#crossbarfabriccenterremoterouterstop_component)
 
 * **Container Workers** (`crossbarfabriccenter.remote.container.`) (Status: **supported**)
   Container workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under.
 
-    * [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenterremotecontainerget_container_components)
-    * [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenterremotecontainerget_container_component)
-    * [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenterremotecontainerstart_container_component)
-    * [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenterremotecontainerstop_container_component)
+    * [crossbarfabriccenter.remote.container.get_components](#crossbarfabriccenterremotecontainerget_components)
+    * [crossbarfabriccenter.remote.container.get_component](#crossbarfabriccenterremotecontainerget_component)
+    * [crossbarfabriccenter.remote.container.start_component](#crossbarfabriccenterremotecontainerstart_component)
+    * [crossbarfabriccenter.remote.container.stop_component](#crossbarfabriccenterremotecontainerstop_component)
 
 * **Proxy Workers** (`crossbarfabriccenter.remote.proxy.`) (Status: **under development**)
   Proxy workers are native worker processes of Crossbar.io Fabric that can proxy and authenticate frontend WAMP connections, normalize and scrub WAMP messages, and forward to backend router workers in an optimized way. This allows to scale up and scale out the WAMP frontend connection handling layer.
 
-    * [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenterremoteproxyget_proxy_transports)
-    * [crossbarfabriccenter.remote.proxy.get_proxy_transport](#crossbarfabriccenterremoteproxyget_proxy_transport)
-    * [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenterremoteproxystart_proxy_transport)
-    * [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenterremoteproxystop_proxy_transport)
+    * [crossbarfabriccenter.remote.proxy.get_transports](#crossbarfabriccenterremoteproxyget_transports)
+    * [crossbarfabriccenter.remote.proxy.get_transport](#crossbarfabriccenterremoteproxyget_transport)
+    * [crossbarfabriccenter.remote.proxy.start_transport](#crossbarfabriccenterremoteproxystart_transport)
+    * [crossbarfabriccenter.remote.proxy.stop_transport](#crossbarfabriccenterremoteproxystop_transport)
 
 * **Message Tracing** (`crossbarfabriccenter.remote.tracing.`) (Status: **alpha**)
   Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
 
-    * [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenterremotetracingget_router_traces)
-    * [crossbarfabriccenter.remote.tracing.get_router_trace](#crossbarfabriccenterremotetracingget_router_trace)
-    * [crossbarfabriccenter.remote.tracing.start_router_trace](#crossbarfabriccenterremotetracingstart_router_trace)
-    * [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenterremotetracingstop_router_trace)
-    * [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenterremotetracingget_router_trace_data)
+    * [crossbarfabriccenter.remote.tracing.get_traces](#crossbarfabriccenterremotetracingget_traces)
+    * [crossbarfabriccenter.remote.tracing.get_trace](#crossbarfabriccenterremotetracingget_trace)
+    * [crossbarfabriccenter.remote.tracing.start_trace](#crossbarfabriccenterremotetracingstart_trace)
+    * [crossbarfabriccenter.remote.tracing.stop_trace](#crossbarfabriccenterremotetracingstop_trace)
+    * [crossbarfabriccenter.remote.tracing.get_trace_data](#crossbarfabriccenterremotetracingget_trace_data)
 
 * **Docker Control** (`crossbarfabriccenter.remote.docker.`) (Status: **under development**)
   Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
 
-    * [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenterremotedockerget_docker_status)
-    * [crossbarfabriccenter.remote.docker.get_docker_containers](#crossbarfabriccenterremotedockerget_docker_containers)
-    * [crossbarfabriccenter.remote.docker.get_docker_container](#crossbarfabriccenterremotedockerget_docker_container)
-    * [crossbarfabriccenter.remote.docker.start_docker_container](#crossbarfabriccenterremotedockerstart_docker_container)
-    * [crossbarfabriccenter.remote.docker.stop_docker_container](#crossbarfabriccenterremotedockerstop_docker_container)
-    * [crossbarfabriccenter.remote.docker.get_docker_images](#crossbarfabriccenterremotedockerget_docker_images)
-    * [crossbarfabriccenter.remote.docker.get_docker_image](#crossbarfabriccenterremotedockerget_docker_image)
-    * [crossbarfabriccenter.remote.docker.update_docker_image](#crossbarfabriccenterremotedockerupdate_docker_image)
-    * [crossbarfabriccenter.remote.docker.remove_docker_image](#crossbarfabriccenterremotedockerremove_docker_image)
+    * [crossbarfabriccenter.remote.docker.get_status](#crossbarfabriccenterremotedockerget_status)
+    * [crossbarfabriccenter.remote.docker.get_containers](#crossbarfabriccenterremotedockerget_containers)
+    * [crossbarfabriccenter.remote.docker.get_container](#crossbarfabriccenterremotedockerget_container)
+    * [crossbarfabriccenter.remote.docker.start_container](#crossbarfabriccenterremotedockerstart_container)
+    * [crossbarfabriccenter.remote.docker.stop_container](#crossbarfabriccenterremotedockerstop_container)
+    * [crossbarfabriccenter.remote.docker.get_images](#crossbarfabriccenterremotedockerget_images)
+    * [crossbarfabriccenter.remote.docker.get_image](#crossbarfabriccenterremotedockerget_image)
+    * [crossbarfabriccenter.remote.docker.update_image](#crossbarfabriccenterremotedockerupdate_image)
+    * [crossbarfabriccenter.remote.docker.remove_image](#crossbarfabriccenterremotedockerremove_image)
 
 ---
 
@@ -548,11 +548,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.router.get_router_realms
+### crossbarfabriccenter.remote.router.get_realms
 
 Return a list of IDs of realms in the given router worker.
 
-* **get_router_realms** (node_id, worker_id) -> [realm_id]
+* **get_realms** (node_id, worker_id) -> [realm_id]
 
 where
 
@@ -564,11 +564,11 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.router.get_router_realm
+### crossbarfabriccenter.remote.router.get_realm
 
 Return detailed information about the given realm.
 
-* **get_router_realm** (node_id, worker_id, realm_id) -> realm
+* **get_realm** (node_id, worker_id, realm_id) -> realm
 
 where
 
@@ -583,11 +583,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.router.start_router_realm
+### crossbarfabriccenter.remote.router.start_realm
 
 Start a new realm on the given router worker.
 
-* **start_router_realm** (node_id, worker_id, realm_id, realm_config) -> realm_started
+* **start_realm** (node_id, worker_id, realm_id, realm_config) -> realm_started
 
 where
 
@@ -603,24 +603,24 @@ The call does not return until the realm has completely started.
 
 When the new realm *is starting*, an event
 
-* **on_router_realm_starting** (node_id, worker_id, realm_id, realm_starting)
+* **on_realm_starting** (node_id, worker_id, realm_id, realm_starting)
 
 is fired.
 
 When the new realm *is completely started*, an event
 
-* **on_router_realm_started** (node_id, worker_id, realm_id, realm_started)
+* **on_realm_started** (node_id, worker_id, realm_id, realm_started)
 
 is fired.
 
 ---
 
 
-### crossbarfabriccenter.remote.router.stop_router_realm
+### crossbarfabriccenter.remote.router.stop_realm
 
 Stop a realm currently running in the given router worker.
 
-* **stop_router_realm** (node_id, worker_id, realm_id) -> realm_stopped
+* **stop_realm** (node_id, worker_id, realm_id) -> realm_stopped
 
 where
 
@@ -636,13 +636,13 @@ The call does not return until the realm has completely stopped.
 
 When the realm *is stopping*, an event
 
-* **on_router_realm_stopping** (node_id, worker_id, realm_id, realm_stopping)
+* **on_realm_stopping** (node_id, worker_id, realm_id, realm_stopping)
 
 is fired.
 
 When the realm *is completely stopped*, an event
 
-* **on_router_realm_stopped** (node_id, worker_id, realm_id, realm_stopped)
+* **on_realm_stopped** (node_id, worker_id, realm_id, realm_stopped)
 
 is fired.
 
@@ -851,11 +851,11 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.remote.router.get_router_transports
+### crossbarfabriccenter.remote.router.get_transports
 
 Return a list of IDs of transports for the given router.
 
-* **get_router_transports** (node_id, worker_id) -> [transport_id]
+* **get_transports** (node_id, worker_id) -> [transport_id]
 
 where
 
@@ -867,11 +867,11 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.router.get_router_transport
+### crossbarfabriccenter.remote.router.get_transport
 
 Return detailed information about the given router transport.
 
-* **get_router_transport** (node_id, worker_id, transport_id) -> transport
+* **get_transport** (node_id, worker_id, transport_id) -> transport
 
 where
 
@@ -886,11 +886,11 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.router.start_router_transport
+### crossbarfabriccenter.remote.router.start_transport
 
 Start a new router transport on the given (router) worker.
 
-* **start_router_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
+* **start_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
 
 where
 
@@ -907,24 +907,24 @@ The call does not return until the transport has completely started.
 
 When the new transport *is starting*, an event
 
-* **on_router_transport_starting** (node_id, worker_id, transport_id, transport_starting)
+* **on_transport_starting** (node_id, worker_id, transport_id, transport_starting)
 
 is fired.
 
 When the new transport *is completely started*, an event
 
-* **on_router_transport_started** (node_id, worker_id, transport_id, transport_started)
+* **on_transport_started** (node_id, worker_id, transport_id, transport_started)
 
 is fired.
 
 ---
 
 
-### crossbarfabriccenter.remote.router.stop_router_transport
+### crossbarfabriccenter.remote.router.stop_transport
 
 Stop a router transport currently running in the given (router) worker.
 
-* **stop_router_transport** (node_id, worker_id, transport_id) -> transport_stopped
+* **stop_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
 where
 
@@ -940,13 +940,13 @@ The call does not return until the transport has completely stopped.
 
 When the transport *is stopping*, an event
 
-* **on_router_transport_stopping** (node_id, worker_id, transport_id, transport_stopping)
+* **on_transport_stopping** (node_id, worker_id, transport_id, transport_stopping)
 
 is fired.
 
 When the transport *is completely stopped*, an event
 
-* **on_router_transport_stopped** (node_id, worker_id, transport_id, transport_stopped)
+* **on_transport_stopped** (node_id, worker_id, transport_id, transport_stopped)
 
 is fired.
 
@@ -973,32 +973,32 @@ is fired.
 * **stop_transport_service** (node_id, worker_id, transport_id, path_id) -> path_stopped
 
 
-### crossbarfabriccenter.remote.router.get_router_components
+### crossbarfabriccenter.remote.router.get_components
 
 Return list of IDs of components in this router worker.
 
-* **get_router_components** (node_id, worker_id) -> [component_id]
+* **get_components** (node_id, worker_id) -> [component_id]
 
 
-### crossbarfabriccenter.remote.router.get_router_component
+### crossbarfabriccenter.remote.router.get_component
 
 Return detailed information about the given router component.
 
-* **get_router_component** (node_id, worker_id, component_id) -> component
+* **get_component** (node_id, worker_id, component_id) -> component
 
 
-### crossbarfabriccenter.remote.router.start_router_component
+### crossbarfabriccenter.remote.router.start_component
 
 Start a new (native Python) user component in this router worker.
 
-* **start_router_component** (node_id, worker_id, component_id, component_config) -> component_started
+* **start_component** (node_id, worker_id, component_id, component_config) -> component_started
 
 
-### crossbarfabriccenter.remote.router.stop_router_component
+### crossbarfabriccenter.remote.router.stop_component
 
 Stop a user component running in this router worker.
 
-* **stop_router_component** (node_id, worker_id) -> component_stopped
+* **stop_component** (node_id, worker_id) -> component_stopped
 
 
 ## Container Workers
@@ -1014,32 +1014,32 @@ Container workers are native Crossbar.io processes that can host Python user com
 ---
 
 
-### crossbarfabriccenter.remote.container.get_container_components
+### crossbarfabriccenter.remote.container.get_components
 
 Return list of IDs of (native Python) components in container.
 
-* **get_container_components** (node_id, worker_id) -> [component_id]
+* **get_components** (node_id, worker_id) -> [component_id]
 
 
-### crossbarfabriccenter.remote.container.get_container_component
+### crossbarfabriccenter.remote.container.get_component
 
 Return detailed information about container component.
 
-* **get_container_component** (node_id, worker_id, component_id) -> component
+* **get_component** (node_id, worker_id, component_id) -> component
 
 
-### crossbarfabriccenter.remote.container.start_container_component
+### crossbarfabriccenter.remote.container.start_component
 
 Start a new (native Python) component in container.
 
-* **start_container_component** (node_id, worker_id, component_config) -> component_started
+* **start_component** (node_id, worker_id, component_config) -> component_started
 
 
-### crossbarfabriccenter.remote.container.stop_container_component
+### crossbarfabriccenter.remote.container.stop_component
 
 Stop a component running in the container.
 
-* **stop_container_component** (node_id, worker_id, component_id) -> component_stopped
+* **stop_component** (node_id, worker_id, component_id) -> component_stopped
 
 
 ## Proxy Workers
@@ -1050,41 +1050,41 @@ Stop a component running in the container.
 
 ---
 
-### crossbarfabriccenter.remote.proxy.get_proxy_transports
+### crossbarfabriccenter.remote.proxy.get_transports
 
 Return list of IDs of proxy worker transport in a proxy worker.
 
-* **get_proxy_transports** (node_id, worker_id) -> [transport_id]
+* **get_transports** (node_id, worker_id) -> [transport_id]
 
 
-### crossbarfabriccenter.remote.proxy.get_proxy_transport
+### crossbarfabriccenter.remote.proxy.get_transport
 
 Return detailed information about proxy worker transport in a proxy worker.
 
-* **get_proxy_transport** (node_id, worker_id, transport_id) -> transport
+* **get_transport** (node_id, worker_id, transport_id) -> transport
 
 
-### crossbarfabriccenter.remote.proxy.start_proxy_transport
+### crossbarfabriccenter.remote.proxy.start_transport
 
 Start a new proxy worker transport in this proxy worker.
 
-* **start_proxy_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
+* **start_transport** (node_id, worker_id, transport_id, transport_config) -> transport_started
 
 
-### crossbarfabriccenter.remote.proxy.stop_proxy_transport
+### crossbarfabriccenter.remote.proxy.stop_transport
 
 Stop a proxy worker transport running in a proxy worker.
 
-* **stop_proxy_transport** (node_id, worker_id, transport_id) -> transport_stopped
+* **stop_transport** (node_id, worker_id, transport_id) -> transport_stopped
 
 ---
 
 
-### crossbarfabriccenter.remote.tracing.get_router_traces
+### crossbarfabriccenter.remote.tracing.get_traces
 
 Return list of IDs of traces on a router worker.
 
-* **get_router_traces** (node_id, worker_id) -> [trace_id]
+* **get_traces** (node_id, worker_id) -> [trace_id]
 
 where
 
@@ -1096,11 +1096,11 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.tracing.get_router_trace
+### crossbarfabriccenter.remote.tracing.get_trace
 
 Return detailed information about a trace on a router worker.
 
-* **get_router_trace (node_id, worker_id, trace_id) -> trace
+* **get_trace (node_id, worker_id, trace_id) -> trace
 
 where
 
@@ -1115,11 +1115,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.tracing.start_router_trace
+### crossbarfabriccenter.remote.tracing.start_trace
 
 Starts a new trace on a router worker.
 
-* **start_router_trace** (node_id, worker_id, trace_id, trace_config) -> trace_started
+* **start_trace** (node_id, worker_id, trace_id, trace_config) -> trace_started
 
 where
 
@@ -1134,11 +1134,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.tracing.stop_router_trace
+### crossbarfabriccenter.remote.tracing.stop_trace
 
 Stops a running trace on a router worker.
 
-* **stop_router_trace** (node_id, worker_id, trace_id) -> trace_stopped
+* **stop_trace** (node_id, worker_id, trace_id) -> trace_stopped
 
 where
 
@@ -1153,11 +1153,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.tracing.get_router_trace_data
+### crossbarfabriccenter.remote.tracing.get_trace_data
 
 Return trace records from a trace on a router worker.
 
-* **get_router_trace_data** (node_id, worker_id, trace_id, from_seq_ to_seq, limit) -> [trace_record]
+* **get_trace_data** (node_id, worker_id, trace_id, from_seq_ to_seq, limit) -> [trace_record]
 
 where
 
@@ -1175,11 +1175,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_status
+### crossbarfabriccenter.remote.docker.get_status
 
 Get status information from Docker on host system.
 
-* **get_docker_status** (node_id) -> status
+* **get_status** (node_id) -> status
 
 where
 
@@ -1192,11 +1192,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_containers
+### crossbarfabriccenter.remote.docker.get_containers
 
 Get list of IDs of Docker containers running on host system
 
-* **get_docker_containers** (node_id) -> [container_id]
+* **get_containers** (node_id) -> [container_id]
 
 where
 
@@ -1205,11 +1205,11 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_container
+### crossbarfabriccenter.remote.docker.get_container
 
 Get detailed information for Docker container on host system.
 
-* **get_docker_container** (node_id, container_id) -> container
+* **get_container** (node_id, container_id) -> container
 
 where
 
@@ -1223,11 +1223,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.start_docker_container
+### crossbarfabriccenter.remote.docker.start_container
 
 Start a Docker container on a host system.
 
-* **start_docker_container** (node_id, container_id, container_config) -> container_started
+* **start_container** (node_id, container_id, container_config) -> container_started
 
 where
 
@@ -1240,11 +1240,11 @@ and
 * **container_started** (dict): container started information object
 
 
-### crossbarfabriccenter.remote.docker.stop_docker_container
+### crossbarfabriccenter.remote.docker.stop_container
 
 Stop a Docker container running on a host system.
 
-* **stop_docker_container** (node_id, container_id) -> container_stopped
+* **stop_container** (node_id, container_id) -> container_stopped
 
 where
 
@@ -1256,11 +1256,11 @@ and
 * **container_stopped** (dict): container stopped information object
 
 
-### crossbarfabriccenter.remote.docker.get_docker_images
+### crossbarfabriccenter.remote.docker.get_images
 
 Get list of IDs of Docker image on a host system.
 
-* **get_docker_images** (node_id) -> [image_id]
+* **get_images** (node_id) -> [image_id]
 
 where
 
@@ -1271,11 +1271,11 @@ where
 ---
 
 
-### crossbarfabriccenter.remote.docker.get_docker_image
+### crossbarfabriccenter.remote.docker.get_image
 
 Get detailed information about a Docker image on a host system.
 
-* **get_docker_image** (node_id, image_id) -> image
+* **get_image** (node_id, image_id) -> image
 
 where
 
@@ -1289,11 +1289,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.update_docker_image
+### crossbarfabriccenter.remote.docker.update_image
 
 Update a Docker image on a host system.
 
-* **update_docker_image** (node_id, image_id) -> image_updated
+* **update_image** (node_id, image_id) -> image_updated
 
 where
 
@@ -1307,11 +1307,11 @@ and
 ---
 
 
-### crossbarfabriccenter.remote.docker.remove_docker_image
+### crossbarfabriccenter.remote.docker.remove_image
 
 Remove a Docker image from a host system.
 
-* **remove_docker_image** (node_id, image_id) -> image_removed
+* **remove_image** (node_id, image_id) -> image_removed
 
 where
 
