@@ -4,9 +4,9 @@ The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Ce
 
 **Procedures**
 
-* **General**
+* *General*
     * [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
-* **Management Realms**
+* *Management Realms*
     * [crossbarfabriccenter.account.get_management_realms](#crossbarfabriccenteraccountget_management_realms)
     * [crossbarfabriccenter.account.get_management_realm](#crossbarfabriccenteraccountget_management_realm)
     * [crossbarfabriccenter.account.create_management_realm](#crossbarfabriccenteraccountcreate_management_realm)
@@ -21,15 +21,17 @@ The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Ce
 
 **Events**
 
-* **General**
+* *General*
     * [crossbarfabriccenter.on_tick](#crossbarfabriccenteron_tick)
-* **Management Realms**
+* *Management Realms*
     * [crossbarfabriccenter.account.on_management_realm_creating](#crossbarfabriccenteraccounton_management_realm_creating)
     * [crossbarfabriccenter.account.on_management_realm_created](#crossbarfabriccenteraccounton_management_realm_created)
     * [crossbarfabriccenter.account.on_management_realm_deleting](#crossbarfabriccenteraccounton_management_realm_deleting)
     * [crossbarfabriccenter.account.on_management_realm_deleted](#crossbarfabriccenteraccounton_management_realm_deleted)
     * [crossbarfabriccenter.account.on_role_granted](#crossbarfabriccenteraccounton_role_granted)
     * [crossbarfabriccenter.account.on_role_revoked](#crossbarfabriccenteraccounton_role_revoked)
+    * [crossbarfabriccenter.account.on_node_paired](#crossbarfabriccenteraccounton_node_paired)
+    * [crossbarfabriccenter.account.on_node_unpaired](#crossbarfabriccenteraccounton_node_unpaired)
 
 ---
 
@@ -359,5 +361,19 @@ Event generated when a role has been granted to a user on a management realm.
 ### crossbarfabriccenter.account.on_role_revoked
 
 Event generated when a role has been revoked from a user on a management realm.
+
+---
+
+
+### crossbarfabriccenter.account.on_node_paired
+
+Event generated when a node has been successfully paired with a management realm.
+
+---
+
+
+### crossbarfabriccenter.account.on_node_unpaired
+
+Event generated when a node has been successfully unpaired from a management realm.
 
 ---
