@@ -210,12 +210,75 @@ is fired.
 
 ### crossbarfabriccenter.account.get_realm_roles
 
-Get all roles
+Get all roles assigned to users on a given management realm.
+
+* **get_realm_roles** (realm_name) -> user_roles_map
+
+where
+
+* **realm_name** (string): the name of the management realm to get user roles for
+
+and
+
+* **user_roles_map** (dict): a mapping from user_ids (string) to list of roles (strings)
+
+is returned.
+
+---
 
 
 ### crossbarfabriccenter.account.grant_realm_role
 
+Grant a role to a user on a management realm.
+
+* **grant_realm_role** (realm_name, user_id, role_name) -> role_granted
+
+where
+
+* **realm_name** (string): the name of the management realm on which to grant a role to a user
+* **user_id** (string): the ID of the user to grant a role to
+* **role_name** (string): the role to grant to the user (one of `[u'guest', u'developer', u'operator', u'admin', u'owner']`)
+
+and
+
+* **role_granted** (dict): role granted information object
+
+is returned.
+
+When the role has been granted successfully, an event
+
+* **on_role_granted** (realm_name, user_id, role_granted)
+
+is fired.
+
+---
+
+
 ### crossbarfabriccenter.account.revoke_realm_role
+
+Revoke a role from a user on a management realm.
+
+* **grant_realm_role** (realm_name, user_id, role_name) -> role_granted
+
+where
+
+* **realm_name** (string): the name of the management realm on which to revoke a role from a user
+* **user_id** (string): the ID of the user to revoke the role from
+* **role_name** (string): the role to revoke from the user (one of `[u'guest', u'developer', u'operator', u'admin', u'owner']`)
+
+and
+
+* **role_revoked** (dict): role revoked information object
+
+is returned.
+
+When the role has been revoked successfully, an event
+
+* **on_role_revoked** (realm_name, user_id, role_revoked)
+
+is fired.
+
+---
 
 
 ### crossbarfabriccenter.account.get_nodes
