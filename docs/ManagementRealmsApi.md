@@ -2,9 +2,9 @@
 
 Each user created **management realm** (eg `com.example.my-mgmt-realm1`) on Crossbar.io Fabric Center (CFC) exposes the following APIs to clients:
 
-* **[Global API](#global-api)**: management realm wide operations
-* **[Remote Meta API](#remote-meta-api)**: remote access to CF nodes WAMP meta API
-* **[Remote Management API](#remote-management-api)**: remote access to CF nodes management API
+* **[Management Realm Globa API](#management-realm-global-api)**: management realm wide operations
+* **[Remote Node Meta API](#remote-node-meta-api)**: remote access to CF nodes WAMP meta API
+* **[Remote Node Management API](#remote-node-management-api)**: remote access to CF nodes management API
 
 CFC clients can use all three APIs at the same time, and use the functionality provided over whole sets of CF nodes in the management realm.
 
@@ -13,19 +13,19 @@ This single point of entry allows you to create complex automatic application ma
 ---
 
 
-## Global API
+## Management Realm Global API
 
-* [crossbarfabriccenter.get_status](#crossbarfabriccenterget_status)
-* [crossbarfabriccenter.get_nodes](#crossbarfabriccenterget_nodes)
-* [crossbarfabriccenter.get_node](#crossbarfabriccenterget_node)
+* [crossbarfabriccenter.mrealm.get_status](#crossbarfabriccentermrealmget_status)
+* [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
+* [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
 
 
-## Remote Meta API
+## Remote Node Meta API
 
 * [crossbarfabriccenter.remote.realm.meta.*](#crossbarfabriccenterremoterealmmeta)
 
 
-## Remote Management API
+## Remote Node Management API
 
 * **Nodes** (crossbarfabriccenter.remote.node.)
   Nodes are instances of Crossbar.io (Fabric) running on host systems, and running from a node directory. Most of the time, nodes run within Docker containers or confined as snaps.
