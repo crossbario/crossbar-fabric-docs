@@ -1,3 +1,6 @@
+title: Accounts Realm API
+toc: [Documentation, API Reference, Accounts Realm API]
+
 # Accounts Realm API
 
 The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Center exposes the following API to clients:

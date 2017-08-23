@@ -1,3 +1,6 @@
+title: Security Hardened Deployments
+toc: [Documentation, Security Hardened Deployments]
+
 # Security hardened deployments
 
 The following describes a high-security, best-practice system setup of Crossbar.io Fabric and application components.

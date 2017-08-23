@@ -1,3 +1,6 @@
+title: Examples
+toc: [Documentation, Examples]
+
 # Crossbar.io Fabric Examples
 
 This repository contains example code for programming against the Crossbar.io Fabric Center (CFC) API to remotely manage and monitor your Crossbar.io Fabric (CF) nodes connected to CFC.
@@ -50,4 +53,3 @@ The APIs covered:
 * `crossbarfabriccenter.remote.start_router_trace`
 * `crossbarfabriccenter.remote.stop_router_trace`
 * `crossbarfabriccenter.remote.get_router_trace_data`
-

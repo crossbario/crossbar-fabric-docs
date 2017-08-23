@@ -1,3 +1,6 @@
+title: Crossbar.io Fabric Center API Reference
+toc: [Documentation, API Reference]
+
 # Crossbar.io Fabric Center API Reference
 
 Crossbar.io Fabric Center (CFC) exposes a rich set of APIs to user management tools and applications.
