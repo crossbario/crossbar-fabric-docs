@@ -1,5 +1,5 @@
-title: Tracing
-toc: [Documentation, Tracing]
+title: Message Tracing
+toc: [Documentation, Message Tracing]
 
 # Message Tracing with Crossbar.io Fabric
 

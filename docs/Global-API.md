@@ -1,5 +1,5 @@
 title: Global API
-toc: [Documentation, API Reference, Global API]
+toc: [Documentation, APIs, Global API]
 
 # Global API
 
