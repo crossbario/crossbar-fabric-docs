@@ -53,11 +53,11 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
 * **Native Workers** (`crossbarfabriccenter.remote.worker.`) - Status: **supported**
   Native workers are node worker processes of the types **router**, **container** and **proxy**. The API here allows to retrieve worker logs, control the worker CPU affinity and run code profilers in a live running system.
 
-    * [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenterremoteworkershutdown)
     * [crossbarfabriccenter.remote.worker.get_status](#crossbarfabriccenterremoteworkerget_status)
+    * [crossbarfabriccenter.remote.worker.shutdown](#crossbarfabriccenterremoteworkershutdown)
+    * [crossbarfabriccenter.remote.worker.get_worker_log](#crossbarfabriccenterremoteworkerget_worker_log)
     * [crossbarfabriccenter.remote.worker.get_pythonpath](#crossbarfabriccenterremoteworkerget_pythonpath)
     * [crossbarfabriccenter.remote.worker.add_pythonpath](#crossbarfabriccenterremoteworkeradd_pythonpath)
-    * [crossbarfabriccenter.remote.worker.get_worker_log](#crossbarfabriccenterremoteworkerget_worker_log)
     * [crossbarfabriccenter.remote.worker.get_cpu_count](#crossbarfabriccenterremoteworkerget_cpu_count)
     * [crossbarfabriccenter.remote.worker.get_cpu_affinity](#crossbarfabriccenterremoteworkerget_cpu_affinity)
     * [crossbarfabriccenter.remote.worker.set_cpu_affinity](#crossbarfabriccenterremoteworkerset_cpu_affinity)
@@ -84,6 +84,14 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
         * [crossbarfabriccenter.remote.router.start_realm_role](#crossbarfabriccenterremoterouterstart_realm_role)
         * [crossbarfabriccenter.remote.router.stop_realm_role](#crossbarfabriccenterremoterouterstop_realm_role)
 
+    * **Role Permissions** (Status: **planned**)
+      Permissions specific which WAMP actions is allowed on which URI (pattern) for the pair realm-role.
+
+        * [crossbarfabriccenter.remote.router.get_role_permissions](#crossbarfabriccenterremoterouterget_role_permissions)
+        * [crossbarfabriccenter.remote.router.get_role_permission](#crossbarfabriccenterremoterouterget_role_permission)
+        * [crossbarfabriccenter.remote.router.start_role_permission](#crossbarfabriccenterremoterouterstart_ŕole_permission)
+        * [crossbarfabriccenter.remote.router.stop_role_permission](#crossbarfabriccenterremoterouterstop_role_permission)
+
     * **Router Transports** (Status: **supported**)
       Routers will want to listen for incoming client connections on so-called listening endpoints. The API here allows the dynamic startup and shutdown of router liensting endpoints in the form of transports.
 
@@ -92,13 +100,13 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
         * [crossbarfabriccenter.remote.router.start_router_transport](#crossbarfabriccenterremoterouterstart_router_transport)
         * [crossbarfabriccenter.remote.router.stop_router_transport](#crossbarfabriccenterremoterouterstop_router_transport)
 
-    * **Transport Paths** (Status: **planned**)
-      Some router transports, such as Web transports, allow to configure *path services* attached to URL parts in a Web resource tree. The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
+    * **Transport Services** (Status: **planned**)
+      Some router transports, such as Web transports, allow to configure *transport services* attached to URL parts in a Web resource tree. The API here allows to dynamically configure Web services, such as a static Web or file download service on dynamic URL part in the Web resource tree of Web transports.
 
-        * [crossbarfabriccenter.remote.router.get_transport_paths](#crossbarfabriccenterremoterouterget_transport_paths)
-        * [crossbarfabriccenter.remote.router.get_transport_path](#crossbarfabriccenterremoterouterget_transport_path)
-        * [crossbarfabriccenter.remote.router.start_transport_path](#crossbarfabriccenterremoterouterstart_transport_path)
-        * [crossbarfabriccenter.remote.router.stop_transport_path](#crossbarfabriccenterremoterouterstop_transport_path)
+        * [crossbarfabriccenter.remote.router.get_transport_services](#crossbarfabriccenterremoterouterget_transport_services)
+        * [crossbarfabriccenter.remote.router.get_transport_service](#crossbarfabriccenterremoterouterget_transport_service)
+        * [crossbarfabriccenter.remote.router.start_transport_service](#crossbarfabriccenterremoterouterstart_transport_service)
+        * [crossbarfabriccenter.remote.router.stop_transport_service](#crossbarfabriccenterremoterouterstop_transport_service)
 
     * **Router Components** (Status: **supported**)
       Router workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under. Further, running user components in the same OS process as Crossbar.io routing code can lead to instability, and provides less security isolation. Router components should only be used very selectively for small amounts of code, such as dynamic authenticators or authorizers.
@@ -108,14 +116,15 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
         * [crossbarfabriccenter.remote.router.start_router_component](#crossbarfabriccenterremoterouterstart_router_component)
         * [crossbarfabriccenter.remote.router.stop_router_component](#crossbarfabriccenterremoterouterstop_router_component)
 
-* **Container Workers** (`crossbarfabriccenter.remote.container.`) - Status: **supported**
+* **Container Workers** (`crossbarfabriccenter.remote.container.`) (Status: **supported**)
+  Container workers are native Crossbar.io processes that can host Python user components. Restrictions: The user components must be written using AutobahnPython and Twisted, and run under the same Python Crossbar.io runs under.
 
     * [crossbarfabriccenter.remote.container.get_container_components](#crossbarfabriccenterremotecontainerget_container_components)
     * [crossbarfabriccenter.remote.container.get_container_component](#crossbarfabriccenterremotecontainerget_container_component)
     * [crossbarfabriccenter.remote.container.start_container_component](#crossbarfabriccenterremotecontainerstart_container_component)
     * [crossbarfabriccenter.remote.container.stop_container_component](#crossbarfabriccenterremotecontainerstop_container_component)
 
-* **Proxy Workers** (`crossbarfabriccenter.remote.proxy.`) - Status: **under development**
+* **Proxy Workers** (`crossbarfabriccenter.remote.proxy.`) (Status: **under development**)
   Proxy workers are native worker processes of Crossbar.io Fabric that can proxy and authenticate frontend WAMP connections, normalize and scrub WAMP messages, and forward to backend router workers in an optimized way. This allows to scale up and scale out the WAMP frontend connection handling layer.
 
     * [crossbarfabriccenter.remote.proxy.get_proxy_transports](#crossbarfabriccenterremoteproxyget_proxy_transports)
@@ -123,7 +132,7 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
     * [crossbarfabriccenter.remote.proxy.start_proxy_transport](#crossbarfabriccenterremoteproxystart_proxy_transport)
     * [crossbarfabriccenter.remote.proxy.stop_proxy_transport](#crossbarfabriccenterremoteproxystop_proxy_transport)
 
-* **Message Tracing** (`crossbarfabriccenter.remote.tracing.`) - Status: **alpha**
+* **Message Tracing** (`crossbarfabriccenter.remote.tracing.`) (Status: **alpha**)
   Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
 
     * [crossbarfabriccenter.remote.tracing.get_router_traces](#crossbarfabriccenterremotetracingget_router_traces)
@@ -132,7 +141,7 @@ Provides remote access to the node management API of Crossbar.io Fabric nodes cu
     * [crossbarfabriccenter.remote.tracing.stop_router_trace](#crossbarfabriccenterremotetracingstop_router_trace)
     * [crossbarfabriccenter.remote.tracing.get_router_trace_data](#crossbarfabriccenterremotetracingget_router_trace_data)
 
-* **Docker Control** (`crossbarfabriccenter.remote.docker.`) - Status: **under development**
+* **Docker Control** (`crossbarfabriccenter.remote.docker.`) (Status: **under development**)
   Remotely control the Docker daemons of hosts running Crossbar.io Fabric nodes.
 
     * [crossbarfabriccenter.remote.docker.get_docker_status](#crossbarfabriccenterremotedockerget_docker_status)
@@ -744,6 +753,103 @@ is fired.
 
 ---
 
+### crossbarfabriccenter.remote.router.get_role_permissions
+
+Return a list of IDs of permissions on the given role.
+
+* **get_role_permissions** (node_id, worker_id, realm_id, role_id) -> [permission_id]
+
+where
+
+* **node_id** (string): ID of node running the (router) worker to get permissions for
+* **worker_id** (string): ID of the (router) worker to get permissions for
+* **realm_id** (string): ID of the realm to get permissions for
+* **role_id** (string): ID of the role to get permissions for
+
+> The order of IDs within the list returned is unspecified, but stable.
+
+---
+
+
+### crossbarfabriccenter.remote.router.get_role_permission
+
+Return detailed information about the given permission.
+
+* **get_role_permission* (node_id, worker_id, realm_id, role_id, permission_id) -> permission
+
+where
+
+* **node_id** (string): ID of node running the (router) worker with the permission to get information for
+* **worker_id** (string): ID of the (router) worker with the permission to get informationn for
+* **realm_id** (string): ID of the realm with the permission to get information for
+* **role_id** (string): ID of the role with the permission to get information for
+* **permission_id** (string): ID of the permission to get information for
+
+and
+
+* **permission** (dict): permission information object
+
+---
+
+
+### crossbarfabriccenter.remote.router.start_role_permission
+
+Start a new permission on the given router worker/realm/role.
+
+* **start_role_permission** (node_id, worker_id, realm_id, role_id, permission_id, permission_config) -> permission_started
+
+where
+
+* **node_id** (string): ID of node running the (router) worker to start the permission on
+* **worker_id** (string): ID of the (router) worker to start the permission on
+* **realm_id** (string): ID of the realm to start the permission on
+* **role_id** (string): ID of the role to start the permission on
+* **permission_id** (string): optional ID of the permission to start. if not provided, auto-generated.
+* **permission_config** (dict): permission configuration
+
+and
+
+* **permission_started** (dict): permission started information object
+
+The call does not return until the permission has completely started.
+
+When the new permission *is completely started*, an event
+
+* **on_role_permission_started** (node_id, worker_id, realm_id, role_id, permission_id, permission_started)
+
+is fired.
+
+---
+
+
+### crossbarfabriccenter.remote.router.stop_permission_role
+
+Stop a permission currently running in a role on a realm in a router worker.
+
+* **stop_role_permission** (node_id, worker_id, realm_id, role_id, permission_id) -> permission_stopped
+
+where
+
+* **node_id** (string): ID of node running the (router) worker to stop the permission on
+* **worker_id** (string): ID of the (router) worker to stop the permission on
+* **realm_id** (string): ID of the realm to stop the permission on
+* **role_id** (string): ID of the role to stop the permission on
+* **realm_id** (string): ID of the permission to stop.
+
+and
+
+* **permission_stopped** (dict): permission stopped information object
+
+The call does not return until the permission has completely stopped.
+
+When the permission *is completely stopped*, an event
+
+* **on_role_permission_stopped** (node_id, worker_id, realm_id, role_id, permission_id, permission_stopped)
+
+is fired.
+
+---
+
 
 ### crossbarfabriccenter.remote.router.get_router_transports
 
@@ -847,24 +953,24 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.remote.router.get_transport_paths
+### crossbarfabriccenter.remote.router.get_transport_services
 
-* **get_transport_paths** (node_id, worker_id, transport_id) -> [path_id]
-
-
-### crossbarfabriccenter.remote.router.get_transport_path
-
-* **get_transport_path** (node_id, worker_id, transport_id, path_id) -> path
+* **get_transport_services** (node_id, worker_id, transport_id) -> [path_id]
 
 
-### crossbarfabriccenter.remote.router.start_transport_path
+### crossbarfabriccenter.remote.router.get_transport_service
 
-* **start_transport_path** (node_id, worker_id, transport_id, path_id, transport_path_config) -> path_started
+* **get_transport_service** (node_id, worker_id, transport_id, path_id) -> path
 
 
-### crossbarfabriccenter.remote.router.stop_transport_path
+### crossbarfabriccenter.remote.router.start_transport_service
 
-* **stop_transport_path** (node_id, worker_id, transport_id, path_id) -> path_stopped
+* **start_transport_service** (node_id, worker_id, transport_id, path_id, transport_service_config) -> path_started
+
+
+### crossbarfabriccenter.remote.router.stop_transport_service
+
+* **stop_transport_service** (node_id, worker_id, transport_id, path_id) -> path_stopped
 
 
 ### crossbarfabriccenter.remote.router.get_router_components
