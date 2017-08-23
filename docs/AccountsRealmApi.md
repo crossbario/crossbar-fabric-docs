@@ -3,24 +3,19 @@
 The global **accounts realm** (`com.crossbario.fabric`) on Crossbar.io Fabric Center exposes the following API to clients:
 
 * [General](#general)
-
     * [crossbarfabriccenter.account.get_status](#crossbarfabriccenterserviceget_status)
-
 * [Management Realms](#management-realms)
-
-    * [crossbarfabriccenter.account.get_management_realms](#crossbarfabriccentermaccountget_management_realms)
-    * [crossbarfabriccenter.account.get_management_realm](#crossbarfabriccentermaccountget_management_realm)
-    * [crossbarfabriccenter.account.create_management_realm](#crossbarfabriccentermaccountcreate_management_realm)
-    * [crossbarfabriccenter.account.delete_management_realm](#crossbarfabriccentermaccountdelete_management_realm)
-
-    * [crossbarfabriccenter.account.get_realm_roles](#crossbarfabriccentermaccountget_realm_roles)
-    * [crossbarfabriccenter.account.grant_realm_role](#crossbarfabriccentermaccountgrant_realm_role)
-    * [crossbarfabriccenter.account.revoke_realm_role](#crossbarfabriccentermaccountrevoke_realm_role)
-
-    * [crossbarfabriccenter.account.get_nodes](#crossbarfabriccentermaccountget_nodes)
-    * [crossbarfabriccenter.account.get_node](#crossbarfabriccentermaccountget_node)
-    * [crossbarfabriccenter.account.pair_node](#crossbarfabriccentermaccountpair_node)
-    * [crossbarfabriccenter.account.unpair_node](#crossbarfabriccentermaccountunpair_node)
+    * [crossbarfabriccenter.account.get_management_realms](#crossbarfabriccenteraccountget_management_realms)
+    * [crossbarfabriccenter.account.get_management_realm](#crossbarfabriccenteraccountget_management_realm)
+    * [crossbarfabriccenter.account.create_management_realm](#crossbarfabriccenteraccountcreate_management_realm)
+    * [crossbarfabriccenter.account.delete_management_realm](#crossbarfabriccenteraccountdelete_management_realm)
+    * [crossbarfabriccenter.account.get_realm_roles](#crossbarfabriccenteraccountget_realm_roles)
+    * [crossbarfabriccenter.account.grant_realm_role](#crossbarfabriccenteraccountgrant_realm_role)
+    * [crossbarfabriccenter.account.revoke_realm_role](#crossbarfabriccenteraccountrevoke_realm_role)
+    * [crossbarfabriccenter.account.get_nodes](#crossbarfabriccenteraccountget_nodes)
+    * [crossbarfabriccenter.account.get_node](#crossbarfabriccenteraccountget_node)
+    * [crossbarfabriccenter.account.pair_node](#crossbarfabriccenteraccountpair_node)
+    * [crossbarfabriccenter.account.unpair_node](#crossbarfabriccenteraccountunpair_node)
 
 ---
 
