@@ -181,7 +181,7 @@ Proxy workers are native worker processes of Crossbar.io Fabric that can proxy a
 
 Prefix: `crossbarfabriccenter.remote.tracing.` - Status: **alpha**
 
-Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single message level.
+Tap into the message flow of Crossbar.io Fabric nodes. Monitor and trace real-time message traffic and routing down to the single WAMP message level.
 
 * [crossbarfabriccenter.remote.tracing.get_traces](#crossbarfabriccenterremotetracingget_traces)
 * [crossbarfabriccenter.remote.tracing.get_trace](#crossbarfabriccenterremotetracingget_trace)
@@ -1134,14 +1134,24 @@ Stop a proxy worker transport running in a proxy worker.
 
 ### crossbarfabriccenter.remote.tracing.get_traces
 
-Return list of IDs of traces on a router worker.
+Return list of IDs of traces on a _router_ worker.
 
 * **get_traces** (node_id, worker_id) -> [trace_id]
 
 where
 
 * **node_id** (string): the ID of the node to get traces from
-* **worker_id** (string): the ID of the worker to get traces from
+* **worker_id** (string): the ID of the _router_ worker to get traces from
+
+and
+
+* **trace_id** (string): ID of traces
+
+is returned
+
+```javascript
+["trace1", "trace2"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -1150,79 +1160,159 @@ where
 
 ### crossbarfabriccenter.remote.tracing.get_trace
 
-Return detailed information about a trace on a router worker.
+Return detailed information about a trace on a _router_ worker.
 
 * **get_trace (node_id, worker_id, trace_id) -> trace
 
 where
 
 * **node_id** (string): the ID of the node to get trace from
-* **worker_id** (string): the ID of the worker to get trace from
+* **worker_id** (string): the ID of the _router_ worker to get trace from
 * **trace_id** (string): the ID of the trace to get
 
 and
 
 * **trace** (dict): trace information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
 ### crossbarfabriccenter.remote.tracing.start_trace
 
-Starts a new trace on a router worker.
+Starts a new trace on a _router_ worker.
 
 * **start_trace** (node_id, worker_id, trace_id, trace_config) -> trace_started
 
 where
 
 * **node_id** (string): the ID of the node to start the trace on
-* **worker_id** (string): the ID of the worker to start the trace on
+* **worker_id** (string): the ID of the _router_ worker to start the trace on
 * **trace_id** (string or null): optional ID of the trace to start. when not given, auto-assign
 
 and
 
 * **trace_started** (dict): trace startup information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
+When the trace *has been started*, an event
+
+* **on_trace_started** (node_id, worker_id, trace_id, trace_started)
+
+is fired.
+
 ---
 
 
 ### crossbarfabriccenter.remote.tracing.stop_trace
 
-Stops a running trace on a router worker.
+Stops a running trace on a _router_ worker.
+
+This procedure explicitly stops a previously started trace. A trace may also be started with a defined run-time, in which case this procedure can still be used to stop the trace prematurely even before the defined run-time has been reached.
 
 * **stop_trace** (node_id, worker_id, trace_id) -> trace_stopped
 
 where
 
 * **node_id** (string): the ID of the node to stop the trace on
-* **worker_id** (string): the ID of the worker to stop the trace on
+* **worker_id** (string): the ID of the _router_ worker to stop the trace on
 * **trace_id** (string or null): the ID of the trace to stop
 
 and
 
 * **trace_stopped** (dict): trace stop information object
 
+is returned
+
+```javascript
+{
+   // FIXME
+}
+```
+
+When the trace *has been stopped*, an event
+
+* **on_trace_stopped** (node_id, worker_id, trace_id, trace_stopped)
+
+is fired.
+
+> Note that **on_trace_stopped** can also fire without **stop_trace** being ever called, namely when the trace has been started with a defined run-time. In this case, the trace will automatically stop, and the **on_trace_stopped** event automatically fire as well.
+
 ---
 
 
 ### crossbarfabriccenter.remote.tracing.get_trace_data
 
-Return trace records from a trace on a router worker.
+Return trace records from a trace on a _router_ worker.
 
 * **get_trace_data** (node_id, worker_id, trace_id, from_seq_ to_seq, limit) -> [trace_record]
 
 where
 
 * **node_id** (string): the ID of the node to get trace records from
-* **worker_id** (string): the ID of the worker to get trace records from
+* **worker_id** (string): the ID of the _router_ worker to get trace records from
 * **trace_id** (string or null): the ID of the trace to get trace records from
-* **from_seq** (int):
-* **to_seq** (int):
-* **limit** (int):
+* **from_seq** (int): optional "from" sequence number for filtering records to be returned (default: to_seq - limit)
+* **to_seq** (int): optional "up to" sequence number for filtering records to be returned (default: last trace record)
+* **limit** (int): optional maximum of records to return (default: 100)
 
 and
 
-* **[trace_record]** (list of dict): list of trace records retrieved
+* **[trace_record]** (list of dict): list of trace records retrieved, with sequence number starting at "from_seq" up to "to_seq", that is, records are returned in ascending sequence number order, with no gaps in between sequence numbers. and at most "limit" records are returned
+
+```javascript
+{
+    // the sequence number in the trace of messages stored for this trace
+    'seq': 4,
+
+    // timestamps when the message was originally traced
+    'pc': 129852.050601509,
+    'ts': 1502829396.5978456,
+
+    // the direction of the WAMP message flow: Crossbar.io "received" (rx) a message in this case
+    'direction': 'rx',
+
+    // the WAMP message type of the message
+    'msg_type': 'Publish',
+
+    // the realm, session ID, authid, authrole of the sender of this WAMP message (the publisher in this case)
+    'realm': 'realm1',
+    'session_id': 1457801355183687,
+    'authid': 'E4MW-VYUX-KY3S-Y6US-J5X5-KAUQ',
+    'authrole': 'anonymous',
+
+    // message correlation ID: all WAMP messages traced for a given WAMP action
+    // like a RPC have identical correlation
+    'correlation': 'd5d9bcec-a3eb-4f0e-875b-6933680bb546',
+
+    // the URI for the WAMP action, the same URI for all messages of a given action
+    'uri': 'com.example.oncounter',
+
+    // for outgoing messages, a map of serializions to byte length
+    'serializations': {},
+
+    // actual raw WAMP message right before serialization
+    'msg': [16,
+            46,
+            {'acknowledge': True, 'exclude_me': False},
+            'com.example.oncounter',
+            [21, 'E4MW-VYUX-KY3S-Y6US-J5X5-KAUQ', 'Python']],
+}
+```
 
 ---
 
