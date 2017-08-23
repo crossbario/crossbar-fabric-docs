@@ -9,14 +9,19 @@ The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes th
 
 * *System*
     * [crossbarfabriccenter.system.get_status](#crossbarfabriccentersystemget_status)
+
 * *Management Realms*
-    * [crossbarfabriccenter.mrealm.get_management_realms](#crossbarfabriccentermrealmget_management_realms)
-    * [crossbarfabriccenter.mrealm.get_management_realm](#crossbarfabriccentermrealmget_management_realm)
-    * [crossbarfabriccenter.mrealm.create_management_realm](#crossbarfabriccentermrealmcreate_management_realm)
-    * [crossbarfabriccenter.mrealm.delete_management_realm](#crossbarfabriccentermrealmdelete_management_realm)
-    * [crossbarfabriccenter.mrealm.get_realm_roles](#crossbarfabriccentermrealmget_realm_roles)
-    * [crossbarfabriccenter.mrealm.grant_realm_role](#crossbarfabriccentermrealmgrant_realm_role)
-    * [crossbarfabriccenter.mrealm.revoke_realm_role](#crossbarfabriccentermrealmrevoke_realm_role)
+    * [crossbarfabriccenter.mrealm.get_realms](#crossbarfabriccentermrealmget_realms)
+    * [crossbarfabriccenter.mrealm.get_realm](#crossbarfabriccentermrealmget_realm)
+    * [crossbarfabriccenter.mrealm.create_realm](#crossbarfabriccentermrealmcreate_realm)
+    * [crossbarfabriccenter.mrealm.delete_realm](#crossbarfabriccentermrealmdelete_realm)
+
+* *Management Realms: Roles*
+    * [crossbarfabriccenter.mrealm.get_roles](#crossbarfabriccentermrealmget_roles)
+    * [crossbarfabriccenter.mrealm.grant_role](#crossbarfabriccentermrealmgrant_role)
+    * [crossbarfabriccenter.mrealm.revoke_role](#crossbarfabriccentermrealmrevoke_role)
+
+* *Management Realms: Nodes*
     * [crossbarfabriccenter.mrealm.get_nodes](#crossbarfabriccentermrealmget_nodes)
     * [crossbarfabriccenter.mrealm.get_node](#crossbarfabriccentermrealmget_node)
     * [crossbarfabriccenter.mrealm.pair_node](#crossbarfabriccentermrealmpair_node)
@@ -26,13 +31,18 @@ The global realm `com.crossbario.fabric` on Crossbar.io Fabric Center exposes th
 
 * *System*
     * [crossbarfabriccenter.system.on_tick](#crossbarfabriccentersystemon_tick)
+
 * *Management Realms*
-    * [crossbarfabriccenter.mrealm.on_management_realm_creating](#crossbarfabriccentermrealmon_management_realm_creating)
-    * [crossbarfabriccenter.mrealm.on_management_realm_created](#crossbarfabriccentermrealmon_management_realm_created)
-    * [crossbarfabriccenter.mrealm.on_management_realm_deleting](#crossbarfabriccentermrealmon_management_realm_deleting)
-    * [crossbarfabriccenter.mrealm.on_management_realm_deleted](#crossbarfabriccentermrealmon_management_realm_deleted)
+    * [crossbarfabriccenter.mrealm.on_realm_creating](#crossbarfabriccentermrealmon_realm_creating)
+    * [crossbarfabriccenter.mrealm.on_realm_created](#crossbarfabriccentermrealmon_realm_created)
+    * [crossbarfabriccenter.mrealm.on_realm_deleting](#crossbarfabriccentermrealmon_realm_deleting)
+    * [crossbarfabriccenter.mrealm.on_realm_deleted](#crossbarfabriccentermrealmon_realm_deleted)
+
+* *Management Realms: Roles*
     * [crossbarfabriccenter.mrealm.on_role_granted](#crossbarfabriccentermrealmon_role_granted)
     * [crossbarfabriccenter.mrealm.on_role_revoked](#crossbarfabriccentermrealmon_role_revoked)
+
+* *Management Realms: Nodes*
     * [crossbarfabriccenter.mrealm.on_node_paired](#crossbarfabriccentermrealmon_node_paired)
     * [crossbarfabriccenter.mrealm.on_node_unpaired](#crossbarfabriccentermrealmon_node_unpaired)
 
@@ -81,11 +91,11 @@ where
 ---
 
 
-### crossbarfabriccenter.mrealm.get_management_realms
+### crossbarfabriccenter.mrealm.get_realms
 
 Get list of names of management realms accessible to the user account.
 
-* **get_management_realms** () -> [realm_name]
+* **get_realms** () -> [realm_name]
 
 where
 
@@ -94,11 +104,11 @@ where
 ---
 
 
-### crossbarfabriccenter.mrealm.get_management_realm
+### crossbarfabriccenter.mrealm.get_realm
 
 Return detailed information about a management realm.
 
-* **get_management_realm** (realm_name) -> realm
+* **get_realm** (realm_name) -> realm
 
 where
 
@@ -111,13 +121,13 @@ and
 ---
 
 
-### crossbarfabriccenter.mrealm.create_management_realm
+### crossbarfabriccenter.mrealm.create_realm
 
 Create a new management realm.
 
 > Management realm names must be globally unique (within a given CFC installation)
 
-* **create_management_realm** (realm_name) -> realm_created
+* **create_realm** (realm_name) -> realm_created
 
 where
 
@@ -131,20 +141,20 @@ The call does not return until the management realm has been completely created 
 
 When the new management realm *is being created*, an event
 
-* **on_management_realm_creating** (realm_name, realm_creating)
+* **on_realm_creating** (realm_name, realm_creating)
 
 is fired.
 
 When the new management realm *has been completely created and started*, an event
 
-* **on_management_realm_created** (realm_name, realm_created)
+* **on_realm_created** (realm_name, realm_created)
 
 is fired.
 
 ---
 
 
-### crossbarfabriccenter.mrealm.delete_management_realm
+### crossbarfabriccenter.mrealm.delete_realm
 
 Delete an existing management realm.
 
@@ -152,7 +162,7 @@ Only owners of a management realm can delete the realm.
 
 If the management realm currently has nodes paired, it cannot be deleted, unless `cascade=true` is used.
 
-* **delete_management_realm** (realm_name, cascade) -> realm_deleted
+* **delete_realm** (realm_name, cascade) -> realm_deleted
 
 where
 
@@ -167,24 +177,24 @@ The call does not return until the management realm has been completely deleted 
 
 When a management realm *is being deleted*, an event
 
-* **on_management_realm_deleting** (realm_name, realm_deleting)
+* **on_realm_deleting** (realm_name, realm_deleting)
 
 is fired.
 
 When the new management realm *has been completely stopped and deleted*, an event
 
-* **on_management_realm_deleted** (realm_name, realm_deleted)
+* **on_realm_deleted** (realm_name, realm_deleted)
 
 is fired.
 
 ---
 
 
-### crossbarfabriccenter.mrealm.get_realm_roles
+### crossbarfabriccenter.mrealm.get_roles
 
 Get all roles assigned to users on a given management realm.
 
-* **get_realm_roles** (realm_name) -> user_roles_map
+* **get_roles** (realm_name) -> user_roles_map
 
 where
 
@@ -199,11 +209,11 @@ is returned.
 ---
 
 
-### crossbarfabriccenter.mrealm.grant_realm_role
+### crossbarfabriccenter.mrealm.grant_role
 
 Grant a role to a user on a management realm.
 
-* **grant_realm_role** (realm_name, user_id, role_name) -> role_granted
+* **grant_role** (realm_name, user_id, role_name) -> role_granted
 
 where
 
@@ -226,11 +236,11 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.mrealm.revoke_realm_role
+### crossbarfabriccenter.mrealm.revoke_role
 
 Revoke a role from a user on a management realm.
 
-* **grant_realm_role** (realm_name, user_id, role_name) -> role_granted
+* **grant_role** (realm_name, user_id, role_name) -> role_granted
 
 where
 
@@ -364,11 +374,11 @@ where
 ---
 
 
-### crossbarfabriccenter.mrealm.on_management_realm_creating
+### crossbarfabriccenter.mrealm.on_realm_creating
 
 Event generated when a management realm is being created and started.
 
-* **on_management_realm_creating** (realm_name, realm_creating)
+* **on_realm_creating** (realm_name, realm_creating)
 
 where
 
@@ -384,11 +394,11 @@ where
 ---
 
 
-### crossbarfabriccenter.mrealm.on_management_realm_created
+### crossbarfabriccenter.mrealm.on_realm_created
 
 Event generated when a management realm has been created and fully started.
 
-* **on_management_realm_created** (realm_name, realm_creating)
+* **on_realm_created** (realm_name, realm_creating)
 
 where
 
@@ -404,11 +414,11 @@ where
 ---
 
 
-### crossbarfabriccenter.mrealm.on_management_realm_deleting
+### crossbarfabriccenter.mrealm.on_realm_deleting
 
 Event generated when a management realm is being stopped and deleted.
 
-* **on_management_realm_deleting** (realm_name, realm_deleting)
+* **on_realm_deleting** (realm_name, realm_deleting)
 
 where
 
@@ -424,11 +434,11 @@ where
 ---
 
 
-### crossbarfabriccenter.mrealm.on_management_realm_deleted
+### crossbarfabriccenter.mrealm.on_realm_deleted
 
 Event generated when a management realm has been fully stopped and deleted.
 
-* **on_management_realm_deleted** (realm_name, realm_deleted)
+* **on_realm_deleted** (realm_name, realm_deleted)
 
 where
 

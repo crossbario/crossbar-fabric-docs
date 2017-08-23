@@ -775,7 +775,7 @@ where
 
 Return detailed information about the given permission.
 
-* **get_role_permission* (node_id, worker_id, realm_id, role_id, permission_id) -> permission
+* **get_role_permission** (node_id, worker_id, realm_id, role_id, permission_id) -> permission
 
 where
 
