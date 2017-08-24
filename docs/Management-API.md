@@ -137,7 +137,7 @@ Routers will want to listen for incoming client connections on so-called listeni
 * [ ] [crossbarfabriccenter.remote.router.stop_transport](#crossbarfabriccenterremoterouterstop_transport)
 
 
-#### Router Transport Services
+#### Transport Services
 
 Status: **planned**
 
