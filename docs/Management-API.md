@@ -389,6 +389,12 @@ is returned:
 }
 ```
 
+When the node is shut down, a (last) event
+
+* **on_shutdown** (node_shutdown)
+
+is fired.
+
 ---
 
 
@@ -401,6 +407,16 @@ Get list of IDs of workers in node.
 where
 
 * **node_id** (string): ID of the node to get workers for
+
+and
+
+* **worker_id** (string): worker ID
+
+is returned:
+
+```javascript
+["router1", "proxy1", "proxy2"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -421,6 +437,14 @@ where
 and
 
 * **worker** (dict): worker information object
+
+is returned:
+
+```javscript
+{
+    // FIXME
+}
+```
 
 ---
 
@@ -449,6 +473,20 @@ is returned:
 }
 ```
 
+The call does not return until the worker has been completely started.
+
+When the new worker *is starting*, an event
+
+* **on_worker_starting** (node_id, worker_id)
+
+is fired.
+
+When the new worker *has been started*, an event
+
+* **on_worker_started** (node_id, worker_id, worker_started)
+
+is fired.
+
 ---
 
 
@@ -472,6 +510,20 @@ is returned:
    // FIXME
 }
 ```
+
+The call does not return until the worker has been completely stopped.
+
+When the worker *is stopping*, an event
+
+* **on_worker_stopping** (node_id, worker_id)
+
+is fired.
+
+When the worker *has been stopped*, an event
+
+* **on_worker_stopped** (node_id, worker_id, worker_stopped)
+
+is fired.
 
 ---
 
