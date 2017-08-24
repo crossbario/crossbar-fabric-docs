@@ -2,9 +2,9 @@
 
 import pprint
 
-import client
+from crossbarfabricshell import client
 
-GET_NODES = u'crossbarfabriccenter.get_nodes'
+GET_NODES = u'crossbarfabriccenter.mrealm.get_nodes'
 
 GET_WORKERS = u'crossbarfabriccenter.remote.node.get_workers'
 GET_WORKER = u'crossbarfabriccenter.remote.node.get_worker'

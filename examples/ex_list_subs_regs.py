@@ -3,11 +3,9 @@
 import pprint
 import itertools
 
-from twisted.internet.defer import inlineCallbacks
+from crossbarfabricshell import client
 
-import client
-
-GET_NODES = u'crossbarfabriccenter.get_nodes'
+GET_NODES = u'crossbarfabriccenter.mrealm.get_nodes'
 
 GET_WORKERS = u'crossbarfabriccenter.remote.node.get_workers'
 GET_WORKER = u'crossbarfabriccenter.remote.node.get_worker'
@@ -57,8 +55,7 @@ GET_REGISTRATION = _remote_root(u'wamp.registration.get')
 #     =>
 #  - crossbarfabricenter.remote.realm.{uri:string}(node_id, worker_id, realm_id, *args, **kwargs)
 
-@inlineCallbacks
-def main(session):
+async def main(session):
     """
     Iterate over all nodes, and all workers on each nodes to retrieve and
     print worker information. then exit.
@@ -68,22 +65,22 @@ def main(session):
     regs_out = {}
     subs_out = {}
 
-    nodes = yield session.call(GET_NODES)
+    nodes = await session.call(GET_NODES)
     print('nodes: {}'.format(nodes))
     for node_id in nodes:
-        workers = yield session.call(GET_WORKERS, node_id)
+        workers = await session.call(GET_WORKERS, node_id)
         print('  workers on node {}: {}'.format(node_id, workers))
         for worker_id in workers:
-            worker = yield session.call(GET_WORKER, node_id, worker_id)
+            worker = await session.call(GET_WORKER, node_id, worker_id)
             if worker[u'type'] == u'router':
-                realms = yield session.call(GET_ROUTER_REALMS, node_id, worker_id)
+                realms = await session.call(GET_ROUTER_REALMS, node_id, worker_id)
                 print('    realms on worker {}: {}'.format(worker_id, realms))
                 for realm in realms:
-                    sessions = yield session.call(GET_SESSIONS(node_id, worker_id, realm))
+                    sessions = await session.call(GET_SESSIONS(node_id, worker_id, realm))
                     print('        sessions on realm {}: {}'.format(realm, sessions))
                     for session_id in sessions:
 
-                        subscriptions = yield session.call(GET_SUBSCRIPTIONS(node_id, worker_id, realm), session_id)
+                        subscriptions = await session.call(GET_SUBSCRIPTIONS(node_id, worker_id, realm), session_id)
                         sub_ids = list(itertools.chain(*subscriptions.values()))
                         print('          subscriptions on session {}: {}'.format(session_id, sub_ids))
 
@@ -91,10 +88,10 @@ def main(session):
                             for sub_type, sub_ids in subscriptions.items():
                                 for sub_id in sub_ids:
                                     if sub_id not in subs_out:
-                                        sub = yield session.call(GET_SUBSCRIPTION(node_id, worker_id, realm), sub_id)
+                                        sub = await session.call(GET_SUBSCRIPTION(node_id, worker_id, realm), sub_id)
                                         subs_out[sub_id] = sub
 
-                        registrations = yield session.call(GET_REGISTRATIONS(node_id, worker_id, realm), session_id)
+                        registrations = await session.call(GET_REGISTRATIONS(node_id, worker_id, realm), session_id)
                         reg_ids = list(itertools.chain(*registrations.values()))
                         print('          registrations on session {}: {}'.format(session_id, reg_ids))
 
@@ -102,7 +99,7 @@ def main(session):
                             for reg_type, reg_ids in registrations.items():
                                 for reg_id in reg_ids:
                                     if reg_id not in regs_out:
-                                        reg = yield session.call(GET_REGISTRATION(node_id, worker_id, realm), reg_id)
+                                        reg = await session.call(GET_REGISTRATION(node_id, worker_id, realm), reg_id)
                                         regs_out[reg_id] = reg
 
     if verbose:

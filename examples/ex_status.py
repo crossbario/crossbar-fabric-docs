@@ -1,6 +1,6 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-from examples import client
+from crossbarfabricshell import client
 
 
 async def main(session):
@@ -11,7 +11,7 @@ async def main(session):
     example and add your CFC calls, reuse the example driver (client.py)
     and get started super quickly.
     """
-    status = await session.call(u'crossbarfabriccenter.get_status')
+    status = await session.call(u'crossbarfabriccenter.mrealm.get_status')
     session.log.info('CFC status: {status}', status=status)
 
 

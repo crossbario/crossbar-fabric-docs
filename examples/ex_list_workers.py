@@ -1,6 +1,6 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-from examples import client
+from crossbarfabricshell import client
 
 
 async def main(session):
@@ -8,7 +8,7 @@ async def main(session):
     Iterate over all nodes, and all workers on each nodes to retrieve and
     print worker information. then exit.
     """
-    nodes = await session.call(u'crossbarfabriccenter.get_nodes')
+    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
     for node_id in nodes:
         workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
         for worker_id in workers:
