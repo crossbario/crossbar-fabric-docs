@@ -1619,6 +1619,14 @@ and
 
 * **status** (dict): Docker status information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -1631,6 +1639,16 @@ Get list of IDs of Docker containers running on host system
 where
 
 * **node_id** (string): the ID of the node to get Docker containers for
+
+and
+
+* **container_id** (string): container ID
+
+is returned:
+
+```javascript
+["container1", "container2"]
+```
 
 ---
 
@@ -1649,6 +1667,14 @@ where
 and
 
 * **container** (dict): Docker container information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---
 
@@ -1669,6 +1695,16 @@ and
 
 * **container_started** (dict): container started information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
+---
+
 
 ### crossbarfabriccenter.remote.docker.stop_container
 
@@ -1685,6 +1721,16 @@ and
 
 * **container_stopped** (dict): container stopped information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
+---
+
 
 ### crossbarfabriccenter.remote.docker.get_images
 
@@ -1695,6 +1741,16 @@ Get list of IDs of Docker image on a host system.
 where
 
 * **node_id** (string): the ID of the node with the image (on the host) to get
+
+and
+
+* **image_id** (string): image ID
+
+is returned:
+
+```javascript
+["crossbario/crossbar:latest"]
+```
 
 > The order of IDs within the list returned is unspecified, but stable.
 
@@ -1716,6 +1772,14 @@ and
 
 * **image** (dict): image information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -1734,6 +1798,14 @@ and
 
 * **image_update** (dict): image update information object
 
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
 ---
 
 
@@ -1751,5 +1823,13 @@ where
 and
 
 * **image_removed** (dict): image removal information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
 
 ---

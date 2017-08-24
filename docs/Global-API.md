@@ -20,6 +20,17 @@ Status: **alpha**
 ---
 
 
+## User API
+
+Prefix: `crossbarfabriccenter.user.`
+
+Status: **under development**
+
+* [ ] [crossbarfabriccenter.user.get_profile](#crossbarfabriccenteruserget_profile)
+
+---
+
+
 ## Management Realms API
 
 Prefix: `crossbarfabriccenter.mrealm.`
@@ -67,6 +78,25 @@ Status: **alpha**
 ## Procedures Reference
 
 Signature and descriptions of API procedures.
+
+---
+
+
+### crossbarfabriccenter.user.get_profile
+
+Get user profile
+
+* **get_profile** () -> profile
+
+where
+
+* **profile** (dict): user profile information object:
+
+```javascript
+{
+    // FIXME
+}
+```
 
 ---
 
@@ -259,6 +289,32 @@ is returned:
     "alice": ["owner"],
     "bob": ["admin", "developer"],
     "sam": ["developer"]
+}
+```
+
+---
+
+
+### crossbarfabriccenter.mrealm.get_role
+
+Return detailed information about a realm role.
+
+* **get_role** (realm_name, role_name) -> role
+
+where
+
+* **realm_name** (string): name of the management realm to retrieve information for
+* **role_name** (string): name of the realm role to retrieve information for
+
+and
+
+* **role** (dict): role information object
+
+is returned:
+
+```javscript
+{
+    // FIXME
 }
 ```
 
