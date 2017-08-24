@@ -1344,20 +1344,28 @@ is fired.
 
 * **get_transport_services** (node_id, worker_id, transport_id) -> [path_id]
 
+---
+
 
 ### crossbarfabriccenter.remote.router.get_transport_service
 
 * **get_transport_service** (node_id, worker_id, transport_id, path_id) -> path
+
+---
 
 
 ### crossbarfabriccenter.remote.router.start_transport_service
 
 * **start_transport_service** (node_id, worker_id, transport_id, path_id, transport_service_config) -> path_started
 
+---
+
 
 ### crossbarfabriccenter.remote.router.stop_transport_service
 
 * **stop_transport_service** (node_id, worker_id, transport_id, path_id) -> path_stopped
+
+---
 
 
 ### crossbarfabriccenter.remote.router.get_components
@@ -1366,6 +1374,25 @@ Return list of IDs of components in this router worker.
 
 * **get_components** (node_id, worker_id) -> [component_id]
 
+where
+
+* **node_id** (string): ID of node running the router to get transports for
+* **worker_id** (string): ID of the (router) worker to get transports for
+
+and
+
+* **component_id** (string): component ID
+
+is returned:
+
+```javascript
+["component1", "component2"]
+```
+
+> The order of IDs within the list returned is unspecified, but stable.
+
+---
+
 
 ### crossbarfabriccenter.remote.router.get_component
 
@@ -1373,6 +1400,25 @@ Return detailed information about the given router component.
 
 * **get_component** (node_id, worker_id, component_id) -> component
 
+where
+
+* **node_id** (string): ID of node running the router to get the component for
+* **worker_id** (string): ID of the (router) worker to get the component for
+* **component_id** (string): ID of the component to get information for
+
+and
+
+* **component** (dict): component information object
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
+---
 
 ### crossbarfabriccenter.remote.router.start_component
 
@@ -1380,12 +1426,81 @@ Start a new (native Python) user component in this router worker.
 
 * **start_component** (node_id, worker_id, component_id, component_config) -> component_started
 
+where
+
+* **node_id** (string): ID of node running the router to start the component on
+* **worker_id** (string): ID of the (router) worker to start the component on
+* **component_id** (string): optional ID of the (router) component to start. when not given, auto-generated
+* **component_config** (dict): configuration of the component to start
+
+and
+
+* **component_started** (dict): component started information
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
+The call does not return until the component has completely started.
+
+When the new component *is starting*, an event
+
+* **on_transport_component** (node_id, worker_id, component_id)
+
+is fired.
+
+When the new component *is completely started*, an event
+
+* **on_component_started** (node_id, worker_id, component_id, component_started)
+
+is fired.
+
+---
+
 
 ### crossbarfabriccenter.remote.router.stop_component
 
 Stop a user component running in this router worker.
 
 * **stop_component** (node_id, worker_id) -> component_stopped
+
+where
+
+* **node_id** (string): ID of node running the router to stop the component on
+* **worker_id** (string): ID of the (router) worker to stop the component on
+* **component_id** (string): ID of the (router) component to stop
+
+where
+
+* **component_stopped** (dict): component stopped information
+
+is returned:
+
+```javascript
+{
+   // FIXME
+}
+```
+
+The call does not return until the component has completely stopped.
+
+When the component *is stopping*, an event
+
+* **on_component_stopping** (node_id, worker_id, component_id)
+
+is fired.
+
+When the component *is completely stopped*, an event
+
+* **on_component_stopped** (node_id, worker_id, component_id, component_stopped)
+
+is fired.
+
+---
 
 
 ## Container Workers
