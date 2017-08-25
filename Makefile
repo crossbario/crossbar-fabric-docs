@@ -14,3 +14,6 @@ ex_list_subs_regs:
 
 ex_trace_10s:
 	python -u examples/ex_trace_10s.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
+
+ex_cpu_affinity:
+	python -u examples/ex_cpu_affinity.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
