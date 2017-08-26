@@ -7,7 +7,8 @@ from crossbarfabricshell import client
 
 async def main(session):
     """
-    Iterate over all nodes, and all workers on each nodes, and query process statistics.
+    This example demonstrates how to retrieve OS process statistics for
+    Crossbar.io Fabric node controller and worker processes.
     """
     nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
     for node_id in nodes:
