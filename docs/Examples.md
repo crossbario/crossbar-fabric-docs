@@ -68,9 +68,28 @@ APIs covered:
 
 ## Listing Sessions
 
+The example demonstrates listing of WAMP sessions currently joined on router realms running on CF nodes connected to CFC.
+
+This is using the [Remote Realm WAMP meta API](Management-API.md#remote-realm-wamp-meta-api)
+
 The APIs covered:
 
-* `crossbarfabriccenter.remote.root.*`
+* [crossbarfabriccenter.remote.realm.meta.*](Management-API.md#crossbarfabriccenterremoterealmmeta)
+
+---
+
+
+## Listing Subscriptions and Registrations
+
+The example demonstrates listing of WAMP subscriptions and registrations currently active for WAMP sessions on router realms running on CF nodes connected to CFC.
+
+This is using the [Remote Realm WAMP meta API](Management-API.md#remote-realm-wamp-meta-api)
+
+The APIs covered:
+
+* [crossbarfabriccenter.remote.realm.meta.*](Management-API.md#crossbarfabriccenterremoterealmmeta)
+
+---
 
 
 ## Tracing
@@ -88,7 +107,7 @@ The APIs covered:
 * [crossbarfabriccenter.remote.tracing.get_traces](Management-API.md#crossbarfabriccenterremotetracingget_traces)
 * [crossbarfabriccenter.remote.tracing.get_trace](Management-API.md#crossbarfabriccenterremotetracingget_trace)
 * [crossbarfabriccenter.remote.tracing.start_trace](Management-API.md#crossbarfabriccenterremotetracingstart_trace)
-* [crossbarfabriccenter.remote.tracing.stop_trace](Management-API.md#crossbarfabriccenterremotetracingstop_strace)
+* [crossbarfabriccenter.remote.tracing.stop_trace](Management-API.md#crossbarfabriccenterremotetracingstop_trace)
 * [crossbarfabriccenter.remote.tracing.get_trace_data](Management-API.md#crossbarfabriccenterremotetracingget_trace_data)
 
 ---
