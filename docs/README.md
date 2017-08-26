@@ -7,6 +7,7 @@ Welcome to the Crossbar.io Fabric Documentation.
 
 **Contents:**
 
+* [Getting Started](Getting-Started.md)
 * [Examples](Examples.md)
 * [APIs](APIs.md)
    * [Global API](Global-API.md)
