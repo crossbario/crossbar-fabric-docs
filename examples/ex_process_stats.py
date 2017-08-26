@@ -7,11 +7,15 @@ from crossbarfabricshell import client
 
 async def main(session):
     """
-    Iterate over all nodes, and all workers on each nodes to retrieve and
-    print worker information. then exit.
+    Iterate over all nodes, and all workers on each nodes, and query process statistics.
     """
     nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
     for node_id in nodes:
+
+        # get process stats for node controller process
+        process_stats = await session.call(u'crossbarfabriccenter.remote.node.get_process_stats', node_id)
+        session.log.info('Process stats for node controller on node {node_id}:', node_id=node_id)
+        pprint(process_stats)
 
         workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
         for worker_id in workers:
@@ -19,6 +23,11 @@ async def main(session):
                                         node_id, worker_id,
                                         include_stats=True)
             session.log.info('Node "{node_id}" / Worker "{worker_id}": {worker}', node_id=node_id, worker_id=worker_id, worker=worker)
+
+            # get process stats for worker process
+            process_stats = await session.call(u'crossbarfabriccenter.remote.worker.get_process_stats', node_id, worker_id)
+            session.log.info('Process stats for worker {worker_id} on node {node_id}:', node_id=node_id, worker_id=worker_id)
+            pprint(process_stats)
 
 
 if __name__ == '__main__':

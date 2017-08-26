@@ -1,7 +1,7 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-import asyncio
 import pprint
+import asyncio
 
 from crossbarfabricshell import client
 
@@ -62,7 +62,7 @@ async def main(session):
                     node_id=node_id, worker_id=worker_id, trace_id=trace_id,
                     trace_options=trace_options)
 
-    trace_time = 10
+    trace_time = 2
     session.log.info('Ok, traces started: {started_traces}\nNow tracing for {trace_time} secs ..',
                      started_traces=started_traces, trace_time=trace_time)
     await asyncio.sleep(trace_time)
