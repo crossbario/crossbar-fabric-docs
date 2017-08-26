@@ -19,46 +19,23 @@ GET_ROUTER_REALMS = u'crossbarfabriccenter.remote.router.get_router_realms'
 # exactly the same as a WAMP client locally attached to the respective app router
 # would see.
 #
-def _remote_root(uri):
-    s = u'crossbarfabriccenter.node.{{node_id}}.worker.{{worker_id}}.realm.{{realm}}.root.{uri}'.format(uri=uri)
-    def _fun(node_id, worker_id, realm):
-        return s.format(node_id=node_id, worker_id=worker_id, realm=realm)
-    return _fun
 
-GET_SESSIONS = _remote_root(u'wamp.session.list')
-GET_SESSION = _remote_root(u'wamp.session.get')
+WAMP = u'crossbarfabriccenter.remote.realm.meta.{}'
 
-GET_SUBSCRIPTIONS = _remote_root(u'wamp.subscription.list')
-GET_SUBSCRIPTION = _remote_root(u'wamp.subscription.get')
+GET_SESSIONS = WAMP.format(u'wamp.session.list')
+GET_SESSION = WAMP.format(u'wamp.session.get')
+GET_SUBSCRIPTIONS = WAMP.format(u'wamp.subscription.list')
+GET_SUBSCRIPTION = WAMP.format(u'wamp.subscription.get')
+GET_REGISTRATIONS = WAMP.format(u'wamp.registration.list')
+GET_REGISTRATION = WAMP.format(u'wamp.registration.get')
 
-
-GET_REGISTRATIONS = _remote_root(u'wamp.registration.list')
-GET_REGISTRATION = _remote_root(u'wamp.registration.get')
-
-#GET_SESSIONS = u'crossbarfabriccenter.remote.realm.wamp.session.list'
-#GET_SESSION = u'crossbarfabriccenter.remote.realm.wamp.session.get'
-
-
-# ideal for an embedded router component: thin layer of API transformation:
-#
-#
-# prefix registration on "crossbarfabriccenter.remote.realm." that translates as this:
-#
-#  - crossbarfabriccenter.remote.realm.{uri:string}(node_id, worker_id, realm_id, *args, details=None, **kwargs)
-#      =>
-#  - crossbarfabriccenter.node.{node_id:string}.worker.{worker_id:string}.realm.{realm_id:string}.root.{uri:string}(*args, **kwargs)
-#
-#
-# prefix subscription to "crossbarfabriccenter.node." that translates as this:
-#
-#  - crossbarfabriccenter.node.{node_id:string}.worker.{worker_id:string}.realm.{realm_id:string}.root.{uri:string}(*args, **kwargs)
-#     =>
-#  - crossbarfabricenter.remote.realm.{uri:string}(node_id, worker_id, realm_id, *args, **kwargs)
 
 async def main(session):
     """
-    Iterate over all nodes, and all workers on each nodes to retrieve and
-    print worker information. then exit.
+    Iterate over all nodes, and all (router) workers on each node, all realms
+    on each router, list of sessions on each, and then retrieve list of subscriptions
+    and list of registrations for each session. if verbose, retrieve details for
+    each subscription and registration.
     """
     verbose = True
 
@@ -76,11 +53,11 @@ async def main(session):
                 realms = await session.call(GET_ROUTER_REALMS, node_id, worker_id)
                 print('    realms on worker {}: {}'.format(worker_id, realms))
                 for realm in realms:
-                    sessions = await session.call(GET_SESSIONS(node_id, worker_id, realm))
+                    sessions = await session.call(GET_SESSIONS, node_id, worker_id, realm)
                     print('        sessions on realm {}: {}'.format(realm, sessions))
                     for session_id in sessions:
 
-                        subscriptions = await session.call(GET_SUBSCRIPTIONS(node_id, worker_id, realm), session_id)
+                        subscriptions = await session.call(GET_SUBSCRIPTIONS, node_id, worker_id, realm, session_id)
                         sub_ids = list(itertools.chain(*subscriptions.values()))
                         print('          subscriptions on session {}: {}'.format(session_id, sub_ids))
 
@@ -88,10 +65,10 @@ async def main(session):
                             for sub_type, sub_ids in subscriptions.items():
                                 for sub_id in sub_ids:
                                     if sub_id not in subs_out:
-                                        sub = await session.call(GET_SUBSCRIPTION(node_id, worker_id, realm), sub_id)
+                                        sub = await session.call(GET_SUBSCRIPTION, node_id, worker_id, realm, sub_id)
                                         subs_out[sub_id] = sub
 
-                        registrations = await session.call(GET_REGISTRATIONS(node_id, worker_id, realm), session_id)
+                        registrations = await session.call(GET_REGISTRATIONS, node_id, worker_id, realm, session_id)
                         reg_ids = list(itertools.chain(*registrations.values()))
                         print('          registrations on session {}: {}'.format(session_id, reg_ids))
 
@@ -99,7 +76,7 @@ async def main(session):
                             for reg_type, reg_ids in registrations.items():
                                 for reg_id in reg_ids:
                                     if reg_id not in regs_out:
-                                        reg = await session.call(GET_REGISTRATION(node_id, worker_id, realm), reg_id)
+                                        reg = await session.call(GET_REGISTRATION, node_id, worker_id, realm, reg_id)
                                         regs_out[reg_id] = reg
 
     if verbose:
