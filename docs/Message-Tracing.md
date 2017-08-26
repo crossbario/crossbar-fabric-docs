@@ -8,33 +8,9 @@ Crossbar.io Fabric nodes, as part of the *router extensions* that come with it, 
 
 ## Tracing API
 
-### Overview
-
 The message tracing feature in Crossbar.io Fabric nodes is exposed as part of the Crossbar.io Fabric Center management API and available to any management client or app connecting to CFC.
 
-The Tracing API consists of these procedures:
-
-* `crossbarfabriccenter.list_traces(node_id, worker_id)` - List all currently running traces on the given (router) worker.
-* `crossbarfabriccenter.get_trace(node_id, worker_id, trace_id)` - Get metadata about the given trace.
-* `crossbarfabriccenter.stop_trace(node_id, worker_id, trace_id)` - Stop the given trace.
-* `crossbarfabriccenter.start_trace(node_id, worker_id, trace_id, trace_options)` - Start a new trace on the given worker, with options for filtering and persistence.
-* `crossbarfabriccenter.get_trace_data(node_id, worker_id, trace_id, from_seq, to_seq, limit)` - Return traced data from a trace and a given range and/or limit.
-
-
-Eg here is how to iterate over nodes, over (router) workers, and traces:
-
-```python
-nodes = yield session.call(u'crossbarfabriccenter.list_nodes')
-for node_id in nodes:
-    workers = yield session.call(u'crossbarfabriccenter.list_workers', node_id)
-    for worker_id in workers:
-        worker = yield session.call(u'crossbarfabriccenter.get_worker', node_id, worker_id)
-        if worker[u'type'] == u'router':
-            traces = yield session.call(u'crossbarfabriccenter.list_traces', node_id, worker_id)
-            for trace_id in traces:
-                trace = yield session.call(u'crossbarfabriccenter.get_trace', node_id, worker_id, trace_id)
-                print(trace)
-```
+The Tracing API is described [here](Management-Api.md#messagetracing).
 
 ---
 
