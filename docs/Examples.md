@@ -70,6 +70,8 @@ APIs covered:
 
 The example demonstrates listing of WAMP sessions currently joined on router realms running on CF nodes connected to CFC.
 
+* [ex_list_sessions.py](../examples/ex_list_sessions.py)
+
 This is using the [Remote Realm WAMP meta API](Management-API.md#remote-realm-wamp-meta-api)
 
 The APIs covered:
@@ -82,6 +84,8 @@ The APIs covered:
 ## Listing Subscriptions and Registrations
 
 The example demonstrates listing of WAMP subscriptions and registrations currently active for WAMP sessions on router realms running on CF nodes connected to CFC.
+
+* [ex_list_subs_regs.py](../examples/ex_list_subs_regs.py)
 
 This is using the [Remote Realm WAMP meta API](Management-API.md#remote-realm-wamp-meta-api)
 
