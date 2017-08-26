@@ -81,14 +81,14 @@ This allows to tap into the feeds of WAMP messages flowing through the routing c
 
 The example will iterate over all router workers on all CF nodes, stop all traces (if any), and start a new trace on each router worker. It will run the trace for 10s, stop the traces and retrieve tracing data collected during the trace.
 
-* [ex_trace_10s.py](../examples/ex_trace_10s.py)
+* [ex_tracing.py](../examples/ex_tracing.py)
 
 The APIs covered:
 
-* `crossbarfabriccenter.remote.get_router_traces`
-* `crossbarfabriccenter.remote.get_router_trace`
-* `crossbarfabriccenter.remote.start_router_trace`
-* `crossbarfabriccenter.remote.stop_router_trace`
-* `crossbarfabriccenter.remote.get_router_trace_data`
+* [crossbarfabriccenter.remote.tracing.get_traces](Management-API.md#crossbarfabriccenterremotetracingget_traces)
+* [crossbarfabriccenter.remote.tracing.get_trace](Management-API.md#crossbarfabriccenterremotetracingget_trace)
+* [crossbarfabriccenter.remote.tracing.start_trace](Management-API.md#crossbarfabriccenterremotetracingstart_trace)
+* [crossbarfabriccenter.remote.tracing.stop_trace](Management-API.md#crossbarfabriccenterremotetracingstop_strace)
+* [crossbarfabriccenter.remote.tracing.get_trace_data](Management-API.md#crossbarfabriccenterremotetracingget_trace_data)
 
 ---
