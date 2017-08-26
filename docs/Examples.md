@@ -13,20 +13,20 @@ This example demonstrates how  to connect to CFC and retrieve status. That's it.
 
 The APIs covered:
 
-* `crossbarfabriccenter.get_status`
+* [crossbarfabriccenter.mrealm.get_status](Management-API.md#crossbarfabriccentermrealmget_status)
 
 
 ## Listing workers
 
-This example demonstrates how to iterate over the currently connected CF nodes, and on each node, iterate over the currently running workers to retrieve worker information.
+This example demonstrates how to iterate over the (currently connected) CF nodes, and on each node, iterate over the currently running workers to retrieve worker information.
 
 * [ex_list_workers.py](../examples/ex_list_workers.py)
 
 The APIs covered:
 
-* `crossbarfabriccenter.get_nodes`
-* `crossbarfabriccenter.remote.get_workers`
-* `crossbarfabriccenter.remote.get_worker`
+* [crossbarfabriccenter.mrealm.get_nodes](Management-API.md#crossbarfabriccentermrealmget_nodes)
+* [crossbarfabriccenter.remote.node.get_workers](Management-API.md#crossbarfabriccenterremotenodeget_workers)
+* [crossbarfabriccenter.remote.node.get_worker](Management-API.md#crossbarfabriccenterremotenodeget_worker)
 
 
 ## Listing Sessions

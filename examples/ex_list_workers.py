@@ -1,7 +1,5 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-from pprint import pprint
-
 from crossbarfabricshell import client
 
 
