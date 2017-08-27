@@ -10,7 +10,7 @@ This repository contains example code for programming against the Crossbar.io Fa
 * [Get Status](#get-status)
 * [Listing Workers](#listing-workers)
 * [Starting Routers](#starting-routers)
-* [Listing Session](#listing-session)
+* [Listing Sessions](#listing-sessions)
 * [Listing Registrations and Subscriptions](#listing-registrations-and-subscriptions)
 * [Worker CPU Affinity](#worker-cpu-affinity)
 * [Process Statistics](#process-statistics)
@@ -84,7 +84,7 @@ The APIs covered:
 ---
 
 
-## Listing Subscriptions and Registrations
+## Listing Registrations and Subscriptions
 
 The example demonstrates listing of WAMP subscriptions and registrations currently active for WAMP sessions on router realms running on CF nodes connected to CFC.
 
@@ -99,7 +99,7 @@ The APIs covered:
 ---
 
 
-## CPU Affinity
+## Worker CPU Affinity
 
 Demonstrates getting/setting the CPU affinity set of CF workers.
 
