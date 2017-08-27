@@ -3,7 +3,7 @@
 The repository contains the public documentation (source), example source code and user issues for Crossbar.io Fabric:
 
 * [Crossbar.io Fabric Documentation (Source)](docs)
-* [Crossbar.io Fabric Examples](examples)
+* [Crossbar.io Fabric Examples](docs/Examples.md)
 * [Crossbar.io Fabric Issue Tracker](https://github.com/crossbario/crossbar-fabric-public/issues)
 
 ---
