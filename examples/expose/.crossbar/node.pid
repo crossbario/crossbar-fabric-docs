@@ -1,0 +1,19 @@
+{
+    "pid": 13214, 
+    "options": {
+        "reactor": null, 
+        "cdc": false, 
+        "loglevel": "info", 
+        "logtofile": false, 
+        "logformat": "standard", 
+        "command": "start", 
+        "logdir": null, 
+        "config": "config.json", 
+        "colour": "auto", 
+        "cbdir": "/home/oberstet/scm/crossbario/crossbar-examples/containers/basic/.crossbar"
+    }, 
+    "argv": [
+        "/home/oberstet/cpy2711_2/bin/crossbar", 
+        "start"
+    ]
+}
