@@ -2,6 +2,7 @@ examples: \
 	ex_status \
 	ex_list_workers \
 	ex_start_router \
+	ex_guest_worker \
 	ex_list_sessions \
 	ex_list_subs_regs \
 	ex_cpu_affinity \
@@ -18,6 +19,9 @@ ex_list_workers:
 
 ex_start_router:
 	python -u examples/ex_start_router.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
+
+ex_guest_worker:
+	python -u examples/ex_guest_worker.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_sessions:
 	python -u examples/ex_list_sessions.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
