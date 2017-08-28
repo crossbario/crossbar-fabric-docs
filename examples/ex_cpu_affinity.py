@@ -19,7 +19,7 @@ async def main(session):
     """
 
     # iterate over nodes in management realm
-    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
+    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', status=u'online')
     for node_id in nodes:
 
         # get node detail information (including current node status)

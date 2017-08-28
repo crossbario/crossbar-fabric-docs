@@ -30,7 +30,7 @@ async def main(session):
     Iterate over all nodes, and all (router) workers on each node, all realms
     on each router, list of sessions on each, and then retrieve session detail info.
     """
-    nodes = await session.call(GET_NODES)
+    nodes = await session.call(GET_NODES, status=u'online')
     for node_id in nodes:
         workers = await session.call(GET_WORKERS, node_id)
         for worker_id in workers:

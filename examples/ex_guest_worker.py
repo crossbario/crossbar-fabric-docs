@@ -26,7 +26,7 @@ async def main(session):
     '''
     workers_started = []
 
-    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
+    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', status=u'online')
     for node_id in nodes:
 
         workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers',
@@ -62,7 +62,7 @@ async def main(session):
     await asyncio.sleep(2)
 
     # stop all workers we started
-    if True:
+    if False:
         for node_id, worker_id in workers_started:
             worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker',
                                                 node_id,

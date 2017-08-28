@@ -1,5 +1,6 @@
 examples: \
 	ex_status \
+	ex_list_nodes \
 	ex_list_workers \
 	ex_start_router \
 	ex_guest_worker \
@@ -13,6 +14,9 @@ examples: \
 
 ex_status:
 	python -u examples/ex_status.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
+
+ex_list_nodes:
+	python -u examples/ex_list_nodes.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_workers:
 	python -u examples/ex_list_workers.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
@@ -40,3 +44,6 @@ ex_worker_log:
 
 ex_tracing:
 	python -u examples/ex_tracing.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv
+
+ex_docker:
+	python -u examples/ex_docker.py --url ws://localhost:9000/ws --realm test1 --keyfile ${HOME}/.cbf/default.priv

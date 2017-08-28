@@ -53,7 +53,7 @@ async def main(session):
         # remember (router) workers we started
         workers_started = []
 
-        nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
+        nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', status=u'online')
         for node_id in nodes:
 
             workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)

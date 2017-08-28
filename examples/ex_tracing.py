@@ -16,7 +16,7 @@ async def main(session):
     started_traces = []
 
     # iterate over nodes, over (router) workers, and traces:
-    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
+    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', status=u'online')
     for node_id in nodes:
         workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
         session.log.info('Node "{node_id}" is running these workers: {workers}', node_id=node_id,

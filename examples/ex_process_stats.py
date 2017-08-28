@@ -10,7 +10,7 @@ async def main(session):
     This example demonstrates how to retrieve OS process statistics for
     Crossbar.io Fabric node controller and worker processes.
     """
-    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes')
+    nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', status=u'online')
     for node_id in nodes:
 
         # get process stats for node controller process

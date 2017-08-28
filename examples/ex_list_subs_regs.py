@@ -42,7 +42,7 @@ async def main(session):
     regs_out = {}
     subs_out = {}
 
-    nodes = await session.call(GET_NODES)
+    nodes = await session.call(GET_NODES, status=u'online')
     print('nodes: {}'.format(nodes))
     for node_id in nodes:
         workers = await session.call(GET_WORKERS, node_id)
