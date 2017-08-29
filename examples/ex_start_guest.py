@@ -62,7 +62,7 @@ async def main(session):
     await asyncio.sleep(2)
 
     # stop all workers we started
-    if False:
+    if True:
         for node_id, worker_id in workers_started:
             worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker',
                                                 node_id,

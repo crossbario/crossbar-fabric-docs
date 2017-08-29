@@ -7,15 +7,18 @@ This repository contains example code for programming against the Crossbar.io Fa
 
 **Examples:**
 
-* [Get Status](#get-status)
-* [Listing Workers](#listing-workers)
-* [Starting Routers](#starting-routers)
-* [Listing Sessions](#listing-sessions)
-* [Listing Registrations and Subscriptions](#listing-registrations-and-subscriptions)
-* [Worker CPU Affinity](#worker-cpu-affinity)
-* [Process Statistics](#process-statistics)
-* [Worker Logs](#worker-logs)
-* [Message Tracing](#message-tracing)
+1. [Get Status](#get-status)
+1. [Listing Nodes](#listing-nodes)
+1. [Listing Workers](#listing-workers)
+1. [Starting Routers](#starting-routers)
+1. [Starting Guests](#starting-guests)
+1. [Listing Sessions](#listing-sessions)
+1. [Listing Registrations and Subscriptions](#listing-registrations-and-subscriptions)
+1. [Worker CPU Affinity](#worker-cpu-affinity)
+1. [Process Statistics](#process-statistics)
+1. [Worker Logs](#worker-logs)
+1. [Message Tracing](#message-tracing)
+1. [Manage Docker](#manage-docker)
 
 ---
 
@@ -29,6 +32,21 @@ This example demonstrates how  to connect to CFC and retrieve status. That's it.
 APIs covered:
 
 * [crossbarfabriccenter.mrealm.get_status](Management-API.md#crossbarfabriccentermrealmget_status)
+
+---
+
+
+## Listing nodes
+
+This example demonstrates how to iterate over the CF nodes in a management realm and retrieve detailed node status from nodes which are online.
+
+* [ex_list_workers.py](../examples/ex_list_nodes.py)
+
+APIs covered:
+
+* [crossbarfabriccenter.mrealm.get_nodes](Management-API.md#crossbarfabriccentermrealmget_nodes)
+* [crossbarfabriccenter.mrealm.get_node](Management-API.md#crossbarfabriccentermrealmget_node)
+* [crossbarfabriccenter.remote.node.get_status](Management-API.md#crossbarfabriccenterremotenodeget_status)
 
 ---
 
@@ -65,6 +83,22 @@ APIs covered:
 * [crossbarfabriccenter.remote.router.stop_router_realm_role](Management-API.md#crossbarfabriccenterremoterouterstop_router_realm_role)
 * [crossbarfabriccenter.remote.router.start_router_transport](Management-API.md#crossbarfabriccenterremoterouterstart_router_transport)
 * [crossbarfabriccenter.remote.router.stop_router_transport](Management-API.md#crossbarfabriccenterremoterouterstop_router_transport)
+
+---
+
+
+## Starting Guests
+
+This example demonstrates how to dynamically start and stop guest workers on a node.
+
+* [ex_start_guest.py](../examples/ex_start_guest.py)
+
+APIs covered:
+
+* [crossbarfabriccenter.mrealm.get_nodes](Management-API.md#crossbarfabriccentermrealmget_nodes)
+* [crossbarfabriccenter.remote.node.get_workers](Management-API.md#crossbarfabriccenterremotenodeget_workers)
+* [crossbarfabriccenter.remote.node.start_worker](Management-API.md#crossbarfabriccenterremotenodestart_worker)
+* [crossbarfabriccenter.remote.node.stop_worker](Management-API.md#crossbarfabriccenterremotenodestop_worker)
 
 ---
 
@@ -159,5 +193,32 @@ The APIs covered:
 * [crossbarfabriccenter.remote.tracing.start_trace](Management-API.md#crossbarfabriccenterremotetracingstart_trace)
 * [crossbarfabriccenter.remote.tracing.stop_trace](Management-API.md#crossbarfabriccenterremotetracingstop_trace)
 * [crossbarfabriccenter.remote.tracing.get_trace_data](Management-API.md#crossbarfabriccenterremotetracingget_trace_data)
+
+---
+
+
+## Manage Docker
+
+**This is under development and not yet working.**
+
+Crossbar.io Fabric allows to remotely manage a Docker daemon running on the host the Crossbar.io Fabric node is deployed on.
+
+This allows to dynamically provision, deploy and manage application components wrapped in Docker containers on CF nodes.
+
+* [ex_docker.py](../examples/ex_docker.py)
+
+The APIs covered:
+
+* [crossbarfabriccenter.mrealm.get_nodes](Management-API.md#crossbarfabriccentermrealmget_nodes)
+* [crossbarfabriccenter.remote.node.get_status](Management-API.md#crossbarfabriccenterremotenodeget_status)
+* [crossbarfabriccenter.remote.docker.get_status](Management-API.md#crossbarfabriccenterremotedockerget_status)
+* [crossbarfabriccenter.remote.docker.get_containers](Management-API.md#crossbarfabriccenterremotedockerget_containers)
+* [crossbarfabriccenter.remote.docker.get_container](Management-API.md#crossbarfabriccenterremotedockerget_container)
+* [crossbarfabriccenter.remote.docker.start_container](Management-API.md#crossbarfabriccenterremotedockerstart_container)
+* [crossbarfabriccenter.remote.docker.stop_container](Management-API.md#crossbarfabriccenterremotedockerstop_container)
+* [crossbarfabriccenter.remote.docker.get_images](Management-API.md#crossbarfabriccenterremotedockerget_images)
+* [crossbarfabriccenter.remote.docker.get_image](Management-API.md#crossbarfabriccenterremotedockerget_image)
+* [crossbarfabriccenter.remote.docker.update_image](Management-API.md#crossbarfabriccenterremotedockerupdate_image)
+* [crossbarfabriccenter.remote.docker.remove_image](Management-API.md#crossbarfabriccenterremotedockerremove_image)
 
 ---
