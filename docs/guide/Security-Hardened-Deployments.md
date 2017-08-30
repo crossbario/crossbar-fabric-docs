@@ -1,5 +1,5 @@
 title: Security Hardened Deployments
-toc: [Documentation, Security Hardened Deployments]
+toc: [Documentation, Guides, Security Hardened Deployments]
 
 # Security hardened deployments
 
