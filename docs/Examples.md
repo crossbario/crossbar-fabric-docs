@@ -7,18 +7,18 @@ This repository contains example code for programming against the Crossbar.io Fa
 
 **Examples:**
 
-1. [Get Status](#get-status)
-1. [Listing Nodes](#listing-nodes)
-1. [Listing Workers](#listing-workers)
-1. [Starting Routers](#starting-routers)
-1. [Starting Guests](#starting-guests)
-1. [Listing Sessions](#listing-sessions)
-1. [Listing Registrations and Subscriptions](#listing-registrations-and-subscriptions)
-1. [Worker CPU Affinity](#worker-cpu-affinity)
-1. [Process Statistics](#process-statistics)
-1. [Worker Logs](#worker-logs)
-1. [Message Tracing](#message-tracing)
-1. [Manage Docker](#manage-docker)
+* [Get Status](#get-status)
+* [Listing Nodes](#listing-nodes)
+* [Listing Workers](#listing-workers)
+* [Starting Routers](#starting-routers)
+* [Starting Guests](#starting-guests)
+* [Listing Sessions](#listing-sessions)
+* [Listing Registrations and Subscriptions](#listing-registrations-and-subscriptions)
+* [Worker CPU Affinity](#worker-cpu-affinity)
+* [Process Statistics](#process-statistics)
+* [Worker Logs](#worker-logs)
+* [Message Tracing](#message-tracing)
+* [Manage Docker](#manage-docker)
 
 ---
 
