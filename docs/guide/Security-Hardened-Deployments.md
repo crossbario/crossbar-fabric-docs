@@ -7,17 +7,17 @@ The following describes a high-security, best-practice system setup of Crossbar.
 
 **Contents:**
 
-1. [Operating Systems](#operating-systems)
-1. [Going to Production](#going-to-production)
-1. [Host Firewall](#host-firewall)
-1. [Running Dockerized](#running-dockerized)
-1. [Public facing transports](#public-facing-transports)
-1. [Backend Application Components](#backend-application-components)
+* [Operating Systems](#operating-systems)
+* [Going to Production](#going-to-production)
+* [Host Firewall](#host-firewall)
+* [Running Dockerized](#running-dockerized)
+* [Public facing transports](#public-facing-transports)
+* [Backend Application Components](#backend-application-components):
    - [Dockerizing Components](#dockerizing-components)
    - [Network Isolation](#network-isolation)
    - [Disk Isolation](#disk-isolation)
    - [Router Connections and Authentication](#router-connections-and-authentication)
-1. [Unneeded and Unwanted Features](#unneeded-and-unwanted-features):
+* [Unneeded and Unwanted Features](#unneeded-and-unwanted-features):
    - [Static Web Content](#static-web-content)
    - [Web Services](#web-services)
    - [Router Components](#router-components)
@@ -29,7 +29,7 @@ The following describes a high-security, best-practice system setup of Crossbar.
 
 ## Operating Systems
 
-**In short: use Debian, Ubuntu Server or Ubuntu Core**
+> **Summary: use Debian, Ubuntu Server or Ubuntu Core**
 
 Write me.
 
@@ -45,7 +45,7 @@ We have a series of hints and tips [going to production](http://crossbar.io/docs
 
 ## Host Firewall
 
-**In short: use Linux iptables and deny any traffic but in- and outgoing traffic for TCP/443 (HTTPS and secure WebSocket).**
+> **Summary: use Linux iptables and deny any traffic but in- and outgoing traffic for TCP/443 (HTTPS and secure WebSocket).**
 
 It is highly recommended to run a kernel based, stateful, layer 4 firewall on the host running Crossbar.io Fabric.
 
@@ -69,7 +69,7 @@ Possible exceptions:
 
 ## Host Network Segregation
 
-**In short: if possible, use separate networks and interfaces for public Internet facing, and private clients facing sides**
+> **Summary: if possible, use separate networks and interfaces for public Internet facing, and private clients facing sides**
 
 Write me.
 
@@ -78,7 +78,7 @@ Write me.
 
 ## Running Dockerized
 
-**In short: use our official Docker images for Crossbar.io Fabric.**
+> **Summary: use our official Docker images for Crossbar.io Fabric.**
 
 Using Docker is our recommended way of [Getting Started with Crossbar.io](http://crossbar.io/docs/Getting-Started/).
 
@@ -104,7 +104,7 @@ The Crossbar.io Fabric node directory inside the Docker container should be moun
 
 ## Public facing transports
 
-**In short: use TLS-only with WebSocket**
+> **Summary: use TLS-only with WebSocket**
 
 For WAMP listening transports on Crossbar.io Fabric router workers that accept connections from clients over the public Internet, we recommend this transport:
 
@@ -200,7 +200,7 @@ It's recommended to test your final setup using above SSL Labs Test. Don't forge
 
 ## Backend Application Components
 
-**In short: use Docker based app components connected over Unix domain sockets**
+> **Summary: use Docker based app components connected over Unix domain sockets**
 
 Backend application components are WAMP components (often Autobahn based) that are run in the backend parts of an application, often on cloud systems, that is system which are reachable in the public Internet.
 
@@ -214,7 +214,7 @@ To integrate backend application components into the overall system, two things 
 
 ### Dockerizing Components
 
-**In short: package and run your app components as Docker images and containers**
+> **Summary: package and run your app components as Docker images and containers**
 
 The recommended setup runs backend application components in Docker containers.
 
@@ -233,7 +233,7 @@ Using Docker in this way comes with a couple of benefits:
 
 ### Network Isolation
 
-**In short: no need to allow any networking (ingoing and outgoing) for app containers**
+> **Summary: no need to allow any networking (ingoing and outgoing) for app containers**
 
 When backend application components provide business logic only, and do not need to talk to the outside world other than via WAMP and Crossbar.io, then there is no need for the backend component to be given _any_ network access.
 
@@ -246,7 +246,7 @@ To achieve this kind of full network isolation is easy using Docker, since when 
 
 ### Disk Isolation
 
-**In short: no need to mount any disk/filesystem to an app container.**
+> **Summary: no need to mount any disk/filesystem to an app container.**
 
 Backend components - in general - should not store data persistently on disk. There should be database backed services elsewhere in overall system. (there are exceptions of course)
 
@@ -261,7 +261,7 @@ But _backend_ application components don't even need that - they can be authenti
 
 ### Router Connections and Authentication
 
-**In short: use Unix domain sockets (per component) with WAMP/RawSocket-CBOR**
+> **Summary: use Unix domain sockets (per component) with WAMP/RawSocket-CBOR**
 
 So how does the backend application component connect to Crossbar.io, given that we have denied it _any_ kind of network access - even to another container (such as Crossbar.io) running on the same host!
 
@@ -294,7 +294,7 @@ Write me.
 
 ### Static Web Content
 
-**In short: use a CDN.**
+> **Summary: use a CDN.**
 
 Crossbar.io Fabric, when used as a simple Web server for static content is [pretty fast](https://github.com/crossbario/crossbar-examples/tree/master/benchmark/web). Nginx is faster of course. Then who needs to push millions of Web requests per second?
 
@@ -309,7 +309,7 @@ CDNs deliver static content like nothing else. And this part of your traffic is 
 
 ### Web Services
 
-**In short: don't use any. there are special packages for most of this stuff, or it is for deprecated old clients (which you also don't want to support, because they are a liability)**
+> **Summary: don't use any. there are special packages for most of this stuff, or it is for deprecated old clients (which you also don't want to support, because they are a liability)**
 
 Crossbar.io Fabric supports a rich set of [Web Transport Services](http://crossbar.io/docs/Web-Transport-and-Services/):
 
@@ -343,14 +343,14 @@ None of these are essential. All of these have other more specialized solutions,
 
 ### MQTT Bridge
 
-**In short: don't use MQTT on new stuff and migrate old clients to WAMP in medium term**
+> **Summary: don't use MQTT on new stuff and migrate old clients to WAMP in medium term**
 
 ---
 
 
 ### Router Components
 
-**In short: use Dockerized application components instead.**
+> **Summary: use Dockerized application components instead.**
 
 Write me.
 
@@ -359,7 +359,7 @@ Write me.
 
 ### Container Workers and Components
 
-**In short: use Dockerized application components instead.**
+> **Summary: use Dockerized application components instead.**
 
 Write me.
 
@@ -368,7 +368,7 @@ Write me.
 
 ### Guest Workers
 
-**In short: use Dockerized application components instead.**
+> **Summary: use Dockerized application components instead.**
 
 Write me.
 

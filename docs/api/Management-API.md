@@ -496,6 +496,8 @@ Stop a worker currently running on a node.
 
 * **stop_worker** (node_id, worker_id) -> worker_stopped
 
+where
+
 * **node_id** (string): ID of the node to stop the worker on
 * **worker_id** (string): ID of the worker to stop
 
@@ -1311,7 +1313,7 @@ where
 * **worker_id** (string): ID of the (router) worker to stop the transport on
 * **transport_id** (string): ID of the (router) transport to stop
 
-where
+and
 
 * **transport_stopped** (dict): transport stopped information
 
@@ -1474,7 +1476,7 @@ where
 * **worker_id** (string): ID of the (router) worker to stop the component on
 * **component_id** (string): ID of the (router) component to stop
 
-where
+and
 
 * **component_stopped** (dict): component stopped information
 

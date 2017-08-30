@@ -1,7 +1,7 @@
 title: Examples
 toc: [Documentation, Examples]
 
-# Crossbar.io Fabric Examples
+# Examples
 
 This repository contains example code for programming against the Crossbar.io Fabric Center (CFC) API to remotely manage and monitor your Crossbar.io Fabric (CF) nodes connected to CFC.
 

@@ -1,7 +1,7 @@
 title: Message Tracing
 toc: [Documentation, Guides, Message Tracing]
 
-# Message Tracing with Crossbar.io Fabric
+# Message Tracing
 
 Crossbar.io Fabric nodes, as part of the *router extensions* that come with it, contains code to trace all WAMP messages flowing through the routing core of Crossbar.io.
 
