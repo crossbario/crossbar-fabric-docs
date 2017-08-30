@@ -149,7 +149,7 @@ where
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
@@ -174,7 +174,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
@@ -201,7 +201,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
@@ -245,7 +245,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
@@ -312,7 +312,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
@@ -339,7 +339,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
@@ -454,7 +454,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }
