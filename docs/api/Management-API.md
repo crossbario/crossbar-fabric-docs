@@ -121,7 +121,7 @@ Permissions specific which WAMP actions is allowed on which URI (pattern) for th
 
 * [ ] [crossbarfabriccenter.remote.router.get_role_permissions](#crossbarfabriccenterremoterouterget_role_permissions)
 * [ ] [crossbarfabriccenter.remote.router.get_role_permission](#crossbarfabriccenterremoterouterget_role_permission)
-* [ ] [crossbarfabriccenter.remote.router.start_role_permission](#crossbarfabriccenterremoterouterstart_ŕole_permission)
+* [ ] [crossbarfabriccenter.remote.router.start_role_permission](#crossbarfabriccenterremoterouterstart_role_permission)
 * [ ] [crossbarfabriccenter.remote.router.stop_role_permission](#crossbarfabriccenterremoterouterstop_role_permission)
 
 
@@ -1167,7 +1167,7 @@ is fired.
 ---
 
 
-### crossbarfabriccenter.remote.router.stop_permission_role
+### crossbarfabriccenter.remote.router.stop_role_permission
 
 Stop a permission currently running in a role on a realm in a router worker.
 
