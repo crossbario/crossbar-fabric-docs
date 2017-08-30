@@ -440,7 +440,7 @@ and
 
 is returned:
 
-```javscript
+```javascript
 {
     // FIXME
 }

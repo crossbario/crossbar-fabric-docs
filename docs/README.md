@@ -9,9 +9,9 @@ Welcome to the Crossbar.io Fabric Documentation.
 
 * [Getting Started](Getting-Started.md)
 * [Examples](Examples.md)
-* [APIs](APIs.md)
-   * [Global API](Global-API.md)
-   * [Management API](Management-API.md)
+* [APIs](api)
+   * [Global API](api/Global-API.md)
+   * [Management API](api/Management-API.md)
 * [Message Tracing](Message-Tracing.md)
 * [Security Hardened Deployments](Security-Hardened-Deployments.md)
 * [Change Log](Change-Log.md)
