@@ -11,6 +11,7 @@ This repository contains example code for programming against the Crossbar.io Fa
 * [Listing Nodes](#listing-nodes)
 * [Listing Workers](#listing-workers)
 * [Starting Routers](#starting-routers)
+* [Starting Proxies](#starting-proxies)
 * [Starting Guests](#starting-guests)
 * [Listing Sessions](#listing-sessions)
 * [Listing Registrations and Subscriptions](#listing-registrations-and-subscriptions)
@@ -83,6 +84,30 @@ APIs covered:
 * [crossbarfabriccenter.remote.router.stop_router_realm_role](api/Management-API.md#crossbarfabriccenterremoterouterstop_router_realm_role)
 * [crossbarfabriccenter.remote.router.start_router_transport](api/Management-API.md#crossbarfabriccenterremoterouterstart_router_transport)
 * [crossbarfabriccenter.remote.router.stop_router_transport](api/Management-API.md#crossbarfabriccenterremoterouterstop_router_transport)
+
+---
+
+
+## Starting Proxies
+
+This example demonstrates how to dynamically start and stop proxy workers on a node.
+
+* [ex_start_proxy.py](https://github.com/crossbario/crossbar-fabric-public/blob/master/examples/ex_start_proxy.py)
+
+APIs covered:
+
+* [crossbarfabriccenter.mrealm.get_nodes](api/Management-API.md#crossbarfabriccentermrealmget_nodes)
+* [crossbarfabriccenter.remote.node.get_workers](api/Management-API.md#crossbarfabriccenterremotenodeget_workers)
+* [crossbarfabriccenter.remote.node.start_worker](api/Management-API.md#crossbarfabriccenterremotenodestart_worker)
+* [crossbarfabriccenter.remote.node.stop_worker](api/Management-API.md#crossbarfabriccenterremotenodestop_worker)
+* [crossbarfabriccenter.remote.proxy.get_transports](api/Management-API.md#crossbarfabriccenterremoteproxyget_transports)
+* [crossbarfabriccenter.remote.proxy.get_transport](api/Management-API.md#crossbarfabriccenterremoteproxyget_transport)
+* [crossbarfabriccenter.remote.proxy.start_transport](api/Management-API.md#crossbarfabriccenterremoteproxystart_transport)
+* [crossbarfabriccenter.remote.proxy.stop_transport](api/Management-API.md#crossbarfabriccenterremoteproxystop_transport)
+* [crossbarfabriccenter.remote.proxy.get_backends](api/Management-API.md#crossbarfabriccenterremoteproxyget_backends)
+* [crossbarfabriccenter.remote.proxy.get_backend](api/Management-API.md#crossbarfabriccenterremoteproxyget_backend)
+* [crossbarfabriccenter.remote.proxy.start_backend](api/Management-API.md#crossbarfabriccenterremoteproxystart_backend)
+* [crossbarfabriccenter.remote.proxy.stop_backend](api/Management-API.md#crossbarfabriccenterremoteproxystop_backend)
 
 ---
 
