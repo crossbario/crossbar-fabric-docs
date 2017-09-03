@@ -65,6 +65,12 @@ We'll go throught the steps of
 
 ### Installation
 
+To install Python 3 and virtualenv (on Debian/Ubuntu):
+
+```console
+sudo apt-get install -y python3 python3-pip python3-venv
+```
+
 To install, create a new dedicated Python virtualenv, activate it and install Crossbar.io Fabric Shell [from PyPI](https://pypi.python.org/pypi/crossbarfabricshell) in there:
 
 ```console
