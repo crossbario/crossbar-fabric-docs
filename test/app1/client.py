@@ -14,17 +14,6 @@ from autobahn.wamp.exception import ApplicationError
 
 
 class ClientSession(ApplicationSession):
-    """
-    Our WAMP session class .. place your app code here!
-    """
-
-    def onConnect(self):
-        self.log.info("Client connected: {klass}", klass=ApplicationSession)
-        self.join(self.config.realm, [u'anonymous'], authextra=self.config.extra.get(u'authextra', None))
-
-    def onChallenge(self, challenge):
-        self.log.info("Challenge for method {authmethod} received", authmethod=challenge.method)
-        raise Exception("We haven't asked for authentication!")
 
     @inlineCallbacks
     def onJoin(self, details):
@@ -81,17 +70,6 @@ class ClientSession(ApplicationSession):
 
             yield sleep(2)
 
-
-    def onLeave(self, details):
-        self.log.info("Router session closed ({details})", details=details)
-        self.disconnect()
-
-    def onDisconnect(self):
-        self.log.info("Router connection closed")
-        try:
-            reactor.stop()
-        except ReactorNotRunning:
-            pass
 
 
 if __name__ == '__main__':
