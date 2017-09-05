@@ -4,7 +4,11 @@ import asyncio
 
 from crossbarfabricshell import client
 
-WORKER_ID = u'my-worker1'
+ROUTER_ID = u'my-router1'
+
+ROUTER_OPTIONS = {
+    u'pythonpath': [u'..']
+}
 
 REALM_ID = u'my-realm1'
 
@@ -57,26 +61,29 @@ async def main(session):
         for node_id in nodes:
 
             workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
-            if WORKER_ID in workers:
-                worker_stopped = await session.call(u'crossbarfabriccenter.remote.worker.shutdown', node_id, WORKER_ID)
-                #worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker', node_id, WORKER_ID)
-                session.log.info('Worker {worker_id} stopped: {worker_stopped}', worker_id=WORKER_ID, worker_stopped=worker_stopped)
+            if ROUTER_ID in workers:
+                worker_stopped = await session.call(u'crossbarfabriccenter.remote.worker.shutdown', node_id, ROUTER_ID)
+                #worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker', node_id, ROUTER_ID)
+                session.log.info('Worker {worker_id} stopped: {worker_stopped}', worker_id=ROUTER_ID, worker_stopped=worker_stopped)
 
             worker_started = await session.call(u'crossbarfabriccenter.remote.node.start_worker',
-                                                node_id, WORKER_ID, u'router')
+                                                node_id,
+                                                ROUTER_ID,
+                                                u'router',
+                                                ROUTER_OPTIONS)
 
-            workers_started.append((node_id, WORKER_ID))
+            workers_started.append((node_id, ROUTER_ID))
 
-            session.log.info('Node "{node_id}" / Worker "{worker_id}" started: {worker_started}', node_id=node_id, worker_id=WORKER_ID, worker_started=worker_started)
+            session.log.info('Node "{node_id}" / Worker "{worker_id}" started: {worker_started}', node_id=node_id, worker_id=ROUTER_ID, worker_started=worker_started)
 
-            realm_started = await session.call(u'crossbarfabriccenter.remote.router.start_router_realm', node_id, WORKER_ID, REALM_ID, REALM_CONFIG)
+            realm_started = await session.call(u'crossbarfabriccenter.remote.router.start_router_realm', node_id, ROUTER_ID, REALM_ID, REALM_CONFIG)
 
             session.log.info('Realm started: {realm_started}', realm_started=realm_started)
 
-            role_started = await session.call(u'crossbarfabriccenter.remote.router.start_router_realm_role', node_id, WORKER_ID, REALM_ID, ROLE_ID, ROLE_CONFIG)
+            role_started = await session.call(u'crossbarfabriccenter.remote.router.start_router_realm_role', node_id, ROUTER_ID, REALM_ID, ROLE_ID, ROLE_CONFIG)
             session.log.info('Role started: {role_started}', role_started=role_started)
 
-            transport_started = await session.call(u'crossbarfabriccenter.remote.router.start_router_transport', node_id, WORKER_ID, TRANSPORT_ID, TRANSPORT_CONFIG)
+            transport_started = await session.call(u'crossbarfabriccenter.remote.router.start_router_transport', node_id, ROUTER_ID, TRANSPORT_ID, TRANSPORT_CONFIG)
             session.log.info('Transport started: {transport_started}', transport_started=transport_started)
 
             TRANSPORT_CONFIG[u'endpoint'][u'port'] += 1
@@ -87,10 +94,10 @@ async def main(session):
         # stop all the router transports we started
         for node_id, worker_id in workers_started:
 
-            role_stopped = await session.call(u'crossbarfabriccenter.remote.router.stop_router_realm_role', node_id, WORKER_ID, REALM_ID, ROLE_ID)
+            role_stopped = await session.call(u'crossbarfabriccenter.remote.router.stop_router_realm_role', node_id, ROUTER_ID, REALM_ID, ROLE_ID)
             session.log.info('Role stopped: {role_stopped}', role_stopped=role_stopped)
 
-            realm_stopped = await session.call(u'crossbarfabriccenter.remote.router.stop_router_realm', node_id, WORKER_ID, REALM_ID)
+            realm_stopped = await session.call(u'crossbarfabriccenter.remote.router.stop_router_realm', node_id, ROUTER_ID, REALM_ID)
             session.log.info('Realm stopped: {realm_stopped}', realm_stopped=realm_stopped)
 
             transport_stopped = await session.call(u'crossbarfabriccenter.remote.router.stop_router_transport', node_id, worker_id, TRANSPORT_ID)

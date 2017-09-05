@@ -18,8 +18,8 @@ examples: \
 	ex_cpu_affinity \
 	ex_process_stats \
 	ex_worker_log \
-	ex_tracing
-	#ex_docker # deactivate until fixed
+	ex_tracing \
+	ex_docker
 
 ex_status:
 	python3 -u examples/ex_status.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv

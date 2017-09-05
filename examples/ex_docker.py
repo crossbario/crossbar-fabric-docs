@@ -18,12 +18,15 @@ async def main(session):
             docker_images = await session.call(u'crossbarfabriccenter.remote.docker.get_images', node_id)
             for image_id in docker_images:
                 docker_image = await session.call(u'crossbarfabriccenter.remote.docker.get_image', node_id, image_id)
-                session.log.info('Found Docker image: {docker_image}', docker_image=docker_image)
+                session.log.info('Found Docker image: {image_id}', image_id=image_id, docker_image=docker_image)
 
             docker_containers = await session.call(u'crossbarfabriccenter.remote.docker.get_containers', node_id)
             for container_id in docker_containers:
                 docker_container = await session.call(u'crossbarfabriccenter.remote.docker.get_container', node_id, container_id)
-                session.log.info('Found Docker container: {docker_container}', docker_container=docker_container)
+                session.log.info('Found Docker container: {container_id}', container_id=container_id, docker_container=docker_container)
+
+        else:
+            session.log.info('Node "{node_id}" does not have Docker (enabled)', node_id=node_id)
 
 
 if __name__ == '__main__':

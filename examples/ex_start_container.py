@@ -9,7 +9,7 @@ from crossbarfabricshell import client
 CONTAINER_ID = u'my-container1'
 
 CONTAINER_OPTIONS = {
-    u'pythonpath': [u'/tmp', u'..']
+    u'pythonpath': [u'..']
 }
 
 COMPONENT_ID = u'my-component{}'
