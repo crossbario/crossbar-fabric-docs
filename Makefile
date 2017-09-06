@@ -3,7 +3,8 @@
 #
 
 # eg: make examples realm=oberstet
-realm := $(or ${realm},${realm},test1)
+realm := $(or ${realm},${realm},"test1")
+url := $(or ${url},${url},"wss://fabric.crossbario.com/ws")
 
 examples: \
 	ex_status \
@@ -22,46 +23,46 @@ examples: \
 	ex_docker
 
 ex_status:
-	python3 -u examples/ex_status.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_status.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_nodes:
-	python3 -u examples/ex_list_nodes.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_list_nodes.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_workers:
-	python3 -u examples/ex_list_workers.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_list_workers.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_start_router:
-	python3 -u examples/ex_start_router.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_start_router.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_start_proxy:
-	python3 -u examples/ex_start_proxy.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_start_proxy.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_start_container:
-	python3 -u examples/ex_start_container.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_start_container.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_start_guest:
-	python3 -u examples/ex_start_guest.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_start_guest.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_sessions:
-	python3 -u examples/ex_list_sessions.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_list_sessions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_subs_regs:
-	python3 -u examples/ex_list_subs_regs.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_list_subs_regs.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_cpu_affinity:
-	python3 -u examples/ex_cpu_affinity.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_cpu_affinity.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_process_stats:
-	python3 -u examples/ex_process_stats.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_process_stats.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_worker_log:
-	python3 -u examples/ex_worker_log.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_worker_log.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_tracing:
-	python3 -u examples/ex_tracing.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_tracing.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_docker:
-	python3 -u examples/ex_docker.py --url ws://localhost:9000/ws --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+	python3 -u examples/ex_docker.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 
 #
