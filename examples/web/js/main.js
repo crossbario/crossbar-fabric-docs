@@ -155,7 +155,7 @@ if (activation_code) {
       var connection = autobahn.auth_cryptosign.create_connection(config);
 
       connection.onclose = function (reason, details) {
-         if (details.reason == 'fabric.auth-failed.new-user-auth-code-sent') {
+         if (details.reason == 'fabric.auth-failed.new-user-auth-code-sent' || details.reason == 'fabric.auth-failed.registered-user-auth-code-sent') {
             localStorage.setItem('cfc.activation_status', 'sent');
             location.reload();
          } else if (details.reason == 'fabric.auth-failed.pending-activation') {
