@@ -139,13 +139,19 @@ Here, chose a `<realm-name` for your management realm. The name must be unique g
 
 To pair a CF node to a management realm, start cbsh and enter
 
-    pair node <realm-name> <public-key> <node-id>
+    pair node <public-key> <realm-name> <node-id>
 
-Chose your management realm name for `<realm-name>`.
+Your node's public key Hex value (to use as <public-key>) is printed to the log when the node starts.
 
-Use your node's public key (in Hex) for `<public-key>` (the public key Hex value is printed to the log when the node starts).
+Use the name of the management realm you just created for `<realm-name>`.
 
 Finally, chose a `<node-id>` the node should be assigned to. The node ID needs to be unique within the management realm.
 
 
--- add: how to get information about the node --
+### Managing the node
+
+The Crossbar.ioi Fabric node you have paired only has the node controller running.
+
+In order for it to perform any WAMP routing function, you need to start a router worker in the node.
+
+The Crossbar.io Fabric Shell is still mostly under construction, so for the time being you need to access the Crossbar.io Fabric service API from code.
