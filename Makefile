@@ -7,6 +7,7 @@ realm := $(or ${realm},${realm},"test1")
 url := $(or ${url},${url},"wss://fabric.crossbario.com/ws")
 
 examples: \
+	ex_global_api \
 	ex_status \
 	ex_list_nodes \
 	ex_list_workers \
@@ -22,6 +23,16 @@ examples: \
 	ex_tracing \
 	ex_docker
 
+#
+# this example demonstrates some functions on the CFC global users realm
+#
+ex_global_api:
+	python3 -u examples/ex_global_api.py --url ${url} --realm "com.crossbario.fabric" --keyfile ${HOME}/.cbf/default.priv
+
+
+#
+# the following examples all work on a user management realm on CFC
+#
 ex_status:
 	python3 -u examples/ex_status.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 

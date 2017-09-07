@@ -1,5 +1,7 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
+from pprint import pformat
+
 from crossbarfabricshell import client
 
 
@@ -16,7 +18,7 @@ async def main(session):
             worker = await session.call(u'crossbarfabriccenter.remote.node.get_worker',
                                         node_id, worker_id,
                                         include_stats=True)
-            session.log.info('Node "{node_id}" / Worker "{worker_id}": {worker}', node_id=node_id, worker_id=worker_id, worker=worker)
+            session.log.info('Node "{node_id}" / Worker "{worker_id}":\n{worker}', node_id=node_id, worker_id=worker_id, worker=pformat(worker))
 
 
 if __name__ == '__main__':
