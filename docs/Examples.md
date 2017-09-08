@@ -21,7 +21,15 @@ This repository contains example code for programming against the Crossbar.io Fa
 * [Message Tracing](#message-tracing)
 * [Manage Docker](#manage-docker)
 
-Here is how to run the examples:
+The examples can be run via make directives, in which case some necessary parameters are pre-set, e.g.
+
+```console
+make ex_status realm=demos
+```
+
+where you need to just replace `demos` with the name of a management realm that you've created.
+
+Here is how to run the examples with providing a full set of parameters yourself:
 
 ```console
 $ python3 -u examples/ex_status.py \
@@ -43,6 +51,8 @@ The necessary connection parameters include:
 * `--url wss://fabric.crossbario.com/ws` => the URL of our live CFC (use your own URL here if running CFC OEM)
 * `--realm demos` => the name of the user management realm to connect (**use your own management realm here!**)
 * `--keyfile` => a valid `cbsh` user key
+
+
 
 
 **Examples (for global users realm):**

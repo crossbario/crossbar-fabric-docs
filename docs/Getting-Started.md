@@ -35,15 +35,21 @@ We provide a Docker image of Crossbar.io Fabric.
 
 Start a Crossbar.io Fabric Docker container which connects to the CFC:
 
-    docker run -it --rm crossbario/crossbar-fabric:latest
+```console
+docker run -it --rm \
+    -v ~/.cbf/test_01:/node \
+    --entrypoint=/usr/local/bin/crossbar \
+    crossbario/crossbar-fabric:latest \
+    start --personality fabric --cbdir /node/.crossbar/
+```
 
 > Note: above will pull the Crossbar.io Fabric Docker image for x86-64. For ARM (32 bit) based devices like the Pi, use the `crossbario/crossbar-fabric-armhf` image. For ARM 64 bit based devices, use the `crossbario/crossbar-fabric-aarch64` image.
 
-As the node is started the first time, a new node public/private key pair is generated.
+As the node is started the first time, a new node public/private key pair is generated and stored in the directory we give (`test_01` - parts of the path which don't exist yet are created).
 
 This key pair is then used when authenticating to CFC.
 
-The node public key needs to be assigned to a management realm ("paire").
+The node public key needs to be assigned to a management realm ("paired").
 
 Pairing a node with a management realm can be done via Crossbar.io Fabric Shell and programatically via the CFC API today, and we are working on a Web user interface.
 
@@ -150,8 +156,39 @@ Finally, chose a `<node-id>` the node should be assigned to. The node ID needs t
 
 ### Managing the node
 
-The Crossbar.ioi Fabric node you have paired only has the node controller running.
-
-In order for it to perform any WAMP routing function, you need to start a router worker in the node.
-
 The Crossbar.io Fabric Shell is still mostly under construction, so for the time being you need to access the Crossbar.io Fabric service API from code.
+
+Clone the [git repository containing the example code](https://github.com/crossbario/crossbar-fabric-public) by doing
+
+```console
+git clone git@github.com:crossbario/crossbar-fabric-public.git
+```
+
+or download this if you don't have git installed.
+
+In the repo directory (and with the virtualenv into which you've installed the Crossbar.io Fabric Shell activated), run a first example
+
+```console
+mmake ex_list_nodes realm=<realm-name>
+```
+
+which should return something like
+
+```console
+python3 -u examples/ex_list_nodes.py --url "wss://fabric.crossbario.com/ws" --realm goeddea_test_01 --keyfile /home/goeddea/.cbf/default.priv
+2017-09-08T15:42:38 Node "test_02" is online:
+
+{'controller_pid': 1,
+ 'directory': '/node/.crossbar',
+ 'has_docker': False,
+ 'management_node_extra': None,
+ 'management_node_id': 'test_02',
+ 'management_realm': 'goeddea_test_01',
+ 'management_session_id': 3487657792610076,
+ 'pubkey': '7f65d857179a2805b6a9f02c44bf3a85fd6567b17e3d786b914d37df234ca18a',
+ 'running_workers': 1,
+ 'started': '2017-09-08T13:41:59.018Z',
+ 'title': 'Crossbar.io FABRIC 17.9.2'}
+```
+
+For other examples, see the [Examples Overview](Examples.md)
