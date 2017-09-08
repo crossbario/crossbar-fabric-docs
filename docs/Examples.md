@@ -5,7 +5,7 @@ toc: [Documentation, Examples]
 
 This repository contains example code for programming against the Crossbar.io Fabric Center (CFC) API to remotely manage and monitor your Crossbar.io Fabric (CF) nodes connected to CFC.
 
-**Examples:**
+**Examples (for user management realms):**
 
 * [Get Status](#get-status)
 * [Listing Nodes](#listing-nodes)
@@ -20,6 +20,36 @@ This repository contains example code for programming against the Crossbar.io Fa
 * [Worker Logs](#worker-logs)
 * [Message Tracing](#message-tracing)
 * [Manage Docker](#manage-docker)
+
+Here is how to run the examples:
+
+```console
+$ python3 -u examples/ex_status.py \
+    --url wss://fabric.crossbario.com/ws \
+    --realm demos \
+    --keyfile ${HOME}/.cbf/default.priv
+2017-09-08T12:54:28 CFC status:
+{'name': 'demos',
+ 'now': '2017-09-08T10:54:28.220Z',
+ 'started': '2017-09-06T17:04:59.124Z',
+ 'tick': 30115,
+ 'type': 'management',
+ 'uptime': 'a day',
+ 'version': '17.9.1'}
+```
+
+The necessary connection parameters include:
+
+* `--url wss://fabric.crossbario.com/ws` => the URL of our live CFC (use your own URL here if running CFC OEM)
+* `--realm demos` => the name of the user management realm to connect (**use your own management realm here!**)
+* `--keyfile` => a valid `cbsh` user key
+
+
+**Examples (for global users realm):**
+
+> IMPORTANT: While all of above examples need to connect to a user created management realm on CFC, the following examples need to connect to the global users realm on CFC.
+
+* [Global API](#global-api)
 
 ---
 
