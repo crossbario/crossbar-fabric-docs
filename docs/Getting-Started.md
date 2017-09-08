@@ -151,8 +151,9 @@ Your node's public key Hex value (to use as <public-key>) is printed to the log 
 
 Use the name of the management realm you just created for `<realm-name>`.
 
-Finally, chose a `<node-id>` the node should be assigned to. The node ID needs to be unique within the management realm.
+Finally, chose a `<node-id>` the node should be assigned to. The node ID needs to be unique within the management realm
 
+Once the pairing is shown as successful in the shell, restart the Crossbar.io node to complete the pairing (same command as for initially starting it).
 
 ### Managing the node
 
