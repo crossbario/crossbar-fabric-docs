@@ -57,6 +57,9 @@ ex_start_guest:
 ex_list_sessions:
 	python3 -u examples/ex_list_sessions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
+ex_monitor_sessions:
+	python3 -u examples/ex_monitor_sessions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
 ex_list_subs_regs:
 	python3 -u examples/ex_list_subs_regs.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
@@ -71,6 +74,9 @@ ex_worker_log:
 
 ex_tracing:
 	python3 -u examples/ex_tracing.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
+ex_tracing_monitor:
+	python3 -u examples/ex_tracing_monitor.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_docker:
 	python3 -u examples/ex_docker.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv

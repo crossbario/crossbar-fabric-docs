@@ -51,16 +51,31 @@ async def main(session):
                             worker_id, trace_id)
 
                 # start a new trace ..
-                trace_id = u'trace-001'
-                trace_options = {}
+                if False:
+                    trace_id = u'trace-001'
+                    trace_options = {
+                        u'duration': 5,
+                        u'trace_app_payload': False,
+                        u'batching_period': 200,
+                        u'persist': False
+                    }
+                else:
+                    # auto-assign ID
+                    trace_id = None
+                    # use default options
+                    trace_options = None
+
                 trace = await session.call(
                     u'crossbarfabriccenter.remote.tracing.start_trace', node_id, worker_id,
                     trace_id, trace_options=trace_options)
+
+                trace_id = trace['id']
+
                 started_traces.append((node_id, worker_id, trace_id))
                 session.log.info(
-                    'Trace "{trace_id} on node "{node_id}" / worker "{worker_id}" started with options: {trace_options}"',
+                    'Trace "{trace_id} on node "{node_id}" / worker "{worker_id}" started with options {trace_options}:\n{trace}"',
                     node_id=node_id, worker_id=worker_id, trace_id=trace_id,
-                    trace_options=trace_options)
+                    trace_options=trace_options, trace=pprint.pformat(trace))
 
     trace_time = 2
     session.log.info('Ok, traces started: {started_traces}\nNow tracing for {trace_time} secs ..',
@@ -74,9 +89,12 @@ async def main(session):
             trace_id, 0)
         stopped = await session.call(u'crossbarfabriccenter.remote.tracing.stop_trace',
                                      node_id, worker_id, trace_id)
-        session.log.info('Trace data for "{trace_id}" on "{node_id}/{worker_id}":\n{trace_data}',
+
+        session.log.info('Trace "{trace_id}" on "{node_id}/{worker_id}" stopped:\n{stopped}',
                          node_id=node_id, worker_id=worker_id, trace_id=trace_id,
-                         trace_data=pprint.pformat(trace_data))
+                         stopped=pprint.pformat(stopped))
+
+        session.log.info('Trace data:\n{trace_data}', trace_data=pprint.pformat(trace_data))
 
 
 if __name__ == '__main__':
