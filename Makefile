@@ -101,6 +101,10 @@ run:
 #
 # Local testing (these targets are for CB developers only)
 #
+app_realm := $(or ${app_realm},${app_realm},"realm1")
+app_url_1 := $(or ${app_url_1},${app_url_1},"ws://localhost:8080/ws")
+app_url_2 := $(or ${app_url_2},${app_url_2},"ws://localhost:8081/ws")
+
 
 run_local_cf1:
 	crossbar start --personality fabric --cbdir test/cf1/.crossbar/
@@ -108,15 +112,22 @@ run_local_cf1:
 run_local_cf2:
 	crossbar start --personality fabric --cbdir test/cf2/.crossbar/
 
-
+#
+# make run_local_app1a app_url_1=wss://cftest1.crossbario.com/ws
+# make run_local_app1b app_url_1=wss://cftest1.crossbario.com/ws
+# make run_local_app1c app_url_2=wss://cftest2.crossbario.com/ws
+# make run_local_app1d app_url_2=wss://cftest2.crossbario.com/ws
+#
 run_local_app1a:
-	python -u test/app1/client.py --url=ws://localhost:8080/ws --realm realm1 --service=service1
+	python -u test/app1/client.py --url=${app_url_1} --realm ${app_realm} --service=service1
 
 run_local_app1b:
-	python -u test/app1/client.py --url=ws://localhost:8080/ws --realm realm1 --service=service2
+	python -u test/app1/client.py --url=${app_url_1} --realm ${app_realm} --service=service2
 
 run_local_app1c:
-	python -u test/app1/client.py --url=ws://localhost:8081/ws --realm realm1 --service=service3
+	python -u test/app1/client.py --url=${app_url_2} --realm ${app_realm} --service=service3
 
 run_local_app1d:
-	python -u test/app1/client.py --url=ws://localhost:8081/ws --realm realm1 --service=service4
+	python -u test/app1/client.py --url=${app_url_2} --realm ${app_realm} --service=service4
+
+
