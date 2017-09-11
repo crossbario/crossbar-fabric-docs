@@ -31,6 +31,8 @@ Everything here assumes a Linux/\*nix machine. (Things may work on other systems
 
 ## Fabric Nodes
 
+### Running nodes
+
 We provide a Docker image of Crossbar.io Fabric.
 
 Start a Crossbar.io Fabric Docker container which connects to the CFC:
@@ -53,6 +55,33 @@ The node public key needs to be assigned to a management realm ("paired").
 
 Pairing a node with a management realm can be done via Crossbar.io Fabric Shell and programatically via the CFC API today, and we are working on a Web user interface.
 
+### Checking version
+
+To check the software version of Crossbar.io Fabric:
+
+```console
+ubuntu@cb-eu1:~$ docker run -it --rm --entrypoint /usr/local/bin/crossbar crossbario/crossbar-fabric version --loglevel=debug
+     __  __  __  __  __  __      __     __
+    /  `|__)/  \/__`/__`|__) /\ |__)  |/  \
+    \__,|  \\__/.__/.__/|__)/~~\|  \. |\__/
+                                        
+ Crossbar.io        : 17.9.2 (Crossbar.io FABRIC)
+   Autobahn         : 17.9.1 (with JSON, MessagePack, CBOR, UBJSON)
+     txaio          : 2.8.2
+     UTF8 Validator : autobahn
+     XOR Masker     : autobahn
+     JSON Codec     : stdlib
+     MsgPack Codec  : u-msgpack-python-2.4.1
+     CBOR Codec     : cbor-1.0.0
+     UBJSON Codec   : ubjson-0.9.0
+   Twisted          : 17.5.0-EPollReactor
+   LMDB             : 0.93/lmdb-0.9.18
+   Python           : 3.6.2/CPython
+ Crossbar.io Fabric : 17.9.1
+ OS                 : Linux-4.4.0-1032-aws-x86_64-with
+ Machine            : x86_64
+ Release key        : RWRj+Sb8UH/pwLCycZ+3OroR5UV9aaLUDVbKxNcj+gYoOOZv0LrzMH1a
+```
 
 ## Fabric Shell
 
