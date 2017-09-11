@@ -60,7 +60,8 @@ Pairing a node with a management realm can be done via Crossbar.io Fabric Shell 
 To check the software version of Crossbar.io Fabric:
 
 ```console
-ubuntu@cb-eu1:~$ docker run -it --rm --entrypoint /usr/local/bin/crossbar crossbario/crossbar-fabric version --loglevel=debug
+ubuntu@cb-eu1:~$ docker run -it --rm \
+    --entrypoint /usr/local/bin/crossbar crossbario/crossbar-fabric version --loglevel=debug
      __  __  __  __  __  __      __     __
     /  `|__)/  \/__`/__`|__) /\ |__)  |/  \
     \__,|  \\__/.__/.__/|__)/~~\|  \. |\__/
