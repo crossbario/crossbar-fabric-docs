@@ -10,6 +10,8 @@ async def main(session):
     """
     Subscribe to all tracing related topics to monitor tracing on any node/worker.
     """
+    verbose = False
+
     def on_trace_started(node_id, worker_id, trace_id, trace_started):
         session.log.info('Trace "{trace_id}" started on node "{node_id}" / worker "{worker_id}":\n{trace_started}',
                          node_id=node_id, worker_id=worker_id, trace_id=trace_id,
@@ -25,9 +27,24 @@ async def main(session):
     await session.subscribe(on_trace_stopped, u'crossbarfabriccenter.remote.tracing.on_trace_stopped',)
 
     def on_trace_data(node_id, worker_id, trace_id, period, trace_data):
-        session.log.info('Trace "{trace_id}" on node "{node_id}" / worker "{worker_id}":\n\nperiod = {period}\n\ntrace_data = {trace_data}\n\n',
-                         node_id=node_id, worker_id=worker_id, trace_id=trace_id,
-                         period=pprint.pformat(period), trace_data=pprint.pformat(trace_data))
+        if verbose:
+            session.log.info('Trace "{trace_id}" on node "{node_id}" / worker "{worker_id}":\n\nperiod = {period}\n\ntrace_data = {trace_data}\n\n',
+                             node_id=node_id, worker_id=worker_id, trace_id=trace_id,
+                             period=pprint.pformat(period), trace_data=pprint.pformat(trace_data))
+        else:
+            print()
+            print('{:10} {:10} {:10} {:3} {:12} {:18} {:8} {:38} {}'.format('Node', 'Worker', 'Trace', 'Dir', 'Type', 'Session', 'Anchor', 'Correlation ID', 'Correlation URI'))
+            print('.' * 139)
+            for trace_rec in trace_data:
+                print('{:10} {:10} {:10} {:3} {:12} {:18} {:8} {:38} {}'.format(node_id,
+                                                                                worker_id,
+                                                                                trace_id,
+                                                                                trace_rec[u'direction'].upper(),
+                                                                                trace_rec[u'msg_type'],
+                                                                                str(trace_rec[u'session_id']),
+                                                                                str(trace_rec[u'correlation_is_anchor']),
+                                                                                trace_rec[u'correlation'],
+                                                                                trace_rec[u'correlation_uri']))
 
     await session.subscribe(on_trace_data, u'crossbarfabriccenter.remote.tracing.on_trace_data',)
 
@@ -64,7 +81,7 @@ async def main(session):
                     trace_options=trace_options, trace=pprint.pformat(trace))
 
     # here, we run for a finite time. for a UI client,
-    monitor_time = 10
+    monitor_time = 30
     session.log.info('ok, subscribed to tracing events - now sleeping for {monitor_time} secs ..',
                      monitor_time=monitor_time)
     await asyncio.sleep(monitor_time)
