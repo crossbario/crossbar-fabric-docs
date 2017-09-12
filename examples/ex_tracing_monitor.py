@@ -58,6 +58,19 @@ async def main(session):
             worker = await session.call(u'crossbarfabriccenter.remote.node.get_worker', node_id, worker_id)
 
             if worker[u'type'] == u'router':
+
+                # stop any currently running traces (we don't want to get data from orphaned traces)
+                traces = await session.call(u'crossbarfabriccenter.remote.tracing.get_traces', node_id, worker_id)
+                for trace_id in traces:
+                    trace = await session.call(u'crossbarfabriccenter.remote.tracing.get_trace', node_id, worker_id, trace_id)
+                    if trace[u'status'] == u'running':
+                        stopped = await session.call(u'crossbarfabriccenter.remote.tracing.stop_trace', node_id, worker_id, trace_id)
+                        session.log.info('Stopping orphaned trace "{trace_id}" on node "{node_id}" / worker "{worker_id}"',
+                                         trace_id=trace_id,
+                                         node_id=node_id,
+                                         worker_id=worker_id)
+
+                # start a new trace
                 trace_id = None
                 trace_options = {
                     # if provided, run trace for this many secs and then auto-stop
