@@ -33,18 +33,19 @@ async def main(session):
                              period=pprint.pformat(period), trace_data=pprint.pformat(trace_data))
         else:
             print()
-            print('{:10} {:10} {:10} {:3} {:12} {:18} {:8} {:38} {}'.format('Node', 'Worker', 'Trace', 'Dir', 'Type', 'Session', 'Anchor', 'Correlation ID', 'Correlation URI'))
-            print('.' * 139)
+            print('{:10} {:10} {:10} {:3} {:12} {:18} {:8} {:8} {:38} {}'.format('Node', 'Worker', 'Trace', 'Dir', 'Type', 'Session', 'Anchor', 'Last', 'Correlation ID', 'Correlation URI'))
+            print('.' * 160)
             for trace_rec in trace_data:
-                print('{:10} {:10} {:10} {:3} {:12} {:18} {:8} {:38} {}'.format(node_id,
-                                                                                worker_id,
-                                                                                trace_id,
-                                                                                trace_rec[u'direction'].upper(),
-                                                                                trace_rec[u'msg_type'],
-                                                                                str(trace_rec[u'session_id']),
-                                                                                str(trace_rec[u'correlation_is_anchor']),
-                                                                                trace_rec[u'correlation'],
-                                                                                trace_rec[u'correlation_uri']))
+                print('{:10} {:10} {:10} {:3} {:12} {:18} {:8} {:8} {:38} {}'.format(node_id,
+                                                                                     worker_id,
+                                                                                     trace_id,
+                                                                                     trace_rec[u'direction'].upper(),
+                                                                                     trace_rec[u'msg_type'],
+                                                                                     str(trace_rec[u'session_id']),
+                                                                                     str(trace_rec[u'correlation_is_anchor']),
+                                                                                     str(trace_rec[u'correlation_is_last']),
+                                                                                     trace_rec[u'correlation'],
+                                                                                     trace_rec[u'correlation_uri']))
 
     await session.subscribe(on_trace_data, u'crossbarfabriccenter.remote.tracing.on_trace_data',)
 
