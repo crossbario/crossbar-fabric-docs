@@ -95,7 +95,7 @@ async def main(session):
                     trace_options=trace_options, trace=pprint.pformat(trace))
 
     # here, we run for a finite time. for a UI client,
-    monitor_time = 30
+    monitor_time = 6000
     session.log.info('ok, subscribed to tracing events - now sleeping for {monitor_time} secs ..',
                      monitor_time=monitor_time)
     await asyncio.sleep(monitor_time)
