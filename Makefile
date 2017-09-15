@@ -78,6 +78,9 @@ ex_tracing:
 ex_tracing_monitor:
 	python3 -u examples/ex_tracing_monitor.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
+ex_tracing_monitor_by_action:
+	python3 -u examples/ex_tracing_monitor_by_action.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
 ex_docker:
 	python3 -u examples/ex_docker.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
