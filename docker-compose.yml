@@ -3,6 +3,7 @@ services:
 
   cf1:
     image: crossbario/crossbar-fabric:latest
+    #image: crossbario/crossbar-fabric:pypy3
     ports:
       - 8080
     volumes:
@@ -18,6 +19,7 @@ services:
 
   cf2:
     image: crossbario/crossbar-fabric:latest
+    #image: crossbario/crossbar-fabric:pypy3
     ports:
       - 8081
     volumes:
@@ -34,7 +36,7 @@ services:
   app1a:
     depends_on:
       - cf1
-    image: crossbario/autobahn-python:latest
+    image: crossbario/autobahn-python:pypy3
     volumes:
       - ${PWD}/test/app1:/app
     network_mode: host
@@ -49,7 +51,7 @@ services:
   app1b:
     depends_on:
       - cf1
-    image: crossbario/autobahn-python:latest
+    image: crossbario/autobahn-python:pypy3
     volumes:
       - ${PWD}/test/app1:/app
     network_mode: host
@@ -64,7 +66,7 @@ services:
   app1c:
     depends_on:
       - cf2
-    image: crossbario/autobahn-python:latest
+    image: crossbario/autobahn-python:pypy3
     volumes:
       - ${PWD}/test/app1:/app
     network_mode: host
@@ -79,7 +81,7 @@ services:
   app1d:
     depends_on:
       - cf2
-    image: crossbario/autobahn-python:latest
+    image: crossbario/autobahn-python:pypy3
     volumes:
       - ${PWD}/test/app1:/app
     network_mode: host

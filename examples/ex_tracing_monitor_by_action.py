@@ -11,6 +11,10 @@ completed = 0
 async def main(session):
     """
     Subscribe to all tracing related topics to monitor tracing on any node/worker.
+
+    Aggregate received trace records into traced WAMP actions.
+
+    Example output: https://gist.githubusercontent.com/oberstet/101e97c9d2fb9fbb03a9b1d5bb3e95de/raw/d5f034dd61b71a4f0d54b2ee2720940588993395/gistfile1.txt
     """
     verbose = False
     verbose_verbose = False
@@ -54,18 +58,17 @@ async def main(session):
         def on_action_complete(action, with_header=False):
             if with_header:
                 print()
-                print('{:20} {:8} {:10} {:8} {:14} {:24} {:12} {}'.format('Completed', 'Node', 'Worker', 'Trace', 'Type', 'Action URI', 'Origin', 'Targets'))
+                print('{:20} {:8} {:10} {:8} {:8} {:24} {:18} {}'.format('Completed', 'Node', 'Worker', 'Trace', 'Type', 'Action URI', 'Origin', 'Targets'))
                 print('.' * 160)
-            print('{:20} {:8} {:10} {:8} {:14} {:24} {:12} {}'.format(str(action[u'completed']),
-                                                                        action[u'node_id'],
-                                                                        action[u'worker_id'],
-                                                                        action[u'trace_id'],
-                                                                        action[u'type'],
-                                                                        action[u'uri'],
-                                                                        str(action[u'origin']),
-                                                                        pprint.pformat(action[u'targets'])
-                                                                        )
-            )
+            if action[u'type'] in [u'Call', u'Publish']:
+                print('{:20} {:8} {:10} {:8} {:8} {:24} {:18} {}'.format(str(action[u'completed']),
+                                                                          action[u'node_id'],
+                                                                          action[u'worker_id'],
+                                                                          action[u'trace_id'],
+                                                                          action[u'type'],
+                                                                          action[u'uri'],
+                                                                          str(action[u'origin']),
+                                                                          pprint.pformat(action[u'targets'])))
 
         global completed
 
@@ -103,29 +106,28 @@ async def main(session):
                     action_type = action_by_correlation[corr_id][u'type']
                     if action_type == u'Publish':
                         assert(msg_type == u'Event')
+                        action_by_correlation[corr_id][u'targets'].append(session_id)
                         if correlation_is_last:
                             action_by_correlation[corr_id][u'completed'] = pc
                             on_action_complete(action_by_correlation[corr_id], completed % 20 == 0)
                             completed += 1
                             del action_by_correlation[corr_id]
-                        else:
-                            action_by_correlation[corr_id][u'targets'].append(session_id)
                         continue
                     elif action_type == u'Call':
                         if msg_type == u'Yield':
                             action_by_correlation[corr_id][u'targets'].append(session_id)
+                            continue
                         elif msg_type in [u'Result', u'Error']:
                             action_by_correlation[corr_id][u'completed'] = pc
                             on_action_complete(action_by_correlation[corr_id], completed % 20 == 0)
                             completed += 1
                             del action_by_correlation[corr_id]
+                            continue
                         else:
-                            session.log.warn('should not arrive here!')
-                        continue
-                    session.log.warn('should not arrive here!')
+                            session.log.warn('should not arrive here [1]')
+                    session.log.warn('should not arrive here [2]')
 
     await session.subscribe(on_trace_data, u'crossbarfabriccenter.remote.tracing.on_trace_data',)
-
 
     # start tracing on all router workers on all nodes
     started_traces = []

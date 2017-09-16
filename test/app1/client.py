@@ -5,7 +5,7 @@ import txaio
 
 from twisted.internet import reactor
 from twisted.internet.error import ReactorNotRunning
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, DeferredList
 
 from autobahn.twisted.util import sleep
 from autobahn.wamp.types import RegisterOptions, PublishOptions
@@ -37,9 +37,13 @@ class ClientSession(ApplicationSession):
         print('procedure registered: com.myexample.add2')
 
         # SUBSCRIBE
+        self._kk = 0
         def oncounter(counter, id, type):
-            print('----------------------------')
-            self.log.info("'oncounter' event, counter value: {counter} from component {id} ({type})", counter=counter, id=id, type=type)
+            self._kk += 1
+            if self._kk % 1000 == 0:
+                self._kk = 0
+                print('----------------------------')
+                self.log.info("'oncounter' event, counter value: {counter} from component {id} ({type})", counter=counter, id=id, type=type)
 
         yield self.subscribe(oncounter, u'com.example.oncounter')
         print('----------------------------')
@@ -62,12 +66,15 @@ class ClientSession(ApplicationSession):
                     raise e
 
             # PUBLISH
-            yield self.publish(u'com.example.oncounter', counter, self._ident, self._type, options=PublishOptions(acknowledge=True, exclude_me=False))
+            published = []
+            for i in range(1):
+                yield self.publish(u'com.example.oncounter', counter, self._ident, self._type, options=PublishOptions(acknowledge=True, exclude_me=False))
+                #published.append(self.publish(u'com.example.oncounter', counter, self._ident, self._type, options=PublishOptions(acknowledge=True, exclude_me=False)))
+                counter += 1
+            #yield DeferredList(published)
             print('----------------------------')
             self.log.info("published to 'oncounter' with counter {counter}",
                           counter=counter)
-            counter += 1
-
             yield sleep(2)
 
 
