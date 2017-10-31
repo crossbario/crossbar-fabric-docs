@@ -109,6 +109,7 @@ async def main(session):
                         action_by_correlation[corr_id][u'targets'].append(session_id)
                         if correlation_is_last:
                             action_by_correlation[corr_id][u'completed'] = pc
+                            action_by_correlation[corr_id][u'targets'] = sorted(action_by_correlation[corr_id][u'targets'])
                             on_action_complete(action_by_correlation[corr_id], completed % 20 == 0)
                             completed += 1
                             del action_by_correlation[corr_id]

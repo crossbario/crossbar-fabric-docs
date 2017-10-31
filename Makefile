@@ -21,6 +21,7 @@ examples: \
 	ex_process_stats \
 	ex_worker_log \
 	ex_tracing \
+	ex_tracing_actions \
 	ex_docker
 
 #
@@ -74,6 +75,9 @@ ex_worker_log:
 
 ex_tracing:
 	python3 -u examples/ex_tracing.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
+ex_tracing_actions:
+	python3 -u examples/ex_tracing_actions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_tracing_monitor:
 	python3 -u examples/ex_tracing_monitor.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
