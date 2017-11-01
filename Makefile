@@ -82,6 +82,9 @@ ex_tracing_actions:
 ex_tracing_monitor:
 	python3 -u examples/ex_tracing_monitor.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
+ex_tracing_monitor_actions:
+	python3 -u examples/ex_tracing_monitor_actions.py --debug --authmethod anonymous --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
 ex_tracing_monitor_by_action:
 	python3 -u examples/ex_tracing_monitor_by_action.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
