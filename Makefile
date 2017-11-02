@@ -5,6 +5,8 @@
 # eg: make examples realm=oberstet
 realm := $(or ${realm},${realm},"test1")
 url := $(or ${url},${url},"wss://fabric.crossbario.com/ws")
+trace := $(or ${trace},${trace},"hackathon-actions-trace")
+action := $(or ${action},${action},"")
 
 examples: \
 	ex_global_api \
@@ -82,15 +84,25 @@ ex_tracing_actions:
 ex_tracing_monitor:
 	python3 -u examples/ex_tracing_monitor.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
-ex_tracing_monitor_actions:
-	python3 -u examples/ex_tracing_monitor_actions.py --debug --authmethod anonymous --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+#ex_tracing_monitor_actions:
+#	python3 -u examples/ex_tracing_monitor_actions.py --debug --authmethod anonymous --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
-ex_tracing_monitor_by_action:
-	python3 -u examples/ex_tracing_monitor_by_action.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+#ex_tracing_monitor_by_action:
+#	python3 -u examples/ex_tracing_monitor_by_action.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_docker:
 	python3 -u examples/ex_docker.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
+
+# make ex_tracing_manage_trace url=ws://localhost:9000/ws realm=test1 action=create
+ex_tracing_manage_trace:
+	python3 -u examples/tracing/ex_manage_trace.py --url ${url} --realm ${realm} \
+		--authmethod cryptosign --keyfile ${HOME}/.cbf/default.priv \
+		${action}
+
+ex_tracing_monitor_actions:
+	python3 -u examples/tracing/ex_monitor_trace.py --url ${url} --realm ${realm} \
+		--authmethod anonymous
 
 #
 # Docker CF nodes / app containers for testing
