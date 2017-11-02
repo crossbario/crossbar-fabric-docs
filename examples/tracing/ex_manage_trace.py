@@ -18,9 +18,15 @@ TRACE_OPTIONS = {
     u'trace_level': u'action',
     u'batching_period': 200
 }
-READER_ROLES = [
-    u'public'
+ELIGIBLE_READER_ROLES = [
+    # allow read-only access to the running trace to management realm
+    # owner and public (= anonymous!)
+    u'owner', u'public',
+
+    # only allow access to management realm owner
+    #u'owner',
 ]
+EXCLUDE_READER_ROLES = None
 
 
 async def main(session):
@@ -41,7 +47,12 @@ async def main(session):
             session.log.warn('cannot create trace: trace already exists')
             return
         else:
-            trace_created = await session.call(u'crossbarfabriccenter.mrealm.tracing.create_trace', trace_id, TRACED_WORKERS, TRACE_OPTIONS, READER_ROLES)
+            trace_created = await session.call(u'crossbarfabriccenter.mrealm.tracing.create_trace',
+                                               trace_id,
+                                               TRACED_WORKERS,
+                                               TRACE_OPTIONS,
+                                               ELIGIBLE_READER_ROLES,
+                                               EXCLUDE_READER_ROLES)
             session.log.info('trace created: {trace_created}', trace_created=trace_created)
 
     elif action == u'start':

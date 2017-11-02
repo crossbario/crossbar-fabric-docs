@@ -100,7 +100,7 @@ ex_tracing_manage_trace:
 		--authmethod cryptosign --keyfile ${HOME}/.cbf/default.priv \
 		${action}
 
-ex_tracing_monitor_actions:
+ex_tracing_monitor_trace:
 	python3 -u examples/tracing/ex_monitor_trace.py --url ${url} --realm ${realm} \
 		--authmethod anonymous
 
