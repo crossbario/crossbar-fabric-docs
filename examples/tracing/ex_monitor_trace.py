@@ -77,7 +77,15 @@ async def main(session):
         session.log.info('no trace "{trace_id}" exists. exiting.', trace_id=TRACE_ID)
         return
 
+    #
+    # get trace data records (this will query directly into the traced nodes)
+    #
+    trace_data = await session.call(u'crossbarfabriccenter.mrealm.tracing.get_trace_data', TRACE_ID, limit=5)
+    print('TRACE DATA:\n{}'.format(pprint.pformat(trace_data)))
 
+    #
+    # list for trace data live
+    #
     def on_trace_data(node_id, worker_id, trace_id, period, trace_data):
         if verbose:
             session.log.info('Trace "{trace_id}" on node "{node_id}" / worker "{worker_id}":\n\nperiod = {period}\n\ntrace_data = {trace_data}\n\n',
@@ -110,7 +118,9 @@ async def main(session):
 
     await session.subscribe(on_trace_data, u'crossbarfabriccenter.mrealm.tracing.on_trace_data')
 
+    #
     # here, we run for a finite time. for a UI client,
+    #
     monitor_time = 6000
     session.log.info('ok, subscribed to tracing events - now sleeping for {monitor_time} secs ..',
                      monitor_time=monitor_time)

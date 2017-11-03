@@ -11,8 +11,9 @@ from crossbarfabricshell import client
 #
 TRACE_ID = u'hackathon-actions-trace'
 TRACED_WORKERS = [
-    (u'cf1', u'worker-001'),
-    (u'cf2', u'worker-001')
+    (u'cf1', u'router1'),
+    (u'cf2', u'router1'),
+    (u'cf3', u'router1')
 ]
 TRACE_OPTIONS = {
     u'trace_level': u'action',
