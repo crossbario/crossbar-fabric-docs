@@ -29,6 +29,9 @@ examples: \
 #
 # this example demonstrates some functions on the CFC global users realm
 #
+ex_global_status:
+	python3 -u examples/ex_global_status.py --url ${url} --realm "com.crossbario.fabric"  --authmethod anonymous
+
 ex_global_api:
 	python3 -u examples/ex_global_api.py --url ${url} --realm "com.crossbario.fabric" --keyfile ${HOME}/.cbf/default.priv
 
@@ -38,6 +41,9 @@ ex_global_api:
 #
 ex_status:
 	python3 -u examples/ex_status.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
+ex_status_anon:
+	python3 -u examples/ex_status.py --url ${url} --realm ${realm} --authmethod anonymous
 
 ex_list_nodes:
 	python3 -u examples/ex_list_nodes.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
@@ -59,6 +65,9 @@ ex_start_guest:
 
 ex_list_sessions:
 	python3 -u examples/ex_list_sessions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
+ex_list_sessions_anon:
+	python3 -u examples/ex_list_sessions.py --url ${url} --realm ${realm} --authmethod anonymous
 
 ex_monitor_sessions:
 	python3 -u examples/ex_monitor_sessions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
