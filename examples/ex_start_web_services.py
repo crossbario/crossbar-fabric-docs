@@ -65,7 +65,22 @@ WEB_SERVICES = {
         u'options': {
             u'enable_directory_listing': True
         }
-    }
+    },
+    u'ws': {
+        u'type': u'websocket'
+    },
+    u'proxy1': {
+        u'type': u'websocket-reverseproxy',
+        u'backend': {
+            u'type': u'websocket',
+            u'endpoint': {
+                u'type': u'tcp',
+                u'host': u'127.0.0.1',
+                u'port': 9000
+            },
+            u'url': "ws://localhost:9000"
+        }
+    },
 }
 
 
@@ -74,6 +89,52 @@ async def main(session):
     Start a router worker on each node, with a realm and a role. Then stop everything again.
     """
     try:
+        def on_web_transport_service_starting(node_id, worker_id, transport_id, path, details=None):
+            session.log.info('on_web_transport_service_starting(node_id={node_id}, worker_id={worker_id}, transport_id={transport_id} path={path}, details={details})',
+                             node_id=node_id,
+                             worker_id=worker_id,
+                             transport_id=transport_id,
+                             path=path,
+                             details=details)
+
+        await session.subscribe(on_web_transport_service_starting,
+                                u'crossbarfabriccenter.remote.router.on_web_transport_service_starting')
+
+        def on_web_transport_service_started(node_id, worker_id, transport_id, path, config, details=None):
+            session.log.info('on_web_transport_service_started(node_id={node_id}, worker_id={worker_id}, transport_id={transport_id}, path={path}, config={config}, details={details})',
+                             node_id=node_id,
+                             worker_id=worker_id,
+                             transport_id=transport_id,
+                             path=path,
+                             config=config,
+                             details=details)
+
+        await session.subscribe(on_web_transport_service_started,
+                                u'crossbarfabriccenter.remote.router.on_web_transport_service_started')
+
+        def on_web_transport_service_stopping(node_id, worker_id, transport_id, path, details=None):
+            session.log.info('on_web_transport_service_stopping(node_id={node_id}, worker_id={worker_id}, transport_id={transport_id}, path={path}, details={details})',
+                             node_id=node_id,
+                             worker_id=worker_id,
+                             transport_id=transport_id,
+                             path=path,
+                             details=details)
+
+        await session.subscribe(on_web_transport_service_stopping,
+                                u'crossbarfabriccenter.remote.router.on_web_transport_service_stopping')
+
+        def on_web_transport_service_stopped(node_id, worker_id, transport_id, path, config, details=None):
+            session.log.info('on_web_transport_service_stopped(node_id={node_id}, worker_id={worker_id}, transport_id={transport_id}, path={path}, config={config}, details={details})',
+                             node_id=node_id,
+                             worker_id=worker_id,
+                             transport_id=transport_id,
+                             path=path,
+                             config=config,
+                             details=details)
+
+        await session.subscribe(on_web_transport_service_stopped,
+                                u'crossbarfabriccenter.remote.router.on_web_transport_service_stopped')
+
         # remember (router) workers we started
         workers_started = []
 
@@ -108,7 +169,7 @@ async def main(session):
 
             TRANSPORT_CONFIG[u'endpoint'][u'port'] += 1
 
-        for i in range(5):
+        for i in range(2):
             session.log.info('Starting Web services ..')
             for node_id, worker_id in workers_started:
                 for path, config in WEB_SERVICES.items():
