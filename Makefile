@@ -39,6 +39,8 @@ ex_global_api:
 #
 # the following examples all work on a user management realm on CFC
 #
+# make ex_status url=ws://localhost:9000/ws realm=test1
+#
 ex_status:
 	python3 -u examples/ex_status.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
@@ -62,6 +64,9 @@ ex_start_container:
 
 ex_start_guest:
 	python3 -u examples/ex_start_guest.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
+ex_start_web_services:
+	python3 -u examples/ex_start_web_services.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
 
 ex_list_sessions:
 	python3 -u examples/ex_list_sessions.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
