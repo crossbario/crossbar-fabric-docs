@@ -109,14 +109,25 @@ ex_docker:
 
 
 # make ex_tracing_manage_trace url=ws://localhost:9000/ws realm=test1 action=create
+# make ex_tracing_manage_trace url=wss://cfc.continental.crossbar.io/ws realm=cluster1 action=create
+# make ex_tracing_manage_trace url=wss://cfc.continental.crossbar.io/ws realm=cluster1 action=start
 ex_tracing_manage_trace:
 	python3 -u examples/tracing/ex_manage_trace.py --url ${url} --realm ${realm} \
 		--authmethod cryptosign --keyfile ${HOME}/.cbf/default.priv \
 		${action}
 
+# make ex_tracing_monitor_trace url=ws://localhost:9000/ws realm=test1
+# make ex_tracing_monitor_trace url=wss://cfc.continental.crossbar.io/ws realm=cluster1
 ex_tracing_monitor_trace:
 	python3 -u examples/tracing/ex_monitor_trace.py --url ${url} --realm ${realm} \
 		--authmethod anonymous
+
+
+# make ex_wsrp_cluster url=ws://localhost:9000/ws realm=test1
+#
+ex_wsrp_cluster:
+	python3 -u examples/ex_wsrp_cluster.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv
+
 
 #
 # Docker CF nodes / app containers for testing
