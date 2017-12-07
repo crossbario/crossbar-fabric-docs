@@ -34,17 +34,9 @@ TRANSPORT_CONFIG = {
         u"type": u"tcp",
         u"port": None,  # replaced by code
     },
-    # XXX hmm, I need auth: cryptosign here for some reason, but it's
-    # not 'really' used?!
     u"auth": {
-        "cryptosign": {
-            "type": u"static",
-            "principals": {
-            },
-#            "type": u"dynamic",
-#            "authenticator": u"com.example.authenticate",
-#            "authenticator-realm": u"realm-auth"
-        }
+        "proxy-cryptosign": {},
+        "proxy-ticket": {},
     }
 }
 
@@ -96,9 +88,7 @@ async def test_proxy(session, node_id, proxy_id, port):
     except Exception as e:
         print("\nTest failed: {}\n".format(e))
     else:
-        # only can get here if our component "succeeded"; ran to the
-        # end of on-join
-        print("Successful connection to new transport")
+        print("transport test succeeded")
 
 
 async def main(session):
