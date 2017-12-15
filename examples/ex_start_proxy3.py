@@ -73,15 +73,15 @@ async def test_proxy(session, node_id, proxy_id, port):
         realm=u"testrealm0",
         main=_test,
         authentication={
-            u"ticket": {
-                #u"ticket": "a secret ticket that's wrong",
-                u"ticket": "a secret ticket",
-            }
-            # "cryptosign": {
-            #     u"authid": u"meejah@gmail.com",
-            #     u"authrole": u"owner",
-            #     u"privkey": privkey_hex,
+            # u"ticket": {
+            #     #u"ticket": "a secret ticket that's wrong",
+            #     u"ticket": "a secret ticket",
             # }
+            "cryptosign": {
+                u"authid": u"meejah@gmail.com",
+                u"authrole": u"owner",
+                u"privkey": privkey_hex,
+            }
         }
     )
     try:
@@ -146,15 +146,15 @@ async def main(session):
                                 u"authrole": u"testrealm0",
                                 u"privkey": privkey_hex
                             },
-                            u"ticket": {
-                                u"type": u"static",
-                                u"principals": {
-                                    u"meejah@gmail.com": {
-                                        u"ticket": "a secret ticket",
-                                        u"role": u"testrealm0",
-                                    }
-                                }
-                            }
+                            # u"ticket": {
+                            #     u"type": u"static",
+                            #     u"principals": {
+                            #         u"meejah@gmail.com": {
+                            #             u"ticket": "a secret ticket",
+                            #             u"role": u"testrealm0",
+                            #         }
+                            #     }
+                            # }
                         }
                     }
                 }
