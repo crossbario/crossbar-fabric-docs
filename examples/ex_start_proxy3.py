@@ -19,7 +19,8 @@ def _load_privkey():
                     return val.strip()
     return None
 privkey_hex = _load_privkey()
-
+if False:
+    privkey_hex = 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'
 
 PROXY_ID = u'my-proxy{}'
 
