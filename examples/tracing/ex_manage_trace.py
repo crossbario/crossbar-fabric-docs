@@ -15,6 +15,10 @@ TRACED_WORKERS = [
     (u'cf2', u'router1'),
     (u'cf3', u'router1')
 ]
+TRACED_WORKERS = [
+    (u'node1', u'router1'),
+    (u'node2', u'router1'),
+]
 TRACE_OPTIONS = {
     u'trace_level': u'action',
     u'batching_period': 200

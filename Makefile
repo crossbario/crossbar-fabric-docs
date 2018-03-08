@@ -40,6 +40,7 @@ ex_global_api:
 # the following examples all work on a user management realm on CFC
 #
 # make ex_status url=ws://localhost:9000/ws realm=test1
+# make ex_status url=wss://cfc.continental.crossbar.io/ws realm=cluster1
 #
 ex_status:
 	python3 -u examples/ex_status.py --url ${url} --realm ${realm} --keyfile ${HOME}/.cbf/default.priv

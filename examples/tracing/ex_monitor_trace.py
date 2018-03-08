@@ -80,8 +80,8 @@ async def main(session):
     #
     # get trace data records (this will query directly into the traced nodes)
     #
-    trace_data = await session.call(u'crossbarfabriccenter.mrealm.tracing.get_trace_data', TRACE_ID, limit=5)
-    print('TRACE DATA:\n{}'.format(pprint.pformat(trace_data)))
+    #trace_data = await session.call(u'crossbarfabriccenter.mrealm.tracing.get_trace_data', TRACE_ID, limit=5)
+    #print('TRACE DATA:\n{}'.format(pprint.pformat(trace_data)))
 
     #
     # list for trace data live
