@@ -3,7 +3,7 @@
 import pprint
 import asyncio
 
-from crossbarfabricshell import client
+from cbsh import client
 
 
 async def main(session):

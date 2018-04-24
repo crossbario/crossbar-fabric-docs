@@ -26,6 +26,10 @@ examples: \
 	ex_tracing_actions \
 	ex_docker
 
+
+check:
+	flake8 --ignore=E501 examples
+
 #
 # this example demonstrates some functions on the CFC global users realm
 #
@@ -177,5 +181,3 @@ run_local_app1c:
 
 run_local_app1d:
 	python -u test/app1/client.py --url=${app_url_2} --realm ${app_realm} --service=service4
-
-

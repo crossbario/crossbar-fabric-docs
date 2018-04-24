@@ -2,7 +2,7 @@
 
 from pprint import pprint
 
-from crossbarfabricshell import client
+from cbsh import client
 
 
 async def main(session):

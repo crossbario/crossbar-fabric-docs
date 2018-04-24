@@ -4,7 +4,7 @@ import asyncio
 
 from autobahn.wamp.exception import ApplicationError
 
-from crossbarfabricshell import client
+from cbsh import client
 
 CONTAINER_ID = u'my-container1'
 
@@ -44,10 +44,10 @@ async def main(session):
             workers = await session.call(u'crossbarfabriccenter.remote.node.get_workers', node_id)
             if CONTAINER_ID in workers:
                 worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker',
-                                                      node_id,
-                                                      CONTAINER_ID)
+                                                    node_id,
+                                                    CONTAINER_ID)
                 session.log.info('Worker {worker_id} stopped: {worker_stopped}',
-                                  worker_id=CONTAINER_ID, worker_stopped=worker_stopped)
+                                 worker_id=CONTAINER_ID, worker_stopped=worker_stopped)
 
             worker_started = await session.call(u'crossbarfabriccenter.remote.node.start_worker',
                                                 node_id,

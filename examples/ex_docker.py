@@ -1,6 +1,6 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
-from crossbarfabricshell import client
+from cbsh import client
 
 
 async def main(session):

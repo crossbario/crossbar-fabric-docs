@@ -4,7 +4,7 @@ import asyncio
 
 from autobahn.wamp.exception import ApplicationError
 
-from crossbarfabricshell import client
+from cbsh import client
 
 PROXY_ID = u'my-proxy{}'
 

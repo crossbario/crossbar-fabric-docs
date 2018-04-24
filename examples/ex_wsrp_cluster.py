@@ -2,7 +2,7 @@
 
 from pprint import pformat
 
-from crossbarfabricshell import client
+from cbsh import client
 
 CLUSTER_ID = u'cluster1'
 CLUSTER_NODES = ['cf1', 'cf2', 'cf3']

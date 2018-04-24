@@ -4,7 +4,7 @@ import pprint
 import asyncio
 import argparse
 
-from crossbarfabricshell import client
+from cbsh import client
 
 #
 # configuration of the trace we create and manage

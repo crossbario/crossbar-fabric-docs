@@ -2,7 +2,7 @@
 
 import asyncio
 
-from crossbarfabricshell import client
+from cbsh import client
 
 # the ID of the guest worker we will start (on each node)
 GUEST_ID = u'sleeper1'

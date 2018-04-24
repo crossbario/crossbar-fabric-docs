@@ -2,7 +2,7 @@
 
 import random
 
-from crossbarfabricshell import client
+from cbsh import client
 
 
 def rand_cpus(cpu_cores, p=.5):

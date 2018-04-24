@@ -2,7 +2,7 @@
 
 import asyncio
 
-from crossbarfabricshell import client
+from cbsh import client
 
 ROUTER_ID = u'my-router1'
 

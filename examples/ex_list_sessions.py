@@ -2,7 +2,7 @@
 
 import pprint
 
-from crossbarfabricshell import client
+from cbsh import client
 
 GET_NODES = u'crossbarfabriccenter.mrealm.get_nodes'
 
