@@ -54,7 +54,20 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=print-statement,
+disable=similarities,               # added by me
+        missing-docstring,          # added by me
+        invalid-name,               # added by me
+        duplicate-code,             # added by me
+        fixme,                      # added by me
+        too-many-arguments,         # added by me
+        too-many-nested-blocks,     # added by me
+        too-many-branches,          # added by me
+        too-many-locals,            # added by me
+        using-constant-test,        # added by me
+        unused-variable,            # added by me
+        too-many-statements,        # added by me
+        broad-except,               # added by me
+        print-statement,
         parameter-unpacking,
         unpacking-in-except,
         old-raise-syntax,

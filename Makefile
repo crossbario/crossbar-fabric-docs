@@ -29,6 +29,7 @@ examples: \
 
 check:
 	flake8 --ignore=E501 examples
+	pylint examples
 
 #
 # this example demonstrates some functions on the CFC global users realm

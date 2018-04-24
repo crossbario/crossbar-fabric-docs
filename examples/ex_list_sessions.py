@@ -36,12 +36,18 @@ async def main(session):
         for worker_id in workers:
             worker = await session.call(GET_WORKER, node_id, worker_id)
             if worker[u'type'] == u'router':
-                realms = await session.call(GET_ROUTER_REALMS, node_id, worker_id)
+                realms = await session.call(GET_ROUTER_REALMS, node_id,
+                                            worker_id)
                 for realm in realms:
-                    sessions = await session.call(GET_SESSIONS, node_id, worker_id, realm)
-                    print('node "{}" / router "{}" / realm "{}" has currently {} sessions connected: {}'.format(realm, node_id, worker_id, len(sessions), sessions))
+                    sessions = await session.call(GET_SESSIONS, node_id,
+                                                  worker_id, realm)
+                    print(
+                        'node "{}" / router "{}" / realm "{}" has currently {} sessions connected: {}'.
+                        format(realm, node_id, worker_id, len(sessions),
+                               sessions))
                     for session_id in sessions:
-                        session_info = await session.call(GET_SESSION, node_id, worker_id, realm, session_id)
+                        session_info = await session.call(
+                            GET_SESSION, node_id, worker_id, realm, session_id)
                         pprint.pprint(session_info)
 
 

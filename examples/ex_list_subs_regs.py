@@ -50,33 +50,50 @@ async def main(session):
         for worker_id in workers:
             worker = await session.call(GET_WORKER, node_id, worker_id)
             if worker[u'type'] == u'router':
-                realms = await session.call(GET_ROUTER_REALMS, node_id, worker_id)
+                realms = await session.call(GET_ROUTER_REALMS, node_id,
+                                            worker_id)
                 print('    realms on worker {}: {}'.format(worker_id, realms))
                 for realm in realms:
-                    sessions = await session.call(GET_SESSIONS, node_id, worker_id, realm)
-                    print('        sessions on realm {}: {}'.format(realm, sessions))
+                    sessions = await session.call(GET_SESSIONS, node_id,
+                                                  worker_id, realm)
+                    print('        sessions on realm {}: {}'.format(
+                        realm, sessions))
                     for session_id in sessions:
 
-                        subscriptions = await session.call(GET_SUBSCRIPTIONS, node_id, worker_id, realm, session_id)
-                        sub_ids = list(itertools.chain(*subscriptions.values()))
-                        print('          subscriptions on session {}: {}'.format(session_id, sub_ids))
+                        subscriptions = await session.call(
+                            GET_SUBSCRIPTIONS, node_id, worker_id, realm,
+                            session_id)
+                        sub_ids = list(
+                            itertools.chain(*subscriptions.values()))
+                        print(
+                            '          subscriptions on session {}: {}'.format(
+                                session_id, sub_ids))
 
                         if verbose:
                             for sub_type, sub_ids in subscriptions.items():
                                 for sub_id in sub_ids:
                                     if sub_id not in subs_out:
-                                        sub = await session.call(GET_SUBSCRIPTION, node_id, worker_id, realm, sub_id)
+                                        sub = await session.call(
+                                            GET_SUBSCRIPTION, node_id,
+                                            worker_id, realm, sub_id)
                                         subs_out[sub_id] = sub
 
-                        registrations = await session.call(GET_REGISTRATIONS, node_id, worker_id, realm, session_id)
-                        reg_ids = list(itertools.chain(*registrations.values()))
-                        print('          registrations on session {}: {}'.format(session_id, reg_ids))
+                        registrations = await session.call(
+                            GET_REGISTRATIONS, node_id, worker_id, realm,
+                            session_id)
+                        reg_ids = list(
+                            itertools.chain(*registrations.values()))
+                        print(
+                            '          registrations on session {}: {}'.format(
+                                session_id, reg_ids))
 
                         if verbose:
-                            for reg_type, reg_ids in registrations.items():
+                            for _, reg_ids in registrations.items():
                                 for reg_id in reg_ids:
                                     if reg_id not in regs_out:
-                                        reg = await session.call(GET_REGISTRATION, node_id, worker_id, realm, reg_id)
+                                        reg = await session.call(
+                                            GET_REGISTRATION, node_id,
+                                            worker_id, realm, reg_id)
                                         regs_out[reg_id] = reg
 
     if verbose:

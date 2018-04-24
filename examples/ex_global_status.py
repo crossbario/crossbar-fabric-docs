@@ -1,7 +1,6 @@
 # Copyright (c) Crossbar.io Technologies GmbH, licensed under The MIT License (MIT)
 
 from pprint import pformat
-import asyncio
 
 from cbsh import client
 

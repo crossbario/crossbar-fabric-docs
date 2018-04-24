@@ -18,9 +18,12 @@ async def main(session):
 
     mrealms = await session.call(u'crossbarfabriccenter.mrealm.get_realms')
     for mrealm_name in mrealms:
-        mrealm = await session.call(u'crossbarfabriccenter.mrealm.get_realm', mrealm_name)
-        session.log.info('management realm "{mrealm_name}":\n{mrealm}',
-                          mrealm_name=mrealm_name, mrealm=pformat(mrealm))
+        mrealm = await session.call(u'crossbarfabriccenter.mrealm.get_realm',
+                                    mrealm_name)
+        session.log.info(
+            'management realm "{mrealm_name}":\n{mrealm}',
+            mrealm_name=mrealm_name,
+            mrealm=pformat(mrealm))
 
         #nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', mrealm_name)
         #for node_id in nodes:
@@ -31,7 +34,7 @@ async def main(session):
 
     # FIXME: activate when the topic URI in CFC is fixed!
 
-    def on_tick(ticked):
+    def on_tick(ticked):  # pylint: disable=W0101
         session.log.info('received tick: {ticked}', ticked=ticked)
 
     await session.subscribe(on_tick, u'crossbarfabriccenter.system.on_tick')
