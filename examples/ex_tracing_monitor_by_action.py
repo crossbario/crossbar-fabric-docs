@@ -101,7 +101,7 @@ async def main(session):
             corr_uri = trace_rec[u'correlation_uri']
             correlation_is_anchor = trace_rec[u'correlation_is_anchor']
             correlation_is_last = trace_rec[u'correlation_is_last']
-            ts = trace_rec[u'ts']
+            ts = trace_rec[u'ts']  # noqa
             pc = trace_rec[u'pc']
 
             if msg_type in [u'Publish', u'Event', u'Call', u'Yield', u'Result', u'Error'] and \

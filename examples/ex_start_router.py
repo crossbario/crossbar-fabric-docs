@@ -63,7 +63,7 @@ async def main(session):
                 worker_stopped = await session.call(
                     u'crossbarfabriccenter.remote.worker.shutdown', node_id,
                     ROUTER_ID)
-                #worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker', node_id, ROUTER_ID)
+                # worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker', node_id, ROUTER_ID)
                 session.log.info(
                     'Worker {worker_id} stopped: {worker_stopped}',
                     worker_id=ROUTER_ID,

@@ -25,10 +25,10 @@ async def main(session):
             mrealm_name=mrealm_name,
             mrealm=pformat(mrealm))
 
-        #nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', mrealm_name)
-        #for node_id in nodes:
-        #    node = await session.call(u'crossbarfabriccenter.mrealm.get_node', mrealm_name, node_id)
-        #    session.info.log('    node "{node_id}": {node}', node_id=node_id, node=pformat(node))
+        # nodes = await session.call(u'crossbarfabriccenter.mrealm.get_nodes', mrealm_name)
+        # for node_id in nodes:
+        #     node = await session.call(u'crossbarfabriccenter.mrealm.get_node', mrealm_name, node_id)
+        #     session.info.log('    node "{node_id}": {node}', node_id=node_id, node=pformat(node))
 
     return
 

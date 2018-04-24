@@ -27,8 +27,11 @@ examples: \
 	ex_docker
 
 
-check:
-	flake8 --ignore=E501 examples
+#
+# run code quality checks on the examples - not the examples (for that, see below: ex_...)
+#
+test:
+	flake8 --ignore=E501,N802 examples
 	pylint examples
 
 #

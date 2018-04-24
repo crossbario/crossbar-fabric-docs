@@ -22,13 +22,14 @@ ELIGIBLE_READER_ROLES = [
     u'public',
 
     # only allow access to management realm owner
-    #u'owner',
+    # u'owner',
 ]
 EXCLUDE_READER_ROLES = None
 
 
 async def main(session):
     """
+    Demonstrates how to manage traces and the tracing API.
     """
     trace_id = TRACE_ID
     action = session.config.extra['args'].action
@@ -95,7 +96,6 @@ if __name__ == '__main__':
     parser.add_argument(
         'action',
         choices=['create', 'start', 'stop', 'delete'],
-        help=
-        'Management action, one of "create", "start", "stop" or "delete" a trace.'
+        help='Management action, one of "create", "start", "stop" or "delete" a trace.'
     )
     client.run(main, parser)

@@ -5,6 +5,7 @@ from cbsh import client
 
 async def main(session):
     """
+    Test remote management of Docker running on a CF node.
     """
     nodes = await session.call(
         u'crossbarfabriccenter.mrealm.get_nodes', status=u'online')

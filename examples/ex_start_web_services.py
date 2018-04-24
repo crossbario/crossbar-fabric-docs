@@ -174,7 +174,7 @@ async def main(session):
                 worker_stopped = await session.call(
                     u'crossbarfabriccenter.remote.worker.shutdown', node_id,
                     ROUTER_ID)
-                #worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker', node_id, ROUTER_ID)
+                # worker_stopped = await session.call(u'crossbarfabriccenter.remote.node.stop_worker', node_id, ROUTER_ID)
                 session.log.info(
                     'Worker {worker_id} stopped: {worker_stopped}',
                     worker_id=ROUTER_ID,
@@ -218,7 +218,7 @@ async def main(session):
             session.log.info('Starting Web services ..')
             for node_id, worker_id in workers_started:
                 for path, config in WEB_SERVICES.items():
-                    webservice_started = await session.call(
+                    await session.call(
                         u'crossbarfabriccenter.remote.router.start_web_transport_service',
                         node_id, worker_id, TRANSPORT_ID, path, config)
 
@@ -228,7 +228,7 @@ async def main(session):
             session.log.info('Stopping Web services ..')
             for node_id, worker_id in workers_started:
                 for path, config in WEB_SERVICES.items():
-                    webservice_stopped = await session.call(
+                    await session.call(
                         u'crossbarfabriccenter.remote.router.stop_web_transport_service',
                         node_id, worker_id, TRANSPORT_ID, path)
 

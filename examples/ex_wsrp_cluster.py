@@ -40,7 +40,7 @@ async def main(session):
                     'frontend "{frontend_id}" does not exist - addin!',
                     frontend_id=frontend_id)
 
-                frontend_added = await session.call(
+                await session.call(
                     u'crossbarfabriccenter.mrealm.clustering.wsrp.add_frontend',
                     CLUSTER_ID, frontend_id, frontend_config)
             else:
@@ -53,7 +53,7 @@ async def main(session):
                 'node "{node_id}" is part of cluster but is NOT online!',
                 node_id=node_id)
 
-    frontend = await session.call(
+    await session.call(
         u'crossbarfabriccenter.mrealm.clustering.wsrp.deploy_changes',
         CLUSTER_ID)
 

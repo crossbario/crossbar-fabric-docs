@@ -16,9 +16,9 @@ class MySession(ApplicationSession):
 
         if self.config.controller:
             yield self.test0()
-            #yield self.test1()
-            #yield self.test2()
-            #yield self.test3()
+            # yield self.test1()
+            # yield self.test2()
+            # yield self.test3()
 
     @inlineCallbacks
     def test0(self):
